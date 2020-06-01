@@ -1,16 +1,20 @@
 setopt inc_append_history
 setopt share_history
 
-export ZSH=~/.oh-my-zsh
+HISTSIZE=5000               #How many lines of history to keep in memory
+HISTFILE=~/.zsh_history     #Where to save history to disk
+SAVEHIST=500000              #Number of history entries to save to disk
+setopt    appendhistory     #Append history to the history file (no overwriting)
+setopt    sharehistory      #Share history across terminals
+setopt    incappendhistory  #Immediately append to the history file, not just when a term is killedexport 
 
+ZSH=~/.oh-my-zsh
 ZSH_THEME="bureau"
 
-# Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
 
 export UPDATE_ZSH_DAYS=13
 
-# Uncomment the following line if pasting URLs and other text is messed up.
 DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to display red dots whilst waiting for completion.
@@ -18,7 +22,5 @@ COMPLETION_WAITING_DOTS="true"
 
 plugins=(git mercurial zsh-autosuggestions zsh-syntax-highlighting)
 
-
 source $ZSH/oh-my-zsh.sh
-
 source ~/.work.zshrc
