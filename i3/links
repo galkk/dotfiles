@@ -1,5 +1,4 @@
-   82  ln -s ~/projects/dotfiles/i3/i3status ~/.config/i3status
-   86  ln -s ~/projects/dotfiles/i3/i3 ~/.config/i3
-  109  history | grep ln
-  110  history | grep ln | tail -n 2
-  111  history | grep ln | tail -n 4
+sudo apt install rofi i3
+
+ln -s ~/projects/dotfiles/i3/i3status ~/.config/i3status
+ln -s ~/projects/dotfiles/i3/i3 ~/.config/i3
