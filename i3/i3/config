@@ -138,4 +138,5 @@ bar {
         status_command i3status
         position top
         tray_output primary
+        font pango: Arial 9
 }
