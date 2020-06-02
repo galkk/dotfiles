@@ -8,7 +8,7 @@
 
 general {
         colors = true
-        interval = 5
+        interval = 1
 }
 
 order += "cpu_usage"
@@ -40,7 +40,7 @@ load {
 }
 
 memory {
-        format = "%used | %available"
+        format = "Used: %used | Free: %available"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
