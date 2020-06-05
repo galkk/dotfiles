@@ -3,7 +3,7 @@ set $mod Mod1
 font pango:DejaVu Sans Mono 10
 
 exec --no-startup-id vmware-user-suid-wrapper
-# exec --no-startup-id start-pulseaudio-x11
+exec --no-startup-id flameshot
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -140,3 +140,4 @@ bar {
         tray_output primary
         font pango: Arial Narrow 11
 }
+

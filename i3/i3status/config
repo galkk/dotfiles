@@ -14,9 +14,10 @@ general {
 order += "cpu_usage"
 order += "load"
 order += "memory"
-order += "ipv6"
-order += "wireless _first_"
-order += "ethernet _first_"
+# order += "ipv6"
+# order += "wireless _first_"
+order += "wireless name"
+# order += "ethernet _first_"
 order += "battery 0"
 order += "tztime local"
 order += "volume master"
@@ -34,8 +35,8 @@ cpu_usage {
         max_threshold = 75
 }
 
-wireless _first_ {
-        format_up = "W: %ip,%essid[%quality]"
+wireless name {
+        format_up = "W: %essid[%quality]"
         format_down = "W: down"
 }
 
@@ -55,12 +56,12 @@ memory {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M"
+        format = "%b-%d %H:%M"
 }
 
 battery 0 {
         format = "%status %percentage %remaining %emptytime"
-        format_down = "No battery"
+        format_down = ""
         status_chr = "⚡ CHR"
         status_bat = "🔋 BAT"
         status_unk = "? UNK"
