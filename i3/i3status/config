@@ -32,7 +32,7 @@ volume master {
 
 cpu_usage {
         format = "CPU %usage"
-        max_threshold = 75
+        max_threshold = 85
 }
 
 wireless name {
