@@ -20,7 +20,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git mercurial zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git mercurial tmux zsh-autosuggestions zsh-syntax-highlighting)
 
-source $ZSH/oh-my-zsh.sh
 source ~/.work.zshrc
+source $ZSH/oh-my-zsh.sh

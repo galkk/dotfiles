@@ -32,5 +32,3 @@ set foldenable
 set foldlevelstart=5
 set foldmethod=indent
 
-" enable mouse
-set mouse=a
