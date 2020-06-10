@@ -1,6 +1,6 @@
 init:
 	sudo apt install zsh curl i3 rofi peco terminator fzf htop mc flameshot mosh vim		
-	curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 configure:
 	git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions

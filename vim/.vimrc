@@ -1,3 +1,6 @@
+set nocompatible
+set backspace=indent,eol,start
+
 " show line numbers
 set number
 " show invisible characters
@@ -11,7 +14,7 @@ set incsearch
 " enable syntax highligting
 syntax enable
 " length of tab
-set tabstop=4
+set tabstop=2
 " show commands which i'm typing
 set showcmd
 
