@@ -20,7 +20,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(z colored-man-pages docker git mercurial tmux zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(zsh-peco-history z colored-man-pages docker git mercurial tmux zsh-autosuggestions zsh-syntax-highlighting)
 
 source ~/.work.zshrc
 source $ZSH/oh-my-zsh.sh
