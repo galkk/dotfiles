@@ -63,3 +63,10 @@ set foldenable
 set foldlevelstart=5
 set foldmethod=indent
 
+augroup tmux
+  autocmd!
+  if exists('$TMUX')
+    autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
+    autocmd VimLeave * call system("tmux set-window-option automatic-rename")
+  endif
+augroup END
