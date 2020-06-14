@@ -40,8 +40,9 @@ set cursorline
 " file type detection on (allows syntax highlighting etc)
 filetype plugin indent on
 
-" kind of autocompletion
+" autocompletion for vim commands
 set wildmenu
+set wildmode=list:full,full
 
 " buffer screen updates
 set lazyredraw
