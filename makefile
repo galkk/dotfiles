@@ -1,5 +1,5 @@
 init:
-	sudo apt install zsh curl i3 rofi peco openssh-server terminator fzf htop mc flameshot mosh vim cmake  python3-dev golang nodejs npm clang build-essential		
+	sudo apt install zsh curl i3 rofi peco openssh-server terminator fzf htop mc flameshot mosh vim cmake  python3-dev golang nodejs npm clang build-essential
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 configure:
