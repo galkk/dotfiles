@@ -17,6 +17,7 @@ set backspace=indent,eol,start
 " show line numbers
 set number
 " show invisible characters
+set listchars=eol:$,tab:>-,trail:~
 set list
 " ignore case for search
 set ignorecase
