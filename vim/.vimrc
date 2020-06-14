@@ -15,30 +15,40 @@ autocmd vimenter * colorscheme gruvbox
 set background=dark
 
 set nocompatible
-set backspace=indent,eol,start
 
-" show line numbers
-set number
+set backspace=indent,eol,start " allow backspace over everything
+
+set number  " show line numbers
+
 " show invisible characters
-set listchars=eol:$,tab:>-,trail:~
+set listchars=eol:$,tab:>-,trail:~,extends:#,nbsp:. 
 set list
-" ignore case for search
-set ignorecase
-" but if there is an uppercase then search is case sensitive
-set smartcase
-" incremental search
-set incsearch
-" enable syntax highligting
-syntax enable
-" length of tab
-set tabstop=2
-" show commands which i'm typing
-set showcmd
+
+set ignorecase  " ignore case for search
+set smartcase " but if there is an uppercase then search is case sensitive
+set incsearch " incremental search
+
+syntax enable " enable syntax highligting
+
+set tabstop=4 " length of tab
+
+set showcmd " show commands which i'm typing
 
 set cursorline
 
-" file type detection on (allows syntax highlighting etc)
-filetype plugin indent on
+set title " set terminal title
+
+set visualbell " no beeps
+set noerrorbells 
+
+set autoindent
+set copyindent
+set smarttab
+
+set history=1000
+set undolevels=1000
+
+filetype plugin indent on " file type detection on (allows syntax highlighting etc)
 
 " autocompletion for vim commands
 set wildmenu
