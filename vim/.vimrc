@@ -8,8 +8,11 @@ endif
 call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
-
+Plug 'morhetz/gruvbox'
 call plug#end()
+
+autocmd vimenter * colorscheme gruvbox
+set background=dark
 
 set nocompatible
 set backspace=indent,eol,start
