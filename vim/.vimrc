@@ -63,6 +63,8 @@ set foldenable
 set foldlevelstart=5
 set foldmethod=indent
 
+set encoding=utf-8
+
 augroup tmux
   autocmd!
   if exists('$TMUX')
