@@ -141,3 +141,6 @@ bar {
         font pango: Arial Narrow 11
 }
 
+# no titles for windows
+
+new_window pixel 0
