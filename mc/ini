@@ -1,4 +1,6 @@
 [Midnight-Commander]
+skin=modarin256-thin
+
 verbose=true
 shell_patterns=true
 auto_save_setup=true
@@ -82,7 +84,6 @@ editor_backup_extension=~
 editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
-skin=modarin256-thin
 
 [Layout]
 message_visible=true
@@ -94,28 +95,10 @@ menubar_visible=true
 free_space=true
 horizontal_split=false
 vertical_equal=true
-left_panel_size=60
 horizontal_equal=true
 top_panel_size=1
 
-[Misc]
-timeformat_recent=%b %e %H:%M
-timeformat_old=%b %e  %Y
-ftp_proxy_host=gate
-ftpfs_password=anonymous@
-display_codepage=UTF-8
-source_codepage=Other_8_bit
-autodetect_codeset=
-spell_language=en
-clipboard_store=
-clipboard_paste=
-
-[Colors]
-base_color=
-xterm-256color=
-color_terminals=
-
-screen-256color=
+left_panel_size=76
 
 [Panels]
 show_mini_info=true
@@ -137,6 +120,23 @@ permission_mode=false
 torben_fj_mode=false
 quick_search_mode=2
 select_flags=6
+
+[Misc]
+timeformat_recent=%b %e %H:%M
+timeformat_old=%b %e  %Y
+ftp_proxy_host=gate
+ftpfs_password=anonymous@
+display_codepage=UTF-8
+source_codepage=Other_8_bit
+autodetect_codeset=
+spell_language=en
+clipboard_store=
+clipboard_paste=
+
+[Colors]
+base_color=
+xterm-256color=
+color_terminals=
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print
