@@ -1,3 +1,5 @@
+# git clone git@github.com:galkk/dotfiles.git ~/projects/
+
 install:
 	sudo apt install zsh curl i3 rofi peco openssh-server terminator \
 		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
@@ -14,8 +16,6 @@ init-zsh:
 
 
 init-dotfiles:
-	git clone git@github.com:galkk/dotfiles.git ~/projects/
-
 	mv ~/.zshrc ~/.zshrc.backup
 	mv ~/.tmux.conf ~/.tmux.conf.backup
 	mv ~/.vimrc ~/.vimrc.backup
