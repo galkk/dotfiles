@@ -4,7 +4,7 @@ install:
 	sudo apt install zsh curl i3 rofi peco openssh-server terminator \
 		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
 		clang build-essential sc jq fonts-firacode fonts-dejavu lldb \
-		strace
+		strace compton
 
 init-zsh:
 	sudo apt install zsh
@@ -29,6 +29,7 @@ init-dotfiles:
 	ln -s ~/projects/dotfiles/vim/.vimrc ~/.vimrc
 	ln -s ~/projects/dotfiles/tmux/.tmux.conf ~/.tmux.conf
 	ln -s ~/projects/dotfiles/mc ~/.config/mc
+	ln -s ~/projects/dotfiles/compton.conf ~/.config/compton.conf
 
 
 all: install init-zsh init-dotfiles

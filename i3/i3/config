@@ -1,10 +1,12 @@
 # windows key as mod
+#
 set $mod Mod4
 
 font pango:DejaVu Sans Mono 10
 
 exec --no-startup-id vmware-user-suid-wrapper
 exec --no-startup-id flameshot
+exec --no-startup-id compton
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
