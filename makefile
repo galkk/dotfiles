@@ -3,8 +3,7 @@
 install:
 	sudo apt install zsh curl i3 rofi peco openssh-server terminator \
 		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
-		clang build-essential sc jq fonts-firacode fonts-dejavu lldb \
-		strace compton
+		clang build-essential sc jq fonts-firacode fonts-dejavu lldb strace compton rr
 
 init-zsh:
 	sudo apt install zsh
