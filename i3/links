@@ -1,4 +1,0 @@
-sudo apt install rofi i3
-
-ln -s ~/projects/dotfiles/i3/i3status ~/.config/i3status
-ln -s ~/projects/dotfiles/i3/i3 ~/.config/i3
