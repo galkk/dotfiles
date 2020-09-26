@@ -19,7 +19,6 @@ init-dotfiles:
 	mv ~/.tmux.conf ~/.tmux.conf.backup
 	mv ~/.vimrc ~/.vimrc.backup
 
-
 	touch ~/.work.zshrc
 
 	ln -s ~/projects/dotfiles/zsh/.zshrc ~/.zshrc
