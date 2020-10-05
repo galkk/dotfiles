@@ -3,7 +3,8 @@
 install:
 	sudo apt install zsh curl i3 rofi peco openssh-server terminator \
 		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
-		clang build-essential sc jq fonts-firacode fonts-dejavu lldb strace compton rr
+		clang build-essential sc jq fonts-firacode fonts-dejavu lldb strace compton rr \
+		highlight
 
 init-zsh:
 	sudo apt install zsh
@@ -18,7 +19,6 @@ init-dotfiles:
 	mv ~/.zshrc ~/.zshrc.backup
 	mv ~/.tmux.conf ~/.tmux.conf.backup
 	mv ~/.vimrc ~/.vimrc.backup
-
 
 	touch ~/.work.zshrc
 
