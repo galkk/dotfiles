@@ -29,6 +29,6 @@ init-dotfiles:
 	ln -s ~/projects/dotfiles/tmux/.tmux.conf ~/.tmux.conf
 	ln -s ~/projects/dotfiles/mc ~/.config/mc
 	ln -s ~/projects/dotfiles/compton.conf ~/.config/compton.conf
-
+	ln -s ~/projects/dotfiles/rofi/config.rasi ~/.config/rofi/config.rasi
 
 all: install init-zsh init-dotfiles
