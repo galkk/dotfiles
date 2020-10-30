@@ -14,7 +14,7 @@ ZSH_THEME="bureau"
 DISABLE_UPDATE_PROMPT="true"
 
 export UPDATE_ZSH_DAYS=13
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fig=3"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
 alias cats="highlight -O ansi --force"
 
