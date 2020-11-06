@@ -6,12 +6,16 @@ install:
 		clang build-essential sc jq fonts-firacode fonts-dejavu lldb strace compton rr \
 		highlight remmina
 
-init-zsh:
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+install-oh-my-zsh:
+	curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install-oh-my-zsh.sh;
+	sh install-oh-my-zsh.sh
+	rm install-oh-my-zsh.sh
+	chsh -s /usr/bin/zsh
 
-	git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-	git clone https://github.com/jimeh/zsh-peco-history.git $ZSH_CUSTOM/plugins/zsh-peco-history
+configure-oh-my-zsh: install-oh-my-zsh
+	git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	git clone https://github.com/jimeh/zsh-peco-history.git ~/.oh-my-zsh/custom/plugins/zsh-peco-history
 
 
 init-dotfiles:
@@ -30,4 +34,4 @@ init-dotfiles:
 	ln -s ~/projects/dotfiles/compton.conf ~/.config/compton.conf
 	ln -s ~/projects/dotfiles/rofi/config.rasi ~/.config/rofi/config.rasi
 
-all: install init-zsh init-dotfiles
+all: install install-oh-my-zsh configure-oh-my-zsh init-dotfiles
