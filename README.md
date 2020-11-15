@@ -1,3 +1,3 @@
 ## Initial setup
 
-`git clone git@github.com:galkk/dotfiles.git ~/projects/`
+`git clone git@github.com:galkk/dotfiles.git ~/projects/dotfiles`
