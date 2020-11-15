@@ -4,11 +4,13 @@ install:
 	sudo apt install zsh curl i3 rofi peco openssh-server terminator \
 		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
 		clang build-essential sc jq fonts-firacode fonts-dejavu lldb strace rr \
-		highlight remmina
+		highlight remmina xinit
+	
+	chsh -s $(which zsh)
 
 install-oh-my-zsh:
 	curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install-oh-my-zsh.sh;
-	sh /tmp/install-oh-my-zsh.sh
+	sh /tmp/install-oh-my-zsh.sh --unattended
 	rm /tmp/install-oh-my-zsh.sh
 
 configure-oh-my-zsh:
@@ -31,6 +33,3 @@ init-dotfiles:
 	ln -s ~/projects/dotfiles/i3/i3 ~/.config/i3
 	ln -s ~/projects/dotfiles/vim/.vimrc ~/.vimrc
 	ln -s ~/projects/dotfiles/tmux/.tmux.conf ~/.tmux.conf
-
-all: install install-oh-my-zsh configure-oh-my-zsh init-dotfiles
-	chsh -s /usr/bin/zsh
