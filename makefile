@@ -10,7 +10,6 @@ install-oh-my-zsh:
 	curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install-oh-my-zsh.sh;
 	sh install-oh-my-zsh.sh
 	rm install-oh-my-zsh.sh
-	chsh -s /usr/bin/zsh
 
 configure-oh-my-zsh: install-oh-my-zsh
 	git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
@@ -25,13 +24,13 @@ init-dotfiles:
 
 	touch ~/.work.zshrc
 
+	mkdir ~/.config
+
 	ln -s ~/projects/dotfiles/zsh/.zshrc ~/.zshrc
 	ln -s ~/projects/dotfiles/i3/i3status ~/.config/i3status
 	ln -s ~/projects/dotfiles/i3/i3 ~/.config/i3
 	ln -s ~/projects/dotfiles/vim/.vimrc ~/.vimrc
 	ln -s ~/projects/dotfiles/tmux/.tmux.conf ~/.tmux.conf
-	ln -s ~/projects/dotfiles/mc ~/.config/mc
-	ln -s ~/projects/dotfiles/compton.conf ~/.config/compton.conf
-	ln -s ~/projects/dotfiles/rofi/config.rasi ~/.config/rofi/config.rasi
 
 all: install install-oh-my-zsh configure-oh-my-zsh init-dotfiles
+	chsh -s /usr/bin/zsh
