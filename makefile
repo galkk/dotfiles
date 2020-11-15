@@ -19,9 +19,9 @@ configure-oh-my-zsh: install-oh-my-zsh
 
 
 init-dotfiles:
-	mv ~/.zshrc ~/.zshrc.backup
-	mv ~/.tmux.conf ~/.tmux.conf.backup
-	mv ~/.vimrc ~/.vimrc.backup
+	[-f ~/.zshrc] && mv ~/.zshrc ~/.zshrc.backup
+	[-f ~/.tmux.conf] & &mv ~/.tmux.conf ~/.tmux.conf.backup
+	[-f ~/.vimrc] && mv ~/.vimrc ~/.vimrc.backup
 
 	touch ~/.work.zshrc
 
