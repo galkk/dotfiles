@@ -7,20 +7,20 @@ install:
 		highlight remmina
 
 install-oh-my-zsh:
-	curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o install-oh-my-zsh.sh;
-	sh install-oh-my-zsh.sh
-	rm install-oh-my-zsh.sh
+	curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install-oh-my-zsh.sh;
+	sh /tmp/install-oh-my-zsh.sh
+	rm /tmp/install-oh-my-zsh.sh
 
-configure-oh-my-zsh: install-oh-my-zsh
+configure-oh-my-zsh:
 	git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 	git clone https://github.com/jimeh/zsh-peco-history.git ~/.oh-my-zsh/custom/plugins/zsh-peco-history
 
 
 init-dotfiles:
-	[! -f ~/.zshrc ] || mv ~/.zshrc ~/.zshrc.backup
-	[! -f ~/.tmux.conf ] || mv ~/.tmux.conf ~/.tmux.conf.backup
-	[! -f ~/.vimrc ] || mv ~/.vimrc ~/.vimrc.backup
+	[ ! -f ~/.zshrc ] || mv ~/.zshrc ~/.zshrc.backup
+	[ ! -f ~/.tmux.conf ] || mv ~/.tmux.conf ~/.tmux.conf.backup
+	[ ! -f ~/.vimrc ] || mv ~/.vimrc ~/.vimrc.backup
 
 	touch ~/.work.zshrc
 
