@@ -3,7 +3,7 @@
 install:
 	sudo apt install zsh curl i3 rofi peco openssh-server terminator \
 		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
-		clang build-essential sc jq fonts-firacode fonts-dejavu lldb strace compton rr \
+		clang build-essential sc jq fonts-firacode fonts-dejavu lldb strace rr \
 		highlight remmina
 
 install-oh-my-zsh:
