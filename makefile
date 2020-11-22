@@ -33,3 +33,4 @@ init-dotfiles:
 	ln -s ~/projects/dotfiles/i3/i3 ~/.config/i3
 	ln -s ~/projects/dotfiles/vim/.vimrc ~/.vimrc
 	ln -s ~/projects/dotfiles/tmux/.tmux.conf ~/.tmux.conf
+	ln -s ~/projects/dotfiles/.p10k.zsh ~/.p10k.zsh
