@@ -16,6 +16,8 @@ set background=dark
 
 set nocompatible
 
+set noswapfile
+
 set backspace=indent,eol,start " allow backspace over everything
 
 set number  " show line numbers
