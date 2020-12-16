@@ -5,23 +5,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-setopt inc_append_history
 setopt share_history
 
 HISTSIZE=50000               #How many lines of history to keep in memory
 HISTFILE=~/.zsh_history     #Where to save history to disk
 SAVEHIST=5000000              #Number of history entries to save to disk
-setopt    appendhistory     #Append history to the history file (no overwriting)
-setopt    sharehistory      #Share history across terminals
-setopt    incappendhistory  #Immediately append to the history file, not just when a term is killedexport 
 
 ZSH=~/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 DISABLE_UPDATE_PROMPT="true"
 
-export UPDATE_ZSH_DAYS=13
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fig=3"
+UPDATE_ZSH_DAYS=13
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fig=3"
 
 alias cats="highlight -O ansi --force"
 

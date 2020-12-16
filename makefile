@@ -4,7 +4,7 @@ install:
 	sudo apt install zsh curl i3 rofi peco openssh-server terminator \
 		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
 		clang build-essential sc jq fonts-firacode fonts-dejavu lldb strace rr \
-		highlight remmina xinit firefox
+		highlight remmina xinit firefox imagemagick poppler-utils ffmpeg
 	
 	chsh -s $(which zsh)
 
