@@ -17,7 +17,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 DISABLE_UPDATE_PROMPT="true"
 
 UPDATE_ZSH_DAYS=13
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
 alias cats="highlight -O ansi --force"
 
