@@ -27,7 +27,7 @@ init-dotfiles:
 
 	touch ~/.work.zshrc
 
-	mkdir ~/.config
+	mkdir -p ~/.config
 
 	ln -s ~/projects/dotfiles/zsh/.zshrc ~/.zshrc
 	ln -s ~/projects/dotfiles/i3/i3status ~/.config/i3status
