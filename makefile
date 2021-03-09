@@ -1,7 +1,7 @@
 # git clone git@github.com:galkk/dotfiles.git ~/projects/
 
 install:
-	sudo apt install zsh curl i3 rofi peco openssh-server terminator \
+	sudo apt install zsh curl i3 rofi peco openssh-server \
 		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
 		clang build-essential sc jq fonts-firacode fonts-dejavu lldb strace rr \
 		highlight remmina xinit firefox imagemagick poppler-utils ffmpeg \
