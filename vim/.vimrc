@@ -14,6 +14,9 @@ call plug#end()
 autocmd vimenter * colorscheme gruvbox
 set background=dark
 
+set ttymouse=xterm2
+set mouse=a
+
 set nocompatible
 
 set noswapfile
