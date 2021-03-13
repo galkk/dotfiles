@@ -65,7 +65,7 @@ set lazyredraw
 set showmatch
 set hlsearch
 set foldenable
-set foldlevelstart=5
+set foldlevelstart=2
 set foldmethod=indent
 
 set encoding=utf-8
