@@ -3,9 +3,10 @@
 install:
 	sudo apt install zsh curl i3 rofi peco openssh-server \
 		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
-		clang build-essential sc jq fonts-firacode fonts-dejavu lldb strace rr \
+		clang build-essential sc jq lldb strace rr \
 		highlight remmina xinit firefox imagemagick poppler-utils ffmpeg \
-		command-not-found brightnessctl kitty
+		command-not-found brightnessctl kitty \
+		fonts-firacode fonts-dejavu fonts-hack-ttf  
 	
 	chsh -s $(which zsh)
 
