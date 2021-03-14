@@ -4,6 +4,17 @@ set $mod Mod4
 
 font pango:DejaVu Sans Mono 10
 
+client.focused          #4b68ad #24272e #73b2e6 #282c34   #4b68ad
+client.focused_inactive #24272e #24272e #73b2e6 #484e50   #282c34   
+client.unfocused        #282c34 #282c34 #888888 #282c34   #282c34   
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+# no titles for windows
+new_window pixel 0
+
+hide_edge_borders both
+
 exec --no-startup-id vmware-user-suid-wrapper
 exec --no-startup-id flameshot
 exec --no-startup-id "setxkbmap -layout us,ru -option grp:win_space_toggle"
@@ -36,7 +47,7 @@ bindsym $mod+t exec i3 open
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec "rofi -modi combi -combi-modi window,drun,ssh,run -theme solarized -font 'Fira Code Retina 16' -show combi -opacity 50 -lines 20 -window-thumbnail -show-icons -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $mod+d exec "rofi -modi combi -combi-modi window,drun,run,ssh -theme solarized -font 'Fira Code Retina 16' -show combi -opacity 50 -lines 20 -window-thumbnail -show-icons"
 
 # select windows by key:
 bindsym $mod+Left focus left
@@ -65,10 +76,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+u floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+u focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -154,5 +165,3 @@ bar {
         font pango: Arial Narrow 11
 }
 
-# no titles for windows
-new_window pixel 0
