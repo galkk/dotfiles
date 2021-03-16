@@ -40,9 +40,6 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# empty space
-bindsym $mod+t exec i3 open
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
