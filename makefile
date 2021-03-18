@@ -5,7 +5,7 @@ install:
 		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
 		clang build-essential sc jq lldb strace rr \
 		highlight remmina xinit firefox imagemagick poppler-utils ffmpeg \
-		command-not-found brightnessctl kitty \
+		command-not-found brightnessctl kitty peek\
 		fonts-firacode fonts-dejavu fonts-hack-ttf  
 	
 	chsh -s $(which zsh)
