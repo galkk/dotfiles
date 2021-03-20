@@ -1,16 +1,18 @@
 # git clone git@github.com:galkk/dotfiles.git ~/projects/
 
 install:
-	sudo apt install zsh curl i3 rofi peco openssh-server \
-		fzf htop mc flameshot mosh vim cmake python3-dev golang nodejs npm \
+	sudo apt install zsh curl  peco openssh-server \
+		fzf htop mc  mosh vim cmake python3-dev golang nodejs npm \
 		clang build-essential sc jq lldb strace rr \
-		highlight remmina xinit firefox imagemagick poppler-utils ffmpeg \
-		command-not-found brightnessctl kitty peek\
-		fonts-firacode fonts-dejavu fonts-hack-ttf  
+		highlight imagemagick poppler-utils ffmpeg \
+		command-not-found
 	
-	chsh -s $(which zsh)
+install-gui:
+	sudo apt install i3 rofi flameshot remmina xinit firefox brightnessctl kitty peek \
+		fonts-firacode fonts-dejavu fonts-hack-ttf
 
 install-oh-my-zsh:
+	chsh -s $(which zsh)
 	curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install-oh-my-zsh.sh;
 	sh /tmp/install-oh-my-zsh.sh --unattended
 	rm /tmp/install-oh-my-zsh.sh
