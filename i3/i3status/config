@@ -9,8 +9,9 @@ general {
 order += "cpu_usage"
 order += "load"
 order += "memory"
+# order += "run_watch DHCP"
 # order += "ipv6"
-order += "wireless _first_"
+# order += "wireless _first_"
 # order += "ethernet _first_"
 order += "battery 0"
 order += "tztime local"
@@ -45,7 +46,7 @@ load {
 
 memory {
         format = "Used: %used | Free: %available"
-        threshold_degraded = "5G"
+        threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
 
@@ -62,4 +63,8 @@ battery 0 {
         status_full = "☻ FULL"
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
+}
+
+run_watch DHCP {
+        pidfile = "/var/run/dhclient*.pid"
 }
