@@ -9,6 +9,8 @@ default_border pixel
 
 hide_edge_borders both
 
+focus_follows_mouse yes
+
 exec --no-startup-id vmware-user-suid-wrapper
 exec --no-startup-id flameshot
 exec --no-startup-id "setxkbmap -layout us,ru -option grp:win_space_toggle"
