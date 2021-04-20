@@ -97,7 +97,7 @@ bindsym $mod+l exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: chat and calendar"
+set $ws1 "1: chat, calendar"
 set $ws2 "2: main"
 set $ws3 "3: remote"
 set $ws4 "4: mail"
