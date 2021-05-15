@@ -14,7 +14,9 @@ call plug#end()
 autocmd vimenter * colorscheme gruvbox
 set background=dark
 
-set ttymouse=xterm2
+if !has('nvim')
+  set ttymouse=xterm2
+endif
 set mouse=a
 
 set nocompatible
