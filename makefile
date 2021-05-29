@@ -40,6 +40,7 @@ init-dotfiles:
 	ln -s ~/projects/dotfiles/.p10k.zsh ~/.p10k.zsh
 	ls -s ~/projects/dotfiles/screenlayout ~/.screenlayout
 	ls -s ~/projects/dotfiles/kitty ~/.config/kitty
+	ln -s ~/projects/dotfiles/nvim ~/.config/nvim
 
 # to run brightnessctl without sudo
 post-install:
