@@ -182,7 +182,7 @@ bar {
         i3bar_command i3bar --transparency
         status_command i3status
         position top
-        tray_output primary
+        tray_output primary # if no primary monitor is set need via xrandr specify output explicitly, like DP-2-2
         font pango: Arial Narrow 11
 }
 
