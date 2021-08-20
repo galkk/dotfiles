@@ -185,4 +185,3 @@ bar {
         tray_output primary # if no primary monitor is set need via xrandr specify output explicitly, like DP-2-2
         font pango: Arial Narrow 11
 }
-
