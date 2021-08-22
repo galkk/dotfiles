@@ -27,6 +27,7 @@ init-dotfiles:
 	[ ! -f ~/.zshrc ] || mv ~/.zshrc ~/.zshrc.backup
 	[ ! -f ~/.tmux.conf ] || mv ~/.tmux.conf ~/.tmux.conf.backup
 	[ ! -f ~/.vimrc ] || mv ~/.vimrc ~/.vimrc.backup
+	[ ! -f ~/.gitconfig ] || mv ~/.gitconfig ~/.gitconfig.backup
 
 	touch ~/.work.zshrc
 
@@ -41,6 +42,7 @@ init-dotfiles:
 	ls -s ~/projects/dotfiles/screenlayout ~/.screenlayout
 	ls -s ~/projects/dotfiles/kitty ~/.config/kitty
 	ln -s ~/projects/dotfiles/nvim ~/.config/nvim
+	ln -s ~/projects/dotfiles/.gitconfig ~/.gitconfig
 
 # to run brightnessctl without sudo
 post-install:
