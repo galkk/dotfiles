@@ -39,8 +39,8 @@ init-dotfiles:
 	ln -s ~/projects/dotfiles/vim/.vimrc ~/.vimrc
 	ln -s ~/projects/dotfiles/tmux/.tmux.conf ~/.tmux.conf
 	ln -s ~/projects/dotfiles/.p10k.zsh ~/.p10k.zsh
-	ls -s ~/projects/dotfiles/screenlayout ~/.screenlayout
-	ls -s ~/projects/dotfiles/kitty ~/.config/kitty
+	ln -s ~/projects/dotfiles/screenlayout ~/.screenlayout
+	ln -s ~/projects/dotfiles/kitty ~/.config/kitty
 	ln -s ~/projects/dotfiles/nvim ~/.config/nvim
 	ln -s ~/projects/dotfiles/.gitconfig ~/.gitconfig
 
