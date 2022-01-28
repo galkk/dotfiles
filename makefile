@@ -8,7 +8,7 @@ install:
 		command-not-found neovim
 	
 install-gui:
-	sudo apt install i3 rofi flameshot remmina xinit firefox brightnessctl kitty peek \
+	sudo apt install i3 rofi flameshot remmina xinit brightnessctl kitty peek \
 		fonts-firacode fonts-dejavu fonts-hack-ttf
 
 install-oh-my-zsh:
