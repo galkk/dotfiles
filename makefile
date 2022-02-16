@@ -11,6 +11,8 @@ install-gui:
 	sudo apt install i3 rofi flameshot remmina xinit brightnessctl kitty peek \
 		fonts-firacode fonts-dejavu fonts-hack-ttf
 
+# don't forget to install azeret mono, victor mono
+
 install-oh-my-zsh:
 	chsh -s $(which zsh)
 	curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install-oh-my-zsh.sh;
