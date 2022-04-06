@@ -45,6 +45,8 @@ init-dotfiles:
 	ln -s ~/projects/dotfiles/kitty ~/.config/kitty
 	ln -s ~/projects/dotfiles/nvim ~/.config/nvim
 	ln -s ~/projects/dotfiles/.gitconfig ~/.gitconfig
+	ln -s ~/projects/dotfiles/rofi ~/.config/rofi	
+
 
 # to run brightnessctl without sudo
 post-install:
