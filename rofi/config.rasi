@@ -2,23 +2,8 @@ configuration {
 	modi: "combi";
 	font: "Victor Mono 16";
 	show-icons: true;
-	combi-modi: "window,drun,ssh,run";
+	combi-modi: "window,drun,ssh";
 	window-format: "{t:60} {w} {n}";
 	window-thumbnail: true;
-  timeout {
-      action: "kb-cancel";
-      delay:  0;
-  }
-  filebrowser {
-      directories-first: true;
-      sorting-method:    "name";
-  }
-  combi {
-      modi: "window,drun,ssh,run";
-  }
-  window {
-      format:    "{t:60} {w} {n}";
-      thumbnail: "-show-icons";
-  }
 }
 @theme "solarized"
