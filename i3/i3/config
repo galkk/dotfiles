@@ -39,7 +39,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec "rofi -show"
+bindsym $mod+d exec --no-startup-id rofi -show
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
