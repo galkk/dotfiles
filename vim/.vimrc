@@ -7,7 +7,6 @@ endif
 " Plugins
 call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 Plug 'morhetz/gruvbox'
 call plug#end()
 

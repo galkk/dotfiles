@@ -1,0 +1,9 @@
+configuration {
+	modi: "combi";
+	font: "Victor Mono 16";
+	show-icons: true;
+	combi-modi: "window,drun,ssh,run";
+	window-format: "{t:60} {w} {n}";
+	window-thumbnail: true;
+}
+@theme "solarized"

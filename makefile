@@ -11,6 +11,8 @@ install-gui:
 	sudo apt install i3 rofi flameshot remmina xinit brightnessctl kitty peek \
 		fonts-firacode fonts-dejavu fonts-hack-ttf
 
+# don't forget to install azeret mono, victor mono
+
 install-oh-my-zsh:
 	chsh -s $(which zsh)
 	curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install-oh-my-zsh.sh;
@@ -43,6 +45,8 @@ init-dotfiles:
 	ln -s ~/projects/dotfiles/kitty ~/.config/kitty
 	ln -s ~/projects/dotfiles/nvim ~/.config/nvim
 	ln -s ~/projects/dotfiles/.gitconfig ~/.gitconfig
+	ln -s ~/projects/dotfiles/rofi ~/.config/rofi	
+
 
 # to run brightnessctl without sudo
 post-install:

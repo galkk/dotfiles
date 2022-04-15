@@ -1,8 +1,7 @@
 # windows key as mod
-#
 set $mod Mod4
 
-font pango:DejaVu Sans Mono 10
+font pango:Victor Mono, DejaVu Sans Mono 10
 
 # no titles for windows
 default_border pixel
@@ -40,7 +39,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec "rofi -modi combi -combi-modi window,drun,run,ssh -theme solarized -font 'Fira Code Retina 16' -show combi -opacity 50 -lines 20 -window-thumbnail -show-icons"
+bindsym $mod+d exec --no-startup-id rofi -show
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -97,15 +96,15 @@ bindsym $mod+l exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: chat, calendar"
-set $ws2 "2: main"
-set $ws3 "3: remote"
-set $ws4 "4: mail"
+set $ws1 "1: main"
+set $ws2 "2: main2"
+set $ws3 "3: code"
+set $ws4 "4: "
 set $ws5 "5: personal"
-set $ws6 "6"
+set $ws6 "6: rdesktop"
 set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+set $ws8 "8: chat, calendar"
+set $ws9 "9: mail"
 set $ws10 "10"
 
 # switch to workspace
