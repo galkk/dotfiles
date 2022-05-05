@@ -9,9 +9,13 @@ install:
 	
 install-gui:
 	sudo apt install i3 rofi flameshot remmina xinit brightnessctl kitty peek \
-		fonts-firacode fonts-dejavu fonts-hack-ttf
-
+		fonts-firacode fonts-dejavu fonts-hack-ttf fonts-powerline
 # don't forget to install azeret mono, victor mono
+
+install-kitty:
+	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin	
+	ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
+	sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator `which kitty` 50
 
 install-oh-my-zsh:
 	chsh -s $(which zsh)
