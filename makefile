@@ -9,7 +9,7 @@ install:
 	
 install-gui:
 	sudo apt install i3 rofi flameshot remmina xinit brightnessctl kitty peek \
-		fonts-firacode fonts-dejavu fonts-hack-ttf fonts-powerline
+		fonts-firacode fonts-dejavu fonts-hack-ttf fonts-powerline copyq
 # don't forget to install azeret mono, victor mono
 
 install-kitty:
