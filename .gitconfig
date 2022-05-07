@@ -2,4 +2,8 @@
 	email = andy.galkin@gmail.com
 	name = Andy Galkin
 [pull]
-	ff = only
+		ff = only
+[status]
+		short = true
+[fetch]
+		prune = true
