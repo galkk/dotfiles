@@ -36,6 +36,9 @@ set incsearch " incremental search
 
 syntax enable " enable syntax highligting
 
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+
 set tabstop=4 " length of tab
 
 set showcmd " show commands which i'm typing
