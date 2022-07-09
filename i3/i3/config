@@ -1,3 +1,5 @@
+# i3 config file (v4)
+
 # windows key as mod
 set $mod Mod4
 
@@ -16,7 +18,7 @@ exec --no-startup-id "setxkbmap -layout us,ru -option grp:win_space_toggle"
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nQofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -184,3 +186,12 @@ bar {
         tray_output primary # if no primary monitor is set need via xrandr specify output explicitly, like DP-2-2
         font pango: Arial Narrow 11
 }
+
+workspace_auto_back_and_forth yes
+
+assign [title=".*Gmail.*"] number 9; workspace 9
+assign [title=".*Google Calendar.*"] number 8
+assign [title=".*Google Chat.*"] number 8
+
+assign [title=".*Messenger.*"] number 5
+
