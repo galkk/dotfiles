@@ -15,6 +15,7 @@ focus_follows_mouse yes
 exec --no-startup-id vmware-user-suid-wrapper
 exec --no-startup-id flameshot
 exec --no-startup-id "setxkbmap -layout us,ru -option grp:win_space_toggle"
+exec --no-startup-id copyq
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -95,6 +96,8 @@ bindsym XF86MonBrightnessUp exec brightnessctl s +5%
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 
 bindsym $mod+l exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
+bindsym Print exec flameshot gui
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
