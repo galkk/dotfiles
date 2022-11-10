@@ -41,6 +41,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# lock
+bindsym $mod+Shift+l exec i3lock
+
 # start rofi (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show
 
