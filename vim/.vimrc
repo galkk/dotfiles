@@ -8,6 +8,7 @@ endif
 call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
+Plug 'powerman/vim-plugin-AnsiEsc'
 call plug#end()
 
 autocmd vimenter * colorscheme gruvbox
