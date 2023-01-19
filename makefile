@@ -5,7 +5,7 @@ install:
 		fzf htop mc  mosh vim cmake python3-dev golang nodejs npm \
 		clang build-essential sc jq lldb strace rr \
 		highlight imagemagick poppler-utils ffmpeg \
-		command-not-found neovim
+		command-not-found neovim ripgrep
 	
 install-gui:
 	sudo apt install i3 rofi flameshot remmina xinit brightnessctl kitty peek \
