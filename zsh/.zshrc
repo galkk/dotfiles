@@ -18,6 +18,7 @@ DISABLE_UPDATE_PROMPT="true"
 
 UPDATE_ZSH_DAYS=13
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
+ZSH_AUTOSUGGEST_STRATEGY=(history)
 
 alias cats="highlight -O xterm256 --force"
 
@@ -26,7 +27,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(zsh-peco-history z colored-man-pages docker git mercurial web-search zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(zsh-autosuggestions zsh-autocomplete z colored-man-pages docker git mercurial web-search zsh-syntax-highlighting)
 
 source ~/.work.zshrc
 source $ZSH/oh-my-zsh.sh
