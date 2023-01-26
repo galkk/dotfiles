@@ -9,6 +9,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'neovim/nvim-lspconfig' " Configuration for Nvim LSP
 call plug#end()
 
 autocmd vimenter * colorscheme gruvbox
@@ -62,7 +63,7 @@ filetype plugin indent on " file type detection on (allows syntax highlighting e
 
 " autocompletion for vim commands
 set wildmenu
-set wildmode=list:full,full
+set wildmode=list:longest,full
 
 " buffer screen updates
 set lazyredraw
