@@ -1,20 +1,20 @@
 # git clone git@github.com:galkk/dotfiles.git ~/projects/
 
 install:
-	sudo apt install zsh curl  peco openssh-server \
+	sudo apt install -y zsh curl  peco openssh-server \
 		fzf htop mc  mosh vim cmake python3-dev golang nodejs npm \
 		clang build-essential sc jq lldb strace rr \
 		highlight imagemagick poppler-utils ffmpeg \
 		command-not-found neovim ripgrep
 	
 install-fonts:
-	sudo apt install fonts-firacode fonts-dejavu fonts-hack-ttf fonts-powerline
+	sudo apt install -y fonts-firacode fonts-dejavu fonts-hack-ttf fonts-powerline
 	wget https://rubjo.github.io/victor-mono/VictorMonoAll.zip
 	unzip -j VictorMonoAll.zip TTF/* -d ~/.fonts
 	rm VictorMonoAll.zip
 
 install-gui: install-fonts
-	sudo apt install i3 rofi flameshot remmina xinit brightnessctl kitty peek \
+	sudo apt install -y i3 rofi flameshot remmina xinit brightnessctl kitty peek \
 		copyq
 
 install-kitty:
