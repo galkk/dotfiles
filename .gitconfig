@@ -1,9 +1,9 @@
 [user]
-	email = andy.galkin@gmail.com
-	name = Andy Galkin
+    email = andy.galkin@gmail.com
+    name = Andy Galkin
 [pull]
-		ff = only
+    ff = only
 [status]
-		short = true
+    short = true
 [fetch]
-		prune = true
+    prune = true
