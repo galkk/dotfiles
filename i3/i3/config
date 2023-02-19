@@ -203,3 +203,5 @@ assign [title=".*Google Chat.*"] number 8
 assign [title=".*Messenger.*"] number 5
 assign [title=".*Obsidian.*"] number 7
 
+tiling_drag modifier titlebar
+
