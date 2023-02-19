@@ -7,13 +7,19 @@ install:
 		highlight imagemagick poppler-utils ffmpeg \
 		command-not-found neovim ripgrep
 	
-install-gui:
+install-fonts:
+	sudo apt install fonts-firacode fonts-dejavu fonts-hack-ttf fonts-powerline
+	wget https://rubjo.github.io/victor-mono/VictorMonoAll.zip
+	unzip -j VictorMonoAll.zip TTF/* -d ~/.fonts
+	rm VictorMonoAll.zip
+
+install-gui: install-fonts
 	sudo apt install i3 rofi flameshot remmina xinit brightnessctl kitty peek \
-		fonts-firacode fonts-dejavu fonts-hack-ttf fonts-powerline copyq
-# don't forget to install azeret mono, victor mono
+		copyq
 
 install-kitty:
 	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin	
+	mkdir -p ~/.local/bin
 	ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
 	sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator `which kitty` 50
 
