@@ -9,21 +9,34 @@ In dotfiles:
 
 ## Minimal:
 
-Build 
+Run from repository 
+
+`docker run --rm -it galkkk/andy-dotfiles-minimal:latest`
+
+Build locally
 
 `docker build --target minimal --tag andy-dotfiles-minimal`
 
-Run
+Run locally
 
 `docker run -it docker.io/library/andy-dotfiles-minimal`
 
+Push to repository
+
+```bash
+docker tag andy-dotfiles-minimal:latest galkkk/andy-dotfiles-minimal:latest
+docker image push galkkk/andy-dotfiles-minimal
+```
 
 ## Full
 
-Build
+Run from repository
+`docker run --rm -it galkkk/andy-dotfiles-full:latest`
+
+Build locally
 
 `docker build --target full --tag andy-dotfiles-full`
 
-Run
+Run locally
 
 `docker run -it docker.io/library/andy-dotfiles-full`
