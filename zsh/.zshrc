@@ -27,7 +27,15 @@ DISABLE_MAGIC_FUNCTIONS=true
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(zsh-autosuggestions zsh-autocomplete z colored-man-pages docker git mercurial web-search zsh-syntax-highlighting)
+zstyle ':autocomplete:*' widget-style menu-select
+zstyle ':autocomplete:*' list-lines 24
+zstyle ':autocomplete:history-search:*' list-lines 24  # int
+zstyle ':autocomplete:history-incremental-search-*:*' list-lines 24 # int
+
+zstyle ':autocomplete:*' insert-unambiguous yes
+zstyle ':autocomplete:*' fzf-completion no
+
+plugins=(zsh-autosuggestions zsh-autocomplete z colored-man-pages docker git mercurial web-search zsh-syntax-highlighting )
 
 source ~/.work.zshrc
 source $ZSH/oh-my-zsh.sh
