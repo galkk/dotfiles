@@ -33,9 +33,11 @@ zstyle ':autocomplete:history-search:*' list-lines 24  # int
 zstyle ':autocomplete:history-incremental-search-*:*' list-lines 24 # int
 
 zstyle ':autocomplete:*' insert-unambiguous yes
-zstyle ':autocomplete:*' fzf-completion no
+zstyle ':autocomplete:*' fzf-completion yes
 
-plugins=(zsh-autosuggestions zsh-autocomplete z colored-man-pages docker git mercurial web-search zsh-syntax-highlighting )
+FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | batcat --color=always --language=bash --style=plain' --preview-window down:7:wrap"
+
+plugins=(fzf zsh-autosuggestions zsh-autocomplete z colored-man-pages docker git mercurial web-search zsh-syntax-highlighting)
 
 source ~/.work.zshrc
 source $ZSH/oh-my-zsh.sh
