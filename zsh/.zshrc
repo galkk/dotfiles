@@ -38,7 +38,7 @@ zstyle ':autocomplete:*' fzf-completion yes
 
 FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | batcat --color=always --language=bash --style=plain' --preview-window down:7:wrap"
 
-plugins=(fzf zsh-autosuggestions zsh-autocomplete z colored-man-pages docker git mercurial web-search zsh-syntax-highlighting)
+plugins=(fzf zsh-autosuggestions zsh-autocomplete z mercurial zsh-syntax-highlighting)
 
 source ~/.work.zshrc
 source $ZSH/oh-my-zsh.sh
