@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 setopt share_history
+setopt hist_find_no_dups
 
 HISTSIZE=50000               #How many lines of history to keep in memory
 HISTFILE=~/.zsh_history     #Where to save history to disk
