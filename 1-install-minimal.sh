@@ -1,4 +1,4 @@
 apt update
 
-apt install -y zsh curl git vim
+apt install -y zsh curl git vim fzf
 

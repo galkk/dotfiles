@@ -13,6 +13,10 @@ Run from repository
 
 `docker run --rm -it galkkk/andy-dotfiles-minimal:latest`
 
+or 
+
+`docker compose run --rm galkkk/andy-dotfiles-minimal:latest`
+
 Build locally
 
 `docker build --target minimal --tag andy-dotfiles-minimal`
