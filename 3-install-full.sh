@@ -3,7 +3,7 @@ apt install -y openssh-server htop mc mosh \
     clang jq lldb strace rr \
     highlight imagemagick ffmpeg \
     command-not-found neovim ripgrep bat podman \
-    openjdk-17-jdk
+    openjdk-17-jdk flatpak
 
 # Let podman to get images from docker hub.
 echo "
