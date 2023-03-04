@@ -19,16 +19,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build and push minimal image
         uses: docker/build-push-action@v4
         with:
           push: true
           target: minimal
-          tags: galkkk/andy-dotfiles-minimal:latest
+          tags: galkkk/dotfiles:minimal
       -
-        name: Build and push
+        name: Build and push full image
         uses: docker/build-push-action@v4
         with:
           push: true
           target: full
-          tags: galkkk/andy-dotfiles-full:latest
+          tags: galkkk/dotfiles:full

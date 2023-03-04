@@ -11,7 +11,7 @@ In dotfiles:
 
 Run from repository 
 
-`docker run --rm -it galkkk/andy-dotfiles-minimal:latest`
+`docker run --rm -it galkkk/dotfiles:minimal`
 
 or 
 
