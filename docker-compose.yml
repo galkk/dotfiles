@@ -1,7 +1,7 @@
 version: "3"
 services:
   andy-minimal:
-    image: galkkk/andy-dotfiles-minimal:latest
+    image: galkkk/dotfiles:minimal
     stdin_open: true
     tty: true
     volumes:

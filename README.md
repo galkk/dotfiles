@@ -3,44 +3,18 @@
 Setup git/ssh and clone repository
 `git clone git@github.com:galkk/dotfiles.git ~/projects/dotfiles`, then run shell scripts one by one (the ones that are needed).
 
-# Docker
+# Docker/Podman
 
-In dotfiles:
+Configuration: 
+* [Dockerfile](Dockerfile)
+* [Docker compose](docker-compose.yml)
 
-## Minimal:
+Each change is being built by [github action](.github/workflows/push-docker-image.yml) and sent to [docker hub repository](https://hub.docker.com/repository/docker/galkkk/dotfiles).
 
-Run from repository 
-
-`docker run --rm -it galkkk/dotfiles:minimal`
-
-or 
-
-`docker compose run --rm galkkk/andy-dotfiles-minimal:latest`
-
-Build locally
-
-`docker build --target minimal --tag andy-dotfiles-minimal`
-
-Run locally
-
-`docker run -it docker.io/library/andy-dotfiles-minimal`
-
-Push to repository
-
-```bash
-docker tag andy-dotfiles-minimal:latest galkkk/andy-dotfiles-minimal:latest
-docker image push galkkk/andy-dotfiles-minimal
-```
-
-## Full
-
-Run from repository
-`docker run --rm -it galkkk/andy-dotfiles-full:latest`
-
-Build locally
-
-`docker build --target full --tag andy-dotfiles-full`
-
-Run locally
-
-`docker run -it docker.io/library/andy-dotfiles-full`
+Action| Minimal | Full
+-|-|-
+Run from repository, docker | `docker run --rm -it galkkk/dotfiles:minimal` | `docker run --rm -it galkkk/dotfiles:full`
+Run from repository, docker compose | `docker compose run --rm galkkk/dotfiles:minimal` | `docker compose run --rm galkkk/dotfiles:full`
+Build |`docker build --target minimal --tag dotfiles:minimal` |
+Run locally | `docker run -it docker.io/library/dotfiles:minimal`
+Push to repository | <code>docker tag dotfiles:minimal galkkk/dotfiles:minimal <br>docker image push galkkk/dotfiles:minimal </code>
