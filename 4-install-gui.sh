@@ -15,7 +15,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 flatpak install -y flathub md.obsidian.Obsidian
 
 # TODO(galk): add intellij, vscode
-# TODO(galk): add repository 
+# TODO(galk): add repository for i3 latest and install i3 from there, to get things like gaps
 
 # to run brightnessctl without sudo
 usermod -aG video $USER
