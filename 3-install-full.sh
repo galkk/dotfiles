@@ -3,7 +3,7 @@ apt install -y openssh-server htop mc mosh \
     clang jq lldb strace rr \
     highlight imagemagick ffmpeg \
     command-not-found neovim ripgrep bat podman \
-    openjdk-17-jdk flatpak docker.io
+    openjdk-17-jdk flatpak docker.io exa
 # TODO(galk): Replace docker.io with installation script/code from docker to install latest version.
 
 # Let podman to get images from docker hub.
