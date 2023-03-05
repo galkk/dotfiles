@@ -3,13 +3,15 @@
 Setup git/ssh and clone repository
 `git clone git@github.com:galkk/dotfiles.git ~/projects/dotfiles`, then run shell scripts one by one (the ones that are needed).
 
+Configs could be used for both fresh linux installations and docker toolbox style imagesf (although not everything there will work, for example podman).
+
 # Docker/Podman
+
+Each change is being built by [github action](.github/workflows/push-docker-image.yml) and sent to [docker hub repository](https://hub.docker.com/repository/docker/galkkk/dotfiles).
 
 Configuration: 
 * [Dockerfile](Dockerfile)
 * [Docker compose](docker-compose.yml)
-
-Each change is being built by [github action](.github/workflows/push-docker-image.yml) and sent to [docker hub repository](https://hub.docker.com/repository/docker/galkkk/dotfiles).
 
 Action| Minimal | Full
 -|-|-
