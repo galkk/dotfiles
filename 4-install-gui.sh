@@ -13,8 +13,12 @@ apt install -y i3 rofi flameshot remmina xinit brightnessctl kitty peek \
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub md.obsidian.Obsidian
+flatpak install -y flathub com.jetbrains.IntelliJ-IDEA-Community
 
-# TODO(galk): add intellij, vscode
+wget -O vscode.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
+apt install -y ./vscode.deb
+rm vscode.deb
+
 # TODO(galk): add repository for i3 latest and install i3 from there, to get things like gaps
 
 # to run brightnessctl without sudo
