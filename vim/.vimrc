@@ -71,10 +71,6 @@ set lazyredraw
 set showmatch
 set hlsearch
 set foldenable
-set foldlevelstart=2
-set foldmethod=indent
-
-set encoding=utf-8
 
 augroup tmux
   autocmd!
