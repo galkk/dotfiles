@@ -25,6 +25,8 @@ alias cats="highlight -O xterm256 --force"
 
 DISABLE_MAGIC_FUNCTIONS=true
 
+DOTNET_CLI_TELEMETRY_OPTOUT=true
+
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
