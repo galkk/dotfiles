@@ -29,12 +29,12 @@ set backspace=indent,eol,start " allow backspace over everything
 set number  " show line numbers
 
 " show invisible characters
-set listchars=eol:$,tab:>-,trail:~,extends:#,nbsp:. 
+set listchars=tab:>-,trail:~,extends:#,nbsp:. 
 set list
 
 set ignorecase  " ignore case for search
-set smartcase " but if there is an uppercase then search is case sensitive
-set incsearch " incremental search
+set smartcase   " but if there is an uppercase then search is case sensitive
+set incsearch   " incremental search
 
 syntax enable " enable syntax highligting
 
