@@ -9,7 +9,6 @@ call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'neovim/nvim-lspconfig' " Configuration for Nvim LSP
 call plug#end()
 
 autocmd vimenter * colorscheme gruvbox
