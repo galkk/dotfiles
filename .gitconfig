@@ -7,3 +7,5 @@
     short = true
 [fetch]
     prune = true
+[alias]
+	wd = diff --color-words --word-diff-regex=\".\"

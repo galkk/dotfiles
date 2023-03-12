@@ -3,7 +3,7 @@ apt install -y openssh-server htop mc mosh \
     clang jq lldb strace rr \
     highlight imagemagick ffmpeg \
     command-not-found neovim ripgrep bat podman \
-    openjdk-17-jdk flatpak exa
+    openjdk-17-jdk flatpak exa tmux
 
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
