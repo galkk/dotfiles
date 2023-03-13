@@ -5,6 +5,7 @@ apt install -y openssh-server htop mc mosh \
     command-not-found neovim ripgrep bat podman \
     openjdk-17-jdk flatpak exa tmux
 
+# Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 
@@ -13,10 +14,13 @@ echo "
 # [registries.search]
 # registries = ['docker.io']" | tee -a /etc/containers/registries.conf
 
-# Install bazelisk (bazel wrapper)
+# Bazelisk (bazel wrapper)
 mkdir -p ~/.local/bin
 wget -O ~/.local/bin/bazel https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-amd64
 chmod +x ~/.local/bin/bazel
+
+# Tailscale
+curl -fsSL https://tailscale.com/install.sh | sh
 
 # like, but not really necessary command line spreadsheet calculator
 # apt install sc
