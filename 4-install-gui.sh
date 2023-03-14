@@ -1,4 +1,4 @@
-apt install -y fonts-firacode fonts-dejavu fonts-hack-ttf fonts-powerline unzip
+apt-get -qq install fonts-firacode fonts-dejavu fonts-hack-ttf fonts-powerline unzip
 
 # Install Victor Mono
 wget https://rubjo.github.io/victor-mono/VictorMonoAll.zip
@@ -8,7 +8,7 @@ rm VictorMonoAll.zip
 # TODO(galk): add azeret mono
 # TODO(galk): add https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
 
-apt install -y i3 rofi flameshot remmina xinit brightnessctl kitty peek \
+apt-get -qq install i3 rofi flameshot remmina xinit brightnessctl kitty peek \
 	copyq flatpak ubuntu-mate-desktop
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -22,7 +22,7 @@ rm vscode.deb
 # easy way out for remote access, no need to do xrdp/vnc all the stuff.
 # TODO(galk): consider doing some "proper" xrdp configuration later 
 wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
-apt install ./chrome-remote-desktop_current_amd64.deb
+apt-get -qq install ./chrome-remote-desktop_current_amd64.deb
 
 # TODO(galk): add repository for i3 latest and install i3 from there, to get things like gaps
 

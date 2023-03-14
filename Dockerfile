@@ -4,8 +4,7 @@ ADD . /root/projects/dotfiles
 WORKDIR /root/projects/dotfiles
 
 # TODO(galk): It would be nice to add user 'andy' here, but I'll live for now.
-RUN apt update \
-    && ./1-install-minimal.sh \
+RUN ./1-install-minimal.sh \
     && ./2-configure-user.sh
 
 CMD ["/bin/zsh"]

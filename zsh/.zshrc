@@ -22,6 +22,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 ZSH_AUTOSUGGEST_STRATEGY=(history)
 
 alias cats="highlight -O xterm256 --force"
+alias icat="kitty +kitten icat --align left"
 
 DISABLE_MAGIC_FUNCTIONS=true
 

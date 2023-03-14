@@ -8,4 +8,4 @@
 [fetch]
     prune = true
 [alias]
-	wd = diff --color-words --word-diff-regex=\".\"
+    wd = diff --color-words --word-diff-regex=\".\"

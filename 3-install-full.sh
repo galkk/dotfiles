@@ -1,4 +1,4 @@
-apt install -y openssh-server htop mc mosh \
+apt-get -qq install openssh-server htop mc mosh \
     build-essential cmake python3-dev golang \
     clang jq lldb strace rr \
     highlight imagemagick ffmpeg \

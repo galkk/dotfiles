@@ -26,6 +26,6 @@ ln -s ~/projects/dotfiles/nvim ~/.config/nvim
 ln -s ~/projects/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/projects/dotfiles/rofi ~/.config/rofi
 
-chsh -s $(which zsh)
+chsh -s $(which zsh) $USER
 
 zsh

@@ -15,7 +15,7 @@ focus_follows_mouse yes
 
 exec --no-startup-id vmware-user-suid-wrapper
 exec --no-startup-id flameshot
-exec --no-startup-id "setxkbmap -layout us,ru -option grp:win_space_toggle"
+exec --no-startup-id "setxkbmap -layout us,ru -option grp:win_space_toggle -option caps:escape"
 exec --no-startup-id copyq
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
@@ -111,10 +111,10 @@ set $ws3 "3: code"
 set $ws4 "4: "
 set $ws5 "5: personal"
 set $ws6 "6: rdesktop"
-set $ws7 "7"
+set $ws7 "7:"
 set $ws8 "8: chat, calendar"
 set $ws9 "9: mail"
-set $ws10 "10"
+set $ws10 "10:"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
