@@ -105,16 +105,16 @@ bindsym Print exec flameshot gui
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: main"
-set $ws2 "2: main2"
-set $ws3 "3: code"
-set $ws4 "4: "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
 set $ws5 "5: personal"
-set $ws6 "6: rdesktop"
-set $ws7 "7:"
+set $ws6 "6"
+set $ws7 "7"
 set $ws8 "8: chat, calendar"
 set $ws9 "9: mail"
-set $ws10 "10:"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -144,8 +144,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# exit 
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit? This will end your X session.' -B 'Yes, exit' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -189,19 +189,22 @@ bar {
         }
         i3bar_command i3bar --transparency
         status_command i3status
-        position top
+        position bottom
         tray_output primary # if no primary monitor is set need via xrandr specify output explicitly, like DP-2-2
         font pango: Arial Narrow 11
 }
 
 workspace_auto_back_and_forth yes
 
-assign [title=".*Gmail.*"] number 9
-assign [title=".*Google Calendar.*"] number 8
-assign [title=".*Google Chat.*"] number 8
+assign [title=".*Gmail.*"] number $ws9
+assign [title=".*Google Calendar.*"] number $ws8
+assign [title=".*Google Chat.*"] number $ws8
 
-assign [title=".*Messenger.*"] number 5
-assign [title=".*Obsidian.*"] number 7
+assign [title=".*Messenger.*"] number $ws5
+assign [title=".*Obsidian.*"] number $ws7
 
-tiling_drag modifier titlebar
+tiling_drag modifier
+
+smart_gaps inverse_outer
+bindsym $mod+g exec "i3-msg gaps horizontal current toggle 900"
 

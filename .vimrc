@@ -38,7 +38,7 @@ set incsearch   " incremental search
 syntax enable " enable syntax highligting
 
 autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+autocmd BufWinEnter *.* silent! loadview
 
 set tabstop=4 " length of tab
 
@@ -69,7 +69,12 @@ set lazyredraw
 
 set showmatch
 set hlsearch
+
 set foldenable
+set foldmethod=syntax
+set foldlevel=10
+
+set clipboard=unnamedplus
 
 augroup tmux
   autocmd!
