@@ -32,7 +32,9 @@ DOTNET_CLI_TELEMETRY_OPTOUT=true
 COMPLETION_WAITING_DOTS="true"
 
 zstyle ':autocomplete:*' widget-style menu-select
-zstyle ':autocomplete:*' list-lines 24
+# Autocompletion
+zstyle -e ':autocomplete:list-choices:*' list-lines 5 
+zstyle ':autocomplete:*' list-lines 5
 zstyle ':autocomplete:history-search:*' list-lines 24  # int
 zstyle ':autocomplete:history-incremental-search-*:*' list-lines 24 # int
 
@@ -50,3 +52,4 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 PATH=~/.local/bin:$PATH
+LESS="-iMFXRas"
