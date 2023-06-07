@@ -191,7 +191,7 @@ bar {
         status_command i3status
         position bottom
         tray_output primary # if no primary monitor is set need via xrandr specify output explicitly, like DP-2-2
-        font pango: Arial Narrow 11
+        font pango: Symbols Nerd Font, Arial Narrow 11
 }
 
 workspace_auto_back_and_forth yes

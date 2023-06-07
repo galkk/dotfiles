@@ -6,16 +6,12 @@ general {
         interval = 1
 }
 
+order += "cpu_usage"
+order += "cpu_temperature 0"
 order += "memory"
-# order += "run_watch DHCP"
-# order += "ipv6"
 # order += "wireless _first_"
-# order += "ethernet _first_"
 order += "battery 0"
 order += "volume master"
-order += "cpu_usage"
-order += "load"
-order += "cpu_temperature 0"
 order += "tztime local"
 
 volume master {
@@ -27,26 +23,17 @@ volume master {
 }
 
 cpu_usage {
-        format = "CPU %usage"
+        format = "  %usage"
         max_threshold = 85
 }
 
 wireless _first_ {
-        format_up = "W: %essid[%quality]"
-        format_down = "W: down"
-}
-
-ethernet _first_ {
-        format_up = "E: %ip"
-        format_down = "E: down"
-}
-
-load {
-        format = "%1min"
+        format_up = "🛜: %quality"
+        format_down = "🛜: down"
 }
 
 memory {
-        format = "📈: %used | 🆓 %available"
+        format = ": %used / %available"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
@@ -56,14 +43,18 @@ tztime local {
 }
 
 battery 0 {
-        format = "%status %percentage %remaining %emptytime"
+        format = "%status %percentage %remaining %consumption"
         format_down = ""
-        status_chr = "⚡"
-        status_bat = "🔋"
-        status_unk = "? UNK"
-        status_full = "☻"
+        status_chr = "󰂄"
+        status_bat = "󰂀"
+        status_unk = "󰂑"
+        status_full = "󰁹"
         path = "/sys/class/power_supply/BAT%d/uevent"
+        threshold_type = "time"
         low_threshold = 10
+        # last_full_capacity=true
+        hide_seconds=true
+        integer_battery_capacity=true
 }
 
 cpu_temperature 0 {
@@ -71,6 +62,3 @@ cpu_temperature 0 {
 		path = "/sys/class/thermal/thermal_zone0/temp"
 }
 
-run_watch DHCP {
-        pidfile = "/var/run/dhclient*.pid"
-}

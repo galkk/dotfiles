@@ -1,11 +1,9 @@
 # Things that shouldn't be installed at work etc
 
-mkdir -p ~/.local/bin
-
 # Docker
 curl -fsSL https://get.docker.com | sh
 groupadd docker
-usermod -aG docker $USER
+usermod -aG docker "$USER"
 rm get-docker.sh
 
 # Bazelisk (bazel wrapper)

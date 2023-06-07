@@ -32,8 +32,9 @@ UPDATE_ZSH_DAYS=13
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 ZSH_AUTOSUGGEST_STRATEGY=(history)
 
-alias cats="highlight -O xterm256 --force"
+alias cat="batcat --plain --color=always --paging=never "
 alias icat="kitty +kitten icat --align left"
+alias ls="ls --color"
 
 DISABLE_MAGIC_FUNCTIONS=true
 DOTNET_CLI_TELEMETRY_OPTOUT=true
@@ -50,16 +51,22 @@ zstyle ':autocomplete:*' fzf-completion yes
 
 FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | batcat --color=always --language=bash --style=plain' --preview-window down:7:wrap"
 
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+if [ -d /usr/share/doc/fzf/examples ]; then
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 PATH=~/.local/bin:$PATH
 LESS="-iMFXRas"
 
 [[ ! -f ~/.work.zshrc ]] || source ~/.work.zshrc
 
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
+bindkey '^[[3~' delete-char           #enables DEL key proper behaviour
+bindkey '^[[1;5C' forward-word        #[Ctrl-RightArrow] - move forward one word
+bindkey '^[[1;5D' backward-word       #[Ctrl-LeftArrow] - move backward one word
+bindkey  "^[[H"   beginning-of-line   #[Home] - goes at the begining of the line
+bindkey  "^[[F"   end-of-line         #[End] - goes at the end of the line
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

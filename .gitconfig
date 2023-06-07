@@ -9,3 +9,12 @@
     prune = true
 [alias]
     wd = diff --color-words --word-diff-regex=\".\"
+[core]
+    editor = vim
+[rerere]
+    enabled = true
+    autoupdate = true
+[log]
+    abbrevCommit = true
+[rebase]
+	instructionFormat = [%ai] %s
