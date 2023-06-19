@@ -11,6 +11,7 @@ set history=1000
 set undolevels=1000
 set lazyredraw                                    " buffer screen updates
 set clipboard=unnamedplus                         " copy to system clipboard
+set updatetime=250
 
 filetype plugin indent on                         " file type detection on (allows syntax highlighting etc)
 syntax enable                                     " enable syntax highligting
@@ -81,6 +82,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'morhetz/gruvbox'
 Plug 'powerman/vim-plugin-AnsiEsc', { 'on': 'AnsiEsc'}
 Plug 'tpope/vim-sleuth'                           " run `verbose Sleuth` to force vim to detect indent manually
+Plug 'airblade/vim-gitgutter'
 call plug#end()                                   "}}
 
 autocmd vimenter * colorscheme gruvbox            " color theme can be set only after plugin is loaded
