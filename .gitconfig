@@ -17,4 +17,4 @@
 [log]
     abbrevCommit = true
 [rebase]
-	instructionFormat = [%ai] %s
+    instructionFormat = [%ai] %s

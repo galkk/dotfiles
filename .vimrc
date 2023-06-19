@@ -85,6 +85,14 @@ Plug 'tpope/vim-sleuth'                           " run `verbose Sleuth` to forc
 Plug 'airblade/vim-gitgutter'
 call plug#end()                                   "}}
 
+" netrw {{
+let g:netrw_banner = 0                           " no header
+let g:netrw_liststyle = 3                        " tree view
+let g:netrw_browse_split = 4                     " open file in new tab
+let g:netrw_altv = 1                             " vertical split
+let g:netrw_winsize = 25                         " 25% of window length
+"}}
+
 autocmd vimenter * colorscheme gruvbox            " color theme can be set only after plugin is loaded
 
 " vim:foldmethod=marker:foldmarker={{,}}:foldlevel=0:foldtext=substitute(getline(v\:foldstart),'\\"\\\ \\\|{{','','g')
