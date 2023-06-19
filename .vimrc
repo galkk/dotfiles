@@ -78,10 +78,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle')
-" I actually never used it, so skip for now
-" Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
-Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'powerman/vim-plugin-AnsiEsc', { 'on': 'AnsiEsc'}
 Plug 'tpope/vim-sleuth'                           " run `verbose Sleuth` to force vim to detect indent manually
 call plug#end()                                   "}}
 
