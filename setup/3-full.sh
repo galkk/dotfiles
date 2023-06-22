@@ -1,7 +1,7 @@
 apt-get -qq install --no-install-recommends openssh-server htop mc mosh \
     build-essential cmake python3-dev golang \
     jq strace highlight imagemagick ffmpeg \
-    neovim ripgrep podman \
+    neovim ripgrep podman podman-toolbox \
     openjdk-17-jdk exa tmux wget \
     clang lldb gcc-13 g++-13 gdb rr
 
