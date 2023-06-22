@@ -66,6 +66,9 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# move to next workspace
+bindsyn $mod+Shift+n move container to workspace next
+
 # split in horizontal orientation
 bindsym $mod+h split h
 
@@ -144,7 +147,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit 
+# exit
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit? This will end your X session.' -B 'Yes, exit' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
@@ -152,10 +155,10 @@ mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 15 px 
-        bindsym Down resize grow height 15 px 
-        bindsym Up resize shrink height 15 px 
-        bindsym Right resize grow width 15 px 
+        bindsym Left resize shrink width 15 px
+        bindsym Down resize grow height 15 px
+        bindsym Up resize shrink height 15 px
+        bindsym Right resize grow width 15 px
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -207,4 +210,3 @@ tiling_drag modifier
 
 smart_gaps inverse_outer
 bindsym $mod+g exec "i3-msg gaps horizontal current toggle 900"
-
