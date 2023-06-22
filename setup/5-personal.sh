@@ -13,6 +13,4 @@ GOBIN=~/.local/bin/ go install github.com/charmbracelet/glow@latest
 # Docker.
 # Must be last as they have weird thing and require 20s sleep for non-interactive scripts
 curl -fsSL https://get.docker.com | sh
-groupadd docker
-usermod -aG docker "$USER"
 
