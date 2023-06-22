@@ -15,5 +15,4 @@ GOBIN=~/.local/bin/ go install github.com/charmbracelet/glow@latest
 curl -fsSL https://get.docker.com | sh
 groupadd docker
 usermod -aG docker "$USER"
-rm get-docker.sh
 
