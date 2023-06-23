@@ -1,52 +1,12 @@
 # i3 config file (v4)
+# The less used keys/settings are in the begin of the file so I don't need to spend much time looking for them
 
 # windows key as mod
 set $mod Mod4
 
 font pango:Victor Mono, DejaVu Sans Mono 10
 
-# no titles for windows
-default_border pixel 1
-for_window [class="^.*"] border pixel 1
-
-hide_edge_borders both
-
 focus_follows_mouse yes
-
-exec --no-startup-id vmware-user-suid-wrapper
-exec --no-startup-id flameshot
-exec --no-startup-id "setxkbmap -layout us,ru -option grp:win_space_toggle -option caps:escape"
-exec --no-startup-id copyq
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-
-# kill focused window
-bindsym $mod+Shift+q kill
-
-# lock
-bindsym $mod+Shift+l exec i3lock
-
-# start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -54,34 +14,8 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
-# select windows by key:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# move window by key:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-# move to next workspace
-bindsym $mod+Shift+n move container to workspace next
-
-# split in horizontal orientation
-bindsym $mod+h split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+smart_gaps inverse_outer
+bindsym $mod+g exec "i3-msg gaps horizontal current toggle 900"
 
 # toggle tiling / floating
 bindsym $mod+Shift+u floating toggle
@@ -95,17 +29,85 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-bindsym $mod+x move workspace to output right
-bindsym $mod+z move workspace to output left
-
-# brightness
-bindsym XF86MonBrightnessUp exec brightnessctl s +5%
-bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
+# move to next workspace
+bindsym $mod+Shift+n move container to workspace next
 
 bindsym $mod+l exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
-
 bindsym Print exec flameshot gui
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+l exec i3lock
+bindsym $mod+d exec --no-startup-id rofi -show
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit? This will end your X session.' -B 'Yes, exit' 'i3-msg exit'"
 
+# move window to particular place by holding win
+tiling_drag modifier
+
+# startup apps {
+exec --no-startup-id flameshot
+exec --no-startup-id "setxkbmap -layout us,ru -option grp:win_space_toggle -option caps:escape"
+exec --no-startup-id copyq
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+# }
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# $mod+number switches to workspace, then $mod+same number switches to previous workspace
+workspace_auto_back_and_forth yes
+
+# move workspaces {
+bindsym $mod+x move workspace to output right
+bindsym $mod+z move workspace to output left
+#} 
+
+# assign windows to workspaces by default {
+assign [title=".*Gmail.*"] number $ws9
+assign [title=".*Google Calendar.*"] number $ws8
+assign [title=".*Google Chat.*"] number $ws8
+assign [title=".*Messenger.*"] number $ws5
+assign [title=".*Obsidian.*"] number $ws7
+# }
+
+# no titles for windows {
+default_border pixel 1
+for_window [class="^.*"] border pixel 1
+hide_edge_borders both
+# }
+
+# select windows by arrow keys {
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# }
+
+# move window by key {
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+# }
+
+# workspace names {
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -118,8 +120,9 @@ set $ws7 "7"
 set $ws8 "8: chat, calendar"
 set $ws9 "9: mail"
 set $ws10 "10"
+# }
 
-# switch to workspace
+# switch to workspace {
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
@@ -130,8 +133,9 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+# }
 
-# move focused container to workspace
+# move focused container to workspace {
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
@@ -142,71 +146,68 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit? This will end your X session.' -B 'Yes, exit' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 15 px
-        bindsym Down resize grow height 15 px
-        bindsym Up resize shrink height 15 px
-        bindsym Right resize grow width 15 px
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
+# }
 
 bindsym $mod+r mode "resize"
+mode "resize" {
+    # resize window (you can also use the mouse for that)
+    # These bindings trigger as soon as you enter the resize mode
 
-# class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #9FC5E8
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 15 px
+    bindsym Down resize grow height 15 px
+    bindsym Up resize shrink height 15 px
+    bindsym Right resize grow width 15 px
 
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        colors {
-                background #282A36
-                statusline #F8F8F2
-                separator  #44475A
-
-                focused_workspace  #44475A #44475A #F8F8F2
-                active_workspace   #282A36 #44475A #F8F8F2
-                inactive_workspace #282A36 #282A36 #BFBFBF
-                urgent_workspace   #FF5555 #FF5555 #F8F8F2
-                binding_mode       #FF5555 #FF5555 #F8F8F2
-        }
-        i3bar_command i3bar
-        status_command i3status
-        position bottom
-        tray_output primary # if no primary monitor is set need via xrandr specify output explicitly, like DP-2-2
-        font pango: Symbols Nerd Font, Arial Narrow 11
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
-workspace_auto_back_and_forth yes
+# workspace colors {
+# class                         border  bground text    indicator child_border
+client.focused                  #6272A4 #6272A4 #F8F8F2 #6272A4   #9FC5E8
+client.focused_inactive         #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused                #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent                   #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder              #282A36 #282A36 #F8F8F2 #282A36   #282A36
+# }
 
-assign [title=".*Gmail.*"] number $ws9
-assign [title=".*Google Calendar.*"] number $ws8
-assign [title=".*Google Chat.*"] number $ws8
+bar {
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+    i3bar_command i3bar
+    status_command i3status
+    position bottom
+    tray_output primary 
+    font pango: Symbols Nerd Font, Arial Narrow 11
+    binding_mode_indicator yes
+    colors {
+        background #282A36
+        statusline #F8F8F2
+        separator  #44475A
 
-assign [title=".*Messenger.*"] number $ws5
-assign [title=".*Obsidian.*"] number $ws7
+        focused_workspace  #44475A #44475A #F8F8F2
+        active_workspace   #282A36 #44475A #F8F8F2
+        inactive_workspace #282A36 #282A36 #BFBFBF
+        urgent_workspace   #FF5555 #FF5555 #F8F8F2
+        binding_mode       #FF5555 #FF5555 #F8F8F2
+    }
+}
 
-tiling_drag modifier
+# volume {
+set $refresh_i3status killall -SIGUSR1 i3status
 
-smart_gaps inverse_outer
-bindsym $mod+g exec "i3-msg gaps horizontal current toggle 900"
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# }
+
+# brightness {
+bindsym XF86MonBrightnessUp exec brightnessctl s +5%
+bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
+# }
+
+# vim:foldmethod=marker:foldmarker={,}:foldlevel=0:foldtext=substitute(getline(v\:foldstart),'\\#\\\ \\\|{','','g')
