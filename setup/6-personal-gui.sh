@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 wget -O vscode.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
 apt-get -qq --no-install-recommends install ./vscode.deb
 rm vscode.deb

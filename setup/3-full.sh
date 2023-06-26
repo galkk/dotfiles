@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 apt-get -qq install --no-install-recommends openssh-server htop mc mosh \
     build-essential cmake python3-dev golang \
     jq strace highlight imagemagick ffmpeg \

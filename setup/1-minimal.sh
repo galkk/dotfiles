@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Do not skip fzf key bindings
 echo "path-include=/usr/share/doc/fzf/examples/*" | tee -a /etc/dpkg/dpkg.cfg.d/excludes
 

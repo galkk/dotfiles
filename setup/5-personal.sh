@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Things that shouldn't be installed at work, because they require custom binary downloads, custom repositories etc
 
 # Bazelisk (bazel wrapper)
