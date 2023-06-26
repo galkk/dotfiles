@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-[ -f ~/.work.zshrc ] || touch ~/.work.zshrc
-[ -d ~/.config ] || mkdir -p ~/.config
-[ -d ~/.local/bin ] || mkdir -p ~/.local/bin 
+[ -f ~/.work.zshrc ]    || touch ~/.work.zshrc
+[ -d ~/.config ]        || mkdir -p ~/.config
+[ -d ~/.local/bin ]     || mkdir -p ~/.local/bin
 
 # make top level symlinks to all files in dotfiles from home directory
 # only if ~/project/dotfiles exists (not the case for docker container).

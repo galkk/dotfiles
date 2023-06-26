@@ -22,6 +22,6 @@ FROM full as gui
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN --mount=from=setupscripts,dst=/setupscripts/ /setupscripts/4-gui.sh && /setupscripts/6-personal-gui.sh
+RUN --mount=from=setupscripts,dst=/setupscripts/ /setupscripts/4-gui.sh && /setupscripts/4-gui-fonts.sh && /setupscripts/6-personal-gui.sh
 
 CMD ["/bin/zsh"]
