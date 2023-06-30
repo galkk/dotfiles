@@ -7,14 +7,36 @@
     short = true
 [fetch]
     prune = true
+    recurseSubmodules = on-demand
 [alias]
-    wd = diff --color-words --word-diff-regex=\".\"
+    wd = diff --color-words --word-diff-regex='\\w+'
 [core]
     editor = vim
+    whitespace = -trailing-space
+[help]
+    autocorrect = 10
 [rerere]
     enabled = true
     autoupdate = true
 [log]
     abbrevCommit = true
+    follow = true
 [rebase]
     instructionFormat = [%ai] %s
+[diff]
+    find-renames = true
+    diff-algorithm = patience
+    mnemonicPrefix = true
+    renames = true
+    tool = vscode
+[difftool]
+    prompt=false
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[mergetool]
+    keepBackup = false
+    keepTemporaries = false
+    writeToTemp = true
+    prompt = false
+[format]
+    pretty = "format:%C(auto)%h %<(100,trunc)%s %C(blue)%<(15,trunc)%an %C(auto)(%ar) %C(auto) %d"
