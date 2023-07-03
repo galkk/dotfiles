@@ -25,16 +25,20 @@ EDITOR=/usr/bin/vim
 DOTNET_CLI_TELEMETRY_OPTOUT=true
 
 # binds {{
-bindkey '^[[3~' delete-char           #enables DEL key proper behaviour
-bindkey '^[[1;5C' forward-word        #[Ctrl-RightArrow] - move forward one word
-bindkey '^[[1;5D' backward-word       #[Ctrl-LeftArrow] - move backward one word
-bindkey  "^[[H"   beginning-of-line   #[Home] - goes at the begining of the line
-bindkey  "^[[F"   end-of-line         #[End] - goes at the end of the line }}
+bindkey '^[[3~' delete-char           # enables DEL key proper behaviour
+bindkey '^[[1;5C' forward-word        # [Ctrl-RightArrow] - move forward one word
+bindkey '^[[1;5D' backward-word       # [Ctrl-LeftArrow] - move backward one word
+bindkey  "^[[H"   beginning-of-line   # [Home] - goes at the begining of the line
+bindkey  "^[[F"   end-of-line         # [End] - goes at the end of the line
+
+autoload -z edit-command-line            # Enable editing of command line by pressing Ctrl+x, E
+zle -N edit-command-line
+bindkey '^Xe' edit-command-line       #}}
 
 # zsh-autocomplete settings {{
+zstyle ':autocomplete:*' insert-unambiguous yes
 zstyle ':autocomplete:*' widget-style menu-select
 zstyle ':autocomplete:*' list-lines 16
-zstyle ':autocomplete:*' insert-unambiguous yes
 zstyle ':autocomplete:*' fzf-completion yes #}}
 
 # fzf settings {{
@@ -47,7 +51,7 @@ fi # }}
 
 # autosuggest {{
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
-ZSH_AUTOSUGGEST_STRATEGY=(history) #}}
+ZSH_AUTOSUGGEST_STRATEGY=(history completion) #}}
 
 # history {{
 setopt share_history          # share history between terminals
