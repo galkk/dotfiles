@@ -16,6 +16,10 @@ set updatetime=250
 filetype plugin indent on                         " file type detection on (allows syntax highlighting etc)
 syntax enable                                     " enable syntax highligting
 
+" color theme settings {{
+let g:gruvbox_italic=1
+let g:gruvbox_improved_strings=1 "}}
+
 " show all invisible characters {{
 set listchars=tab:‣\ ,trail:␣,extends:#,nbsp:·
 set list                                          "}}

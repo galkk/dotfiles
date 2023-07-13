@@ -10,7 +10,8 @@ fonts=( anonymouspro \
         cousine \
         firacode \
         ibmplexmono \
-)
+        jetbrains-mono \
+    )
 
 for font in ${fonts[@]}; do
     fnt install $font
