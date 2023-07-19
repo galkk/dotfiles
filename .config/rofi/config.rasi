@@ -1,10 +1,16 @@
 configuration {
-	modi: "combi";
-	font: "Victor Mono 24";
-	show-icons: true;
-	combi-modi: "window,drun,ssh,run";
-	window-format: "{t:60} {w} {n}";
-	window-thumbnail: true;
+  modi: "combi";
+  combi-modi: "window,drun,ssh";
+  font: "Iosevka Light 22";
+  show-icons: true;
+  window-format: "{t:75} {w} {n}";
+  combi-hide-mode-prefix: true;
+  window-thumbnail: true;
 }
+
 @theme "solarized"
+
+textbox-prompt-colon {
+  str: "❯";
+}
 
