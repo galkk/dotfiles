@@ -1,9 +1,9 @@
 configuration {
   modi: "combi";
-  combi-modi: "window,drun,ssh";
-  font: "Iosevka Light 22";
+  combi-modi: "window,drun,run,ssh";
+  font: "Iosevka Light 20";
   show-icons: true;
-  window-format: "{t:75} {w} {n}";
+  window-format: "{t} {w} {n}";
   combi-hide-mode-prefix: true;
   window-thumbnail: true;
 }
@@ -12,5 +12,13 @@ configuration {
 
 textbox-prompt-colon {
   str: "❯";
+}
+
+element-icon {
+  size: 1.25em;
+}
+
+inputbar {
+  children: [textbox-prompt-colon, entry, case-indicator];
 }
 
