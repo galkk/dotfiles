@@ -182,7 +182,7 @@ bar {
     status_command i3status
     position bottom
     tray_output primary 
-    font pango: Symbols Nerd Font, Arial Narrow 11
+    font pango: Symbols Nerd Font, Saira Extra Condensed, Arial Narrow 20
     binding_mode_indicator yes
     colors {
         background #282A36

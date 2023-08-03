@@ -11,6 +11,10 @@ fonts=( anonymouspro \
         firacode \
         ibmplexmono \
         jetbrains-mono \
+        barlowcondensed \
+        sairaextracondensed \
+        sofiasansextracondensed \
+        stintultracondensed
     )
 
 for font in ${fonts[@]}; do

@@ -16,10 +16,6 @@ set updatetime=250
 filetype plugin indent on                         " file type detection on (allows syntax highlighting etc)
 syntax enable                                     " enable syntax highligting
 
-" color theme settings {{
-let g:gruvbox_italic=1
-let g:gruvbox_improved_strings=1 "}}
-
 " show all invisible characters {{
 set listchars=tab:‣\ ,trail:␣,extends:#,nbsp:·
 set list                                          "}}
@@ -87,6 +83,7 @@ Plug 'morhetz/gruvbox'
 Plug 'powerman/vim-plugin-AnsiEsc', { 'on': 'AnsiEsc'}
 Plug 'tpope/vim-sleuth'                           " run `verbose Sleuth` to force vim to detect indent manually
 Plug 'airblade/vim-gitgutter'
+
 call plug#end()                                   "}}
 
 " netrw {{
@@ -97,6 +94,16 @@ let g:netrw_altv = 1                             " vertical split
 let g:netrw_winsize = 25                         " 25% of window length
 "}}
 
-autocmd vimenter * colorscheme gruvbox            " color theme can be set only after plugin is loaded
+" gruvbox color theme settings {{
+let g:gruvbox_italic=1
+let g:gruvbox_transparent_bg=1
+let g:gruvbox_improved_strings=1
+let g:gruvbox_improved_warnings=1
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_invert_indent_guides=1
+let g:gruvbox_italicize_strings=1                "}}
+
+autocmd VimEnter * hi Normal ctermbg=none   " to enable transparent background color for gruvbox
+colorscheme gruvbox 
 
 " vim:foldmethod=marker:foldmarker={{,}}:foldlevel=0:foldtext=substitute(getline(v\:foldstart),'\\"\\\ \\\|{{','','g')

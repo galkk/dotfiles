@@ -4,46 +4,59 @@
 general {
         colors = true
         interval = 1
+        markup = "pango"
 }
 
+order += "volume master"
 order += "cpu_usage"
 order += "cpu_temperature 0"
 order += "memory"
-# order += "wireless _first_"
+order += "wireless _first_"
+# order += "ethernet _first_"
+# order += "ethernet tailscale0"
 order += "battery 0"
-order += "volume master"
 order += "tztime local"
 
 volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
+        format = "<span foreground='gray'> </span> %volume"
+        format_muted = "󰖁 : %volume"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
 }
 
 cpu_usage {
-        format = "  %usage"
+        format = "<span foreground='gray'></span> %usage"
         max_threshold = 85
 }
 
 wireless _first_ {
-        format_up = "🛜: %quality"
-        format_down = "🛜: down"
+        format_up = "%ip <span foreground='gray'>󰖩</span>%frequency[%quality] %essid %bitrate"
+        format_down = "󰖪 "
+}
+
+ethernet _first_ {
+        format_up = "%ip <span foreground='gray'>󰈀</span>(%speed)"
+        format_down = "󰈂 "
+}
+
+ethernet tailscale0 {
+        format_up = "<span foreground='gray'>󰈀</span>: %ip (%speed)"
+        format_down = "󰈂 "
 }
 
 memory {
-        format = ": %used / %available"
+        format = "<span foreground='gray'></span>: <span foreground='orange'>%used</span> <span foreground='lime'>%available</span>"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
 
 tztime local {
-        format = "%b-%d %H:%M"
+        format = "<span foreground='gray'></span> %b-%d %H:%M"
 }
 
 battery 0 {
-        format = "%status %percentage %remaining %consumption"
+        format = "<span foreground='gray'>%status</span> %remaining <span foreground='gray'>%percentage, %consumption</span>"
         format_down = ""
         status_chr = "󰂄"
         status_bat = "󰂀"
@@ -51,7 +64,7 @@ battery 0 {
         status_full = "󰁹"
         path = "/sys/class/power_supply/BAT%d/uevent"
         threshold_type = "time"
-        low_threshold = 10
+        low_threshold = 15
         # last_full_capacity=true
         hide_seconds=true
         integer_battery_capacity=true
