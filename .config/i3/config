@@ -77,7 +77,7 @@ workspace_auto_back_and_forth yes
 # move workspaces {
 bindsym $mod+x move workspace to output right
 bindsym $mod+z move workspace to output left
-#} 
+#}
 
 # assign windows to workspaces by default {
 assign [title=".*Gmail.*"] number $ws9
@@ -181,17 +181,17 @@ bar {
     i3bar_command i3bar
     status_command i3status
     position bottom
-    tray_output primary 
+    tray_output primary
     font pango: Symbols Nerd Font, Saira Extra Condensed, Arial Narrow 20
     binding_mode_indicator yes
     colors {
-        background #282A36
-        statusline #F8F8F2
+        background #050505
+        statusline #F5F5F5
         separator  #44475A
 
         focused_workspace  #44475A #44475A #F8F8F2
         active_workspace   #282A36 #44475A #F8F8F2
-        inactive_workspace #282A36 #282A36 #BFBFBF
+        inactive_workspace #101010 #101010 #BFBFBF
         urgent_workspace   #FF5555 #FF5555 #F8F8F2
         binding_mode       #FF5555 #FF5555 #F8F8F2
     }
