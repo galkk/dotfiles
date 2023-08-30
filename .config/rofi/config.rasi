@@ -1,21 +1,25 @@
 configuration {
   modi: "combi";
-  combi-modi: "window,drun,run,ssh";
-  font: "Iosevka Light 20";
+  combi-modi: "drun,ssh";
+  font: "Azeret Mono 22";
   show-icons: true;
   window-format: "{t:65} {w} {n}";
   combi-hide-mode-prefix: true;
   window-thumbnail: true;
 }
 
-@theme "solarized"
+@theme "android_notification"
 
 textbox-prompt-colon {
   str: "❯";
 }
 
+element-text {
+   vertical-align: 0.5;
+}
+
 element-icon {
-  size: 1.25em;
+  size: 2em;
 }
 
 inputbar {
