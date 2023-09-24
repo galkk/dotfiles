@@ -29,9 +29,12 @@ svn export --force https://github.com/notofonts/notofonts.github.io/trunk/fonts/
 chdir $(mktemp -d)
 wget https://rubjo.github.io/victor-mono/VictorMonoAll.zip
 wget https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-2.37.zip
-wget https://github.com/be5invis/Iosevka/releases/download/v25.0.1/ttf-iosevka-25.0.1.zip
-wget https://github.com/be5invis/Iosevka/releases/download/v25.0.1/ttf-iosevka-fixed-25.0.1.zip
-wget https://github.com/be5invis/Iosevka/releases/download/v25.0.1/ttf-iosevka-term-25.0.1.zip
+wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-27.0.2.zip
+wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-term-27.0.2.zip
+wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-slab-27.0.2.zip
+wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-term-slab-27.0.2.zip
+wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-aile-27.0.2.zip
+wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-etoile-27.0.2.zip
 
 unzip -j '*.zip'
 mv *.ttf ~/.fonts
