@@ -1,7 +1,7 @@
 configuration {
   modi: "combi";
   combi-modi: "drun,ssh";
-  font: "Azeret Mono 22";
+  font: "Iosevka Etoile 22";
   show-icons: true;
   window-format: "{t:65} {w} {n}";
   combi-hide-mode-prefix: true;
