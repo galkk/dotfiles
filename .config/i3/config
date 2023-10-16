@@ -88,12 +88,6 @@ assign [title=".*Messenger.*"] number $ws5
 assign [title=".*Obsidian.*"] number $ws7
 # }
 
-# no titles for windows {
-default_border pixel 1
-for_window [class="^.*"] border pixel 1
-hide_edge_borders both
-# }
-
 # select windows by arrow keys {
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -165,6 +159,13 @@ mode "resize" {
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
 }
+
+# no titles for windows {
+default_border pixel 3
+for_window [instance="__focused__"] border pixel 3
+hide_edge_borders smart_no_gaps
+smart_borders on
+# }
 
 # workspace colors {
 # class                         border  bground text    indicator child_border
