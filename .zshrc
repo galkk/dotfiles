@@ -57,6 +57,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion) #}}
 # history {{
 setopt share_history          # share history between terminals
 setopt hist_ignore_dups       # do not enter command if it is same as previous command
+setopt histignorespace
 
 HISTSIZE=50000                # How many lines of history to keep in memory
 HISTFILE=~/.zsh_history       # Where to save history to disk
