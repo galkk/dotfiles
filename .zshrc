@@ -15,7 +15,7 @@ znap source zsh-users/zsh-syntax-highlighting
 znap source marlonrichert/zsh-autocomplete
 znap source agkozak/zsh-z #}}
 
-alias cat="batcat --plain --color=always --paging=never "
+alias cat="batcat --style=plain --color=always --paging=never "
 alias icat="kitty +kitten icat --align left"
 alias ls="ls --color"
 
