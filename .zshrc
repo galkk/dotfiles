@@ -23,7 +23,7 @@ PATH=~/.local/bin:$PATH
 LESS="-iMFXRas" # main thing - colorize less and print if fits one screen, to exit hg diff immediately for short files.
 EDITOR=/usr/bin/vim
 DOTNET_CLI_TELEMETRY_OPTOUT=true
-KITTY_INSTALLATION_DIR=~/.local/kitty.app/lib/kitty/
+KITTY_INSTALLATION_DIR=$HOME/.local/kitty.app/lib/kitty/
 
 # binds {{
 bindkey '^[[3~' delete-char           # enables DEL key proper behaviour
@@ -67,7 +67,7 @@ SAVEHIST=5000000              # Number of history entries to save to disk }}
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh                # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 
 # kitty shell integration {{
-if [[ -n "$KITTY_INSTALLATION_DIR" ]]  && [[ -d "$KITTY_INSTALLATION_DIR" ]]; then
+if test -n "$KITTY_INSTALLATION_DIR"; then
     export KITTY_SHELL_INTEGRATION="enabled"
     autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
     kitty-integration
