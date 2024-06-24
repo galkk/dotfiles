@@ -32,27 +32,27 @@ bindsym $mod+a focus parent
 # move to next workspace
 bindsym $mod+Shift+n move container to workspace next
 
-bindsym $mod+l exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
-bindsym Print exec flameshot gui
-bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Shift+l exec i3lock
-bindsym $mod+d exec --no-startup-id rofi -show
-bindsym $mod+Tab exec --no-startup-id rofi -modi combi#window -show window -theme larger-docu
-bindsym $mod+f fullscreen toggle
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit? This will end your X session.' -B 'Yes, exit' 'i3-msg exit'"
+bindsym $mod+d       exec       --no-startup-id rofi -show
+bindsym $mod+e       layout     toggle          split
+bindsym $mod+f       fullscreen toggle
+bindsym $mod+l       exec       i3-input -F 'rename workspace to "%s"' -P 'New name: '
+bindsym $mod+Return  exec       i3-sensible-terminal
+bindsym $mod+s       layout     stacking
+bindsym $mod+Shift+e exec       "i3-nagbar -t warning -m 'You  pressed the exit shortcut. Do you really want to exit? This will end your X session.' -B 'Yes, exit' 'i3-msg exit'"
+bindsym $mod+Shift+l exec       i3lock
+bindsym $mod+Tab     exec       --no-startup-id rofi -modi   combi#window -show window  -theme larger-docu
+bindsym $mod+w       layout     tabbed
+bindsym Print        exec       flameshot       gui
 
 # move window to particular place by holding win
 tiling_drag modifier
 
 # startup apps {
-exec --no-startup-id flameshot
 exec --no-startup-id "setxkbmap -layout us,ru -option grp:win_space_toggle -option caps:escape en"
 exec --no-startup-id copyq
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id flameshot
 exec --no-startup-id nm-applet
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # }
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -86,6 +86,7 @@ assign [title=".*Google Calendar.*"] number $ws8
 assign [title=".*Google Chat.*"] number $ws8
 assign [title=".*Messenger.*"] number $ws5
 assign [title=".*Obsidian.*"] number $ws7
+assign [title=".*Cider.*"] number $ws2
 # }
 
 # select windows by arrow keys {

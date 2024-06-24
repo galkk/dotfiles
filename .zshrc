@@ -68,7 +68,7 @@ SAVEHIST=5000000              # Number of history entries to save to disk }}
 
 # kitty shell integration {{
 if test -n "$KITTY_INSTALLATION_DIR"; then
-    export KITTY_SHELL_INTEGRATION="enabled"
+    export KITTY_SHELL_INTEGRATION="no-sudo enabled"
     autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
     kitty-integration
     unfunction kitty-integration
