@@ -9,5 +9,5 @@ apt-get -qq install --no-install-recommends openssh-server htop mc mosh \
 
 # Let podman to get images from docker hub.
 echo "
-# [registries.search]
-# registries = ['docker.io']" | tee -a /etc/containers/registries.conf
+[registries.search]
+registries = ['docker.io']" | tee -a /etc/containers/registries.conf

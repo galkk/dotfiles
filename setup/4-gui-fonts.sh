@@ -35,6 +35,7 @@ wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-s
 wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-term-slab-27.0.2.zip
 wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-aile-27.0.2.zip
 wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-etoile-27.0.2.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
 
 unzip -j '*.zip'
 mv *.ttf ~/.fonts

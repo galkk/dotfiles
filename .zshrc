@@ -40,7 +40,10 @@ bindkey '^Xe' edit-command-line       #}}
 zstyle ':autocomplete:*' insert-unambiguous yes
 zstyle ':autocomplete:*' widget-style menu-select
 zstyle ':autocomplete:*' list-lines 16
-zstyle ':autocomplete:*' fzf-completion yes #}}
+zstyle ':autocomplete:*' fzf-completion yes
+
+zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**' ##}
+
 
 # fzf settings {{
 FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | batcat --color=always --language=bash --style=plain' --preview-window down:7:wrap"
@@ -67,7 +70,7 @@ SAVEHIST=5000000              # Number of history entries to save to disk }}
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh                # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 
 # kitty shell integration {{
-if test -n "$KITTY_INSTALLATION_DIR"; then
+if [ -d "$KITTY_INSTALLATION_DIR" ]; then
     export KITTY_SHELL_INTEGRATION="no-sudo enabled"
     autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
     kitty-integration
