@@ -48,7 +48,6 @@ bindsym Print        exec       flameshot       gui
 tiling_drag modifier
 
 # startup apps {
-exec --no-startup-id "setxkbmap -layout us,ru -option grp:win_space_toggle -option caps:escape en"
 exec --no-startup-id copyq
 exec --no-startup-id flameshot
 exec --no-startup-id nm-applet
