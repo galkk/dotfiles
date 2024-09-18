@@ -18,6 +18,9 @@ znap source agkozak/zsh-z #}}
 alias cat="batcat --style=plain --color=always --paging=never "
 alias icat="kitty +kitten icat --align left"
 alias ls="ls --color"
+alias yp='noglob yt-dlp -v -S "+codec:h264" -o "%(uploader)s - %(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
+alias yf='noglob yt-dlp -v -S "+codec:h264" --output-na-placeholder "" -f "bv[ext=mp4]*+ba/bv*+ba/b" --sponsorblock-remove default -o "%(uploader)s - %(title)s.%(ext)s"'
+
 
 PATH=~/.local/bin:$PATH
 LESS="-iMFXRas" # main thing - colorize less and print if fits one screen, to exit hg diff immediately for short files.
@@ -35,15 +38,6 @@ bindkey  "^[[F"   end-of-line         # [End] - goes at the end of the line
 autoload -z edit-command-line            # Enable editing of command line by pressing Ctrl+x, E
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line       #}}
-
-# zsh-autocomplete settings {{
-zstyle ':autocomplete:*' insert-unambiguous yes
-zstyle ':autocomplete:*' widget-style menu-select
-zstyle ':autocomplete:*' list-lines 16
-zstyle ':autocomplete:*' fzf-completion yes
-
-zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**' ##}
-
 
 # fzf settings {{
 FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | batcat --color=always --language=bash --style=plain' --preview-window down:7:wrap"
@@ -77,5 +71,21 @@ if [ -d "$KITTY_INSTALLATION_DIR" ]; then
     unfunction kitty-integration
 fi
 # }}
+
+# zsh-autocomplete settings {{
+
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
+
+zstyle ':autocomplete:*' widget-style menu-select
+zstyle ':autocomplete:*' list-lines 16
+zstyle ':autocomplete:*' fzf-completion yes
+
+zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**' 
+
+bindkey              '^I'         menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
+##}}
 
 # vim:foldmethod=marker:foldmarker={{,}}:foldlevel=0:foldtext=substitute(getline(v\:foldstart),'\\#\\\ \\\|{{','','g')

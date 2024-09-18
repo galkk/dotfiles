@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Fonts
-apt-get -qq install --no-install-recommends fnt unzip subversion
-
 fnt update
 
 # Change to `fnt install` after https://github.com/alexmyczko/fnt/issues/30 is fixed
@@ -14,31 +11,20 @@ fonts=( anonymouspro \
         barlowcondensed \
         sairaextracondensed \
         sofiasansextracondensed \
-        stintultracondensed
+        stintultracondensed \
+        azeretmono \
+        victormono \
+        robotomono \
     )
 
-for font in ${fonts[@]}; do
-    fnt install $font
+for font in "${fonts[@]}"; do
+    fnt install "$font"
 done
 
-svn export --force https://github.com/googlefonts/RobotoMono/trunk/fonts/ttf ~/.fonts/
-svn export --force https://github.com/displaay/Azeret/trunk/fonts/ttf ~/.fonts/
-svn export --force https://github.com/ryanoasis/nerd-fonts/trunk/master/patched-fonts/NerdFontsSymbolsOnly ~/.fonts/
-svn export --force https://github.com/notofonts/notofonts.github.io/trunk/fonts/NotoSansMono/unhinted/ttf ~/.fonts/
-
-chdir $(mktemp -d)
-wget https://rubjo.github.io/victor-mono/VictorMonoAll.zip
-wget https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-2.37.zip
-wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-27.0.2.zip
-wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-term-27.0.2.zip
-wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-slab-27.0.2.zip
-wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-term-slab-27.0.2.zip
-wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-aile-27.0.2.zip
-wget https://github.com/be5invis/Iosevka/releases/download/v27.0.2/ttf-iosevka-etoile-27.0.2.zip
+cd "$(mktemp -d)" || exit
 wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
-
+curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep SuperTTC-Iosevka | grep -v SS | xargs -n 1 curl -L -O --fail --show-error
 unzip -j '*.zip'
-mv *.ttf ~/.fonts
+mv ./*.ttf ./*.ttc ~/.fonts
 
 fc-cache -f -v
-

@@ -1,7 +1,7 @@
 ![Build status](https://github.com/galkk/dotfiles/actions/workflows/push-docker-image.yml/badge.svg)
 
 Dotfiles are in dotfiles folder, and are 1:1 reflection of destination paths.
-To build, run from repository folder: 
+To build, run from repository folder:
 
 ```
 docker buildx build --build-context setupscripts=setup --build-context dotfiles=. . --target minimal --tag minimal -f setup/Dockerfile && docker run --rm -it minimal
@@ -20,16 +20,16 @@ Each change is being built by [github action](.github/workflows/push-docker-imag
 
 Configuration:
 
-- [Dockerfile](Dockerfile)
-- [Docker compose](docker-compose.yml)
+- [Dockerfile](setup/Dockerfile)
+- [Docker compose](setup/docker-compose.yml)
 
-| Action                              | Minimal                                                                                                         | Full                                           |
-| ----------------------------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| Run from repository, docker         | `docker run --rm -it galkkk/dotfiles:minimal`                                                                   | `docker run --rm -it galkkk/dotfiles:full`     |
-| Run from repository, docker compose | `docker compose run --rm dotfiles:minimal`                                                               | `docker compose run --rm dotfiles:full` |
-| Build                               | `docker build --target minimal --tag dotfiles:minimal`                                                          |
+| Action                              | Minimal                                                                                                         |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Run from repository, docker         | `docker run --rm -it galkkk/dotfiles:minimal`                                                                   |
+| Run from repository, docker compose | `docker compose run --rm dotfiles:minimal`                                                                      |
+| Build                               | `sudo docker buildx build --build-context setupscripts=setup --target minimal --tag dotfiles:minimal setup`     |
 | Run locally                         | `docker run -it docker.io/library/dotfiles:minimal`                                                             |
 | Push to repository                  | <code>docker tag dotfiles:minimal galkkk/dotfiles:minimal <br>docker image push galkkk/dotfiles:minimal </code> |
 
-TODO: Figure out if it is possible to move setup files to subdirectory and real dotfiles *into* parent directory. 
+TODO: Figure out if it is possible to move setup files to subdirectory and real dotfiles *into* parent directory.
       That will require figuring out build context and may be not possible in general case. Unless I will figure out sub repositories or docker contexts, then it will work.
