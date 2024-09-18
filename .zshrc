@@ -18,6 +18,9 @@ znap source agkozak/zsh-z #}}
 alias cat="batcat --style=plain --color=always --paging=never "
 alias icat="kitty +kitten icat --align left"
 alias ls="ls --color"
+alias yp='noglob yt-dlp -v -S "+codec:h264" -o "%(uploader)s - %(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
+alias yf='noglob yt-dlp -v -S "+codec:h264" --output-na-placeholder "" -f "bv[ext=mp4]*+ba/bv*+ba/b" --sponsorblock-remove default -o "%(uploader)s - %(title)s.%(ext)s"'
+
 
 PATH=~/.local/bin:$PATH
 LESS="-iMFXRas" # main thing - colorize less and print if fits one screen, to exit hg diff immediately for short files.
@@ -42,8 +45,7 @@ zstyle ':autocomplete:*' widget-style menu-select
 zstyle ':autocomplete:*' list-lines 16
 zstyle ':autocomplete:*' fzf-completion yes
 
-zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**' ##}
-
+zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**' ##}}
 
 # fzf settings {{
 FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | batcat --color=always --language=bash --style=plain' --preview-window down:7:wrap"
