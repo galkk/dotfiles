@@ -39,14 +39,6 @@ autoload -z edit-command-line            # Enable editing of command line by pre
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line       #}}
 
-# zsh-autocomplete settings {{
-zstyle ':autocomplete:*' insert-unambiguous yes
-zstyle ':autocomplete:*' widget-style menu-select
-zstyle ':autocomplete:*' list-lines 16
-zstyle ':autocomplete:*' fzf-completion yes
-
-zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**' ##}}
-
 # fzf settings {{
 FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | batcat --color=always --language=bash --style=plain' --preview-window down:7:wrap"
 
@@ -79,5 +71,21 @@ if [ -d "$KITTY_INSTALLATION_DIR" ]; then
     unfunction kitty-integration
 fi
 # }}
+
+# zsh-autocomplete settings {{
+
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
+
+zstyle ':autocomplete:*' widget-style menu-select
+zstyle ':autocomplete:*' list-lines 16
+zstyle ':autocomplete:*' fzf-completion yes
+
+zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**' 
+
+bindkey              '^I'         menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
+##}}
 
 # vim:foldmethod=marker:foldmarker={{,}}:foldlevel=0:foldtext=substitute(getline(v\:foldstart),'\\#\\\ \\\|{{','','g')
