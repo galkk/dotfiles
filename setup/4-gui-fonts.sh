@@ -23,9 +23,8 @@ done
 
 cd $(mktemp -d)
 wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
-curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep PkgTTC-Iosevka | xargs -n 1 curl -L -O --fail --silent --show-error
+curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep SuperTTC-Iosevka | grep -v SS | xargs -n 1 curl -L -O --fail --show-error
 unzip -j '*.zip'
-mv *.ttf ~/.fonts
+mv *.ttf *.ttc ~/.fonts
 
 fc-cache -f -v
-
