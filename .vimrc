@@ -10,7 +10,7 @@ set title                                         " set terminal title
 set history=1000
 set undolevels=1000
 set lazyredraw                                    " buffer screen updates
-set clipboard=unnamedplus                         " copy to system clipboard
+set clipboard+=unnamedplus                         " copy to system clipboard
 set updatetime=250
 
 filetype plugin indent on                         " file type detection on (allows syntax highlighting etc)

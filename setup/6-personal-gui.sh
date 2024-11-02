@@ -15,6 +15,7 @@ apt-get -qq --no-install-recommends install flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub md.obsidian.Obsidian
 flatpak install -y flathub com.jetbrains.IntelliJ-IDEA-Community
+flatpak install -y flathub com.github.tchx84.Flatseal
 
 # to run brightnessctl without sudo
 # usermod -aG video $USER

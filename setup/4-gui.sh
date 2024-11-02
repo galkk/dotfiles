@@ -3,7 +3,7 @@
 DEBIAN_FRONTEND=noninteractive apt-get -qq --no-install-recommends install \
     i3 rofi flameshot remmina xinit brightnessctl peek \
     copyq sway wdisplays krita kazam nemo ffmpegthumbnailer \
-    ffmpegthumbnailer ffmpeg imagemagick
+    ffmpegthumbnailer ffmpeg imagemagick xclip
 
 # Install latest kitty
 mkdir -p ~/.local/bin
