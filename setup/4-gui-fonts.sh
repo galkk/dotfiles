@@ -17,14 +17,14 @@ fonts=( anonymouspro \
         robotomono \
     )
 
-for font in ${fonts[@]}; do
-    fnt install $font
+for font in "${fonts[@]}"; do
+    fnt install "$font"
 done
 
-cd $(mktemp -d)
+cd "$(mktemp -d)" || exit
 wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
 curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep SuperTTC-Iosevka | grep -v SS | xargs -n 1 curl -L -O --fail --show-error
 unzip -j '*.zip'
-mv *.ttf *.ttc ~/.fonts
+mv ./*.ttf ./*.ttc ~/.fonts
 
 fc-cache -f -v
