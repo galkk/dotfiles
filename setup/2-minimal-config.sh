@@ -16,4 +16,4 @@ fi
 usermod -s "$(which zsh)" "$USER"
 
 # This runs all installation steps, needed for zsh and plugins
-echo exit || script -qec zsh /dev/null
+echo exit | script -qec zsh /dev/null
