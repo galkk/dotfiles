@@ -8,4 +8,3 @@ curl -fsSL https://tailscale.com/install.sh | sh
 # Docker.
 # Must be last as they have weird thing and require 20s sleep for non-interactive scripts
 curl -fsSL https://get.docker.com | sh
-dockerd-rootless-setuptool.sh install
