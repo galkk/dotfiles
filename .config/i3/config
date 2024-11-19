@@ -85,7 +85,6 @@ assign [title=".*Google Calendar.*"] number $ws8
 assign [title=".*Google Chat.*"] number $ws8
 assign [title=".*Messenger.*"] number $ws5
 assign [title=".*Obsidian.*"] number $ws7
-assign [title=".*Cider.*"] number $ws2
 # }
 
 # select windows by arrow keys {
