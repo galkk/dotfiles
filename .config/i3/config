@@ -79,14 +79,6 @@ bindsym $mod+x move workspace to output right
 bindsym $mod+z move workspace to output left
 #}
 
-# assign windows to workspaces by default {
-assign [title=".*Gmail.*"] number $ws9
-assign [title=".*Google Calendar.*"] number $ws8
-assign [title=".*Google Chat.*"] number $ws8
-assign [title=".*Messenger.*"] number $ws5
-assign [title=".*Obsidian.*"] number $ws7
-# }
-
 # select windows by arrow keys {
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -115,6 +107,15 @@ set $ws8 "8: chat, calendar"
 set $ws9 "9: mail"
 set $ws10 "10"
 # }
+
+# assign windows to workspaces by default {
+assign [title=".*Gmail.*"] number $ws9
+assign [title=".*Google Calendar.*"] number $ws8
+assign [title=".*Google Chat.*"] number $ws8
+assign [title=".*Messenger.*"] number $ws5
+assign [title=".*Obsidian.*"] number $ws7
+# }
+
 
 # switch to workspace {
 bindsym $mod+1 workspace number $ws1
