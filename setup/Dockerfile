@@ -16,3 +16,11 @@ FROM minimal as full
 RUN --mount=from=setupscripts,dst=/setupscripts/ /setupscripts/setup.sh dev
 
 CMD ["/bin/zsh"]
+
+
+# Stage 2 - full image
+FROM full as gui
+
+RUN --mount=from=setupscripts,dst=/setupscripts/ /setupscripts/setup.sh gui && /setupscripts/setup.sh personal
+
+CMD ["/bin/zsh"]
