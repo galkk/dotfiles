@@ -82,7 +82,7 @@ zstyle ':autocomplete:*' widget-style menu-select
 zstyle ':autocomplete:*' list-lines 16
 zstyle ':autocomplete:*' fzf-completion yes
 
-zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**' 
+zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
 
 bindkey              '^I'         menu-complete
 bindkey "$terminfo[kcbt]" reverse-menu-complete

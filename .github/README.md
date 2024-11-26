@@ -23,13 +23,10 @@ Configuration:
 - [Dockerfile](setup/Dockerfile)
 - [Docker compose](setup/docker-compose.yml)
 
-| Action                              | Minimal                                                                                                         |
-| ----------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Run from repository, docker         | `docker run --rm -it galkkk/dotfiles:minimal`                                                                   |
-| Run from repository, docker compose | `docker compose run --rm dotfiles:minimal`                                                                      |
-| Build                               | `sudo docker buildx build --build-context setupscripts=setup --target minimal --tag dotfiles:minimal setup`     |
-| Run locally                         | `docker run -it docker.io/library/dotfiles:minimal`                                                             |
-| Push to repository                  | <code>docker tag dotfiles:minimal galkkk/dotfiles:minimal <br>docker image push galkkk/dotfiles:minimal </code> |
-
-TODO: Figure out if it is possible to move setup files to subdirectory and real dotfiles *into* parent directory.
-      That will require figuring out build context and may be not possible in general case. Unless I will figure out sub repositories or docker contexts, then it will work.
+| Action                              | Minimal                                                                                                                    |
+| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Run from repository, docker         | `docker run --rm -it galkkk/dotfiles:minimal`                                                                              |
+| Run from repository, docker compose | `docker compose run --rm dotfiles:minimal`                                                                                 |
+| Build                               | `docker buildx build --build-context setupscripts=setup --target minimal --tag dotfiles:minimal --file setup/Dockerfile  --progress=plain --no-cache .` |
+| Run locally                         | `docker run -it docker.io/library/dotfiles:minimal`                                                                        |
+| Push to repository                  | <code>docker tag dotfiles:minimal galkkk/dotfiles:minimal <br>docker image push galkkk/dotfiles:minimal </code>            |
