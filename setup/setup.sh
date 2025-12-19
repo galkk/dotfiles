@@ -40,8 +40,8 @@ setup_base() {
     # only if ~/project/dotfiles exists (not the case for docker container).
     # all existing files are going to be backed up.
     if [ -d ~/projects/dotfiles ]; then
-        ln -vsfb $(find ~/projects/dotfiles/ -maxdepth 1 -mindepth 1 -type f -not -name '.dockerignore') ~
-        ln -vsfb $(find ~/projects/dotfiles/.config -maxdepth 1 -mindepth 1) ~/.config/
+        ln -svfn $(find ~/projects/dotfiles/ -mindepth 1 -prune -type f ! -name '.dockerignore') ~
+        ln -svfn $(find ~/projects/dotfiles/.config -mindepth 1 -prune) ~/.config/
     fi
 
     # This runs all installation steps, needed for zsh and plugins
@@ -56,7 +56,7 @@ setup_dev() {
     $SUDO apt-get -qq install --no-install-recommends \
         build-essential cmake python3-dev golang \
         strace podman podman-toolbox pipx \
-        openjdk-21-jdk clang lldb gcc g++ gdb rr
+        openjdk-21-jdk clang lldb gcc g++ gdb rr uv
 
     # Let podman to get images from docker hub.
     echo "
