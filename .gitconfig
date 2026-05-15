@@ -1,6 +1,6 @@
 [user]
-    email = andy.galkin@gmail.com
     name = Andy Galkin
+    email = andy.galkin+github@gmail.com
 [pull]
     ff = only
 [status]
@@ -10,6 +10,8 @@
     recurseSubmodules = on-demand
 [alias]
     wd = diff --color-words --word-diff-regex='\\w+'
+    cleanup-merged = "!f(){ cur=$(git symbolic-ref --quiet --short HEAD) || exit 0; git for-each-ref --format='%(refname:short)' refs/heads --merged HEAD | awk -v cur=\"$cur\" '$0!=cur && $0!=\"main\" && $0!=\"master\"' | xargs -n1 -P ${1:-8} -I{} sh -c 'git branch -d -v \"$1\" || true' _ {}; true; }; f"
+    md = diff --color-moved=dimmed-zebra --color-moved-ws=allow-indentation-change
 [core]
     editor = vim
     whitespace = -trailing-space
@@ -23,6 +25,8 @@
     follow = true
 [rebase]
     instructionFormat = [%ai] %s
+    rebaseMerges = true
+    autoSquash = true
 [diff]
     find-renames = true
     diff-algorithm = patience
@@ -40,3 +44,14 @@
     prompt = false
 [format]
     pretty = "format:%C(auto)%h %<(100,trunc)%s %C(blue)%<(15,trunc)%an %C(auto)(%ar) %C(auto) %d"
+[push]
+    autoSetupRemote = true
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+[github]
+    user = galkk
+[include]
+    path = ~/.work.gitconfig

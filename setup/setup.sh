@@ -33,8 +33,10 @@ setup_base() {
         ca-certificates
 
     [ -f ~/.work.zshrc ]    || touch ~/.work.zshrc
+    [ -f ~/.work.gitconfig ] || touch ~/.work.gitconfig
     [ -d ~/.config ]        || mkdir -p ~/.config
     [ -d ~/.local/bin ]     || mkdir -p ~/.local/bin
+    which bat >/dev/null 2>&1 || ln -sf /usr/bin/batcat ~/.local/bin/bat
 
     # make top level symlinks to all files in dotfiles from home directory
     # only if ~/project/dotfiles exists (not the case for docker container).
@@ -42,6 +44,12 @@ setup_base() {
     if [ -d ~/projects/dotfiles ]; then
         ln -svfn $(find ~/projects/dotfiles/ -mindepth 1 -prune -type f ! -name '.dockerignore') ~
         ln -svfn $(find ~/projects/dotfiles/.config -mindepth 1 -prune) ~/.config/
+
+        # AI coding assistants — single canonical config
+        [ -d ~/.claude ] || mkdir -p ~/.claude
+        [ -d ~/.codex ]  || mkdir -p ~/.codex
+        ln -svf ~/projects/dotfiles/ai/CLAUDE.md ~/.claude/CLAUDE.md
+        ln -svf ~/projects/dotfiles/ai/AGENTS.md ~/.codex/AGENTS.md
     fi
 
     # This runs all installation steps, needed for zsh and plugins

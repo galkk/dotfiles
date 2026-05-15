@@ -15,17 +15,17 @@ znap source zsh-users/zsh-syntax-highlighting
 znap source marlonrichert/zsh-autocomplete
 znap source agkozak/zsh-z #}}
 
-alias cat="batcat --style=plain --color=always --paging=never "
 alias icat="kitty +kitten icat --align left"
 alias ls="ls --color"
 alias yp='noglob yt-dlp -v -S "+codec:h264" -o "%(uploader)s - %(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 alias yf='noglob yt-dlp -v -S "+codec:h264" --output-na-placeholder "" -f "bv[ext=mp4]*+ba/bv*+ba/b" --sponsorblock-remove default -o "%(uploader)s - %(title)s.%(ext)s"'
 
-
 PATH=~/.local/bin:$PATH
-LESS="-iMFXRas" # main thing - colorize less and print if fits one screen, to exit hg diff immediately for short files.
-EDITOR=/usr/bin/vim
-DOTNET_CLI_TELEMETRY_OPTOUT=true
+export LESS="-iMFXRas" # main thing - colorize less and print if fits one screen, to exit hg diff immediately for short files.
+export BAT_STYLE=plain
+export BAT_PAGING=never
+export EDITOR=vim
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
 KITTY_INSTALLATION_DIR=$HOME/.local/kitty.app/lib/kitty/
 
 # binds {{
@@ -40,7 +40,7 @@ zle -N edit-command-line
 bindkey '^Xe' edit-command-line       #}}
 
 # fzf settings {{
-FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | batcat --color=always --language=bash --style=plain' --preview-window down:7:wrap"
+FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | bat --color=always --language=bash' --preview-window down:7:wrap"
 
 if [ -d /usr/share/doc/fzf/examples ]; then
     source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -55,10 +55,18 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion) #}}
 setopt share_history          # share history between terminals
 setopt hist_ignore_dups       # do not enter command if it is same as previous command
 setopt histignorespace
+setopt hist_find_no_dups
 
 HISTSIZE=50000                # How many lines of history to keep in memory
 HISTFILE=~/.zsh_history       # Where to save history to disk
 SAVEHIST=5000000              # Number of history entries to save to disk }}
+
+# Docker CLI completions
+if [ -d "$HOME/.docker/completions" ]; then
+  fpath=($HOME/.docker/completions $fpath)
+  autoload -Uz compinit
+  compinit
+fi
 
 [[ ! -f ~/.work.zshrc ]] || source ~/.work.zshrc            # load work setting, that I don't want to put to source control
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh                # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
