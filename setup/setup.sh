@@ -59,8 +59,8 @@ setup_links() {
     ln -svf "$dotfiles_dir"/.codex/AGENTS.md ~/.codex/AGENTS.md
 }
 
-setup_base() {
-    echo "Setting up base installation"
+setup_packages() {
+    echo "Installing base packages"
 
     # Do not skip fzf key bindings
     echo "path-include=/usr/share/doc/fzf/examples/*" | $SUDO tee -a /etc/dpkg/dpkg.cfg.d/excludes
@@ -74,10 +74,15 @@ setup_base() {
     npm install -g @anthropic-ai/claude-code @openai/codex
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
+    mkdir -p ~/.local/bin
     if [ -f /etc/debian_version ]; then
         ln -sf /usr/bin/batcat ~/.local/bin/bat
         ln -sf /usr/bin/fdfind ~/.local/bin/fd
     fi
+}
+
+setup_config() {
+    echo "Configuring environment"
 
     setup_links
 
@@ -87,6 +92,11 @@ setup_base() {
 
     # change shell to zsh using usermod
     [ -z "${USER}" ] || $SUDO usermod -s "$zsh" "${USER}"
+}
+
+setup_base() {
+    setup_packages
+    setup_config
 }
 
 setup_dev() {
@@ -183,12 +193,14 @@ setup_personal() {
 }
 
 [ "${1-}" = "links" ] && setup_links && exit
+[ "${1-}" = "config" ] && setup_config && exit
 
 setup_sudo
 
 export DEBIAN_FRONTEND=noninteractive
 
 [ -z "${1-}" ] && setup_base && exit
+[ "${1-}" = "packages" ] && setup_packages && exit
 [ "${1-}" = "dev" ] && setup_dev && exit
 [ "${1-}" = "gui" ] && setup_gui && exit
 [ "${1-}" = "personal" ] && setup_personal && exit

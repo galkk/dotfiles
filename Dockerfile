@@ -3,12 +3,17 @@
 FROM ubuntu:rolling AS minimal
 
 RUN rm -f /etc/apt/apt.conf.d/docker-clean
-COPY . /root/
 
+# Install packages first (cached independently of dotfile changes)
 RUN --mount=from=setupscripts,dst=/setupscripts/ \
     --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    /setupscripts/setup.sh
+    /setupscripts/setup.sh packages
+
+# Copy dotfiles, then run config (links, zsh init)
+COPY . /root/
+RUN --mount=from=setupscripts,dst=/setupscripts/ \
+    /setupscripts/setup.sh config
 
 WORKDIR /root/
 CMD ["/bin/zsh"]
