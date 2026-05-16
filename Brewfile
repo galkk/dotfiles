@@ -20,11 +20,16 @@ brew "wget"
 brew "yq"
 
 # Dev tools
+brew "bazelisk"
 brew "difftastic"
+brew "duckdb"
+brew "glow"
 brew "gnu-getopt"
 brew "gnu-tar"
 brew "gnupg"
+brew "lcov"
 brew "pinentry-mac"
+brew "prettier"
 brew "pyenv"
 
 # Containers / cloud
