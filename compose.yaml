@@ -1,5 +1,5 @@
 services:
-  dotfiles-minimal:
+  min:
     build:
       target: minimal
       additional_contexts:
@@ -10,7 +10,7 @@ services:
     volumes:
       - /:/host/
       - /var/run/docker.sock:/var/run/docker.sock
-  dotfiles-full:
+  full:
     build:
       target: full
       additional_contexts:
