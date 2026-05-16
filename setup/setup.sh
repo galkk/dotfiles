@@ -55,7 +55,7 @@ setup_base() {
     echo "path-include=/usr/share/doc/fzf/examples/*" | $SUDO tee -a /etc/dpkg/dpkg.cfg.d/excludes
 
     $SUDO apt-get -qq update
-    $SUDO apt-get -qq install --no-install-recommends zsh git vim fzf curl bat \
+    $SUDO apt-get -qq install --no-install-recommends zsh git fzf curl bat \
         unzip htop mc mosh tmux neovim ripgrep fd-find wget jq yq sd openssh-server \
         ca-certificates eza nodejs npm
 
@@ -69,6 +69,7 @@ setup_base() {
     [ -d ~/.local/bin ]     || mkdir -p ~/.local/bin
     which bat >/dev/null 2>&1 || ln -sf /usr/bin/batcat ~/.local/bin/bat
     which fd >/dev/null 2>&1 || { which fdfind >/dev/null 2>&1 && ln -sf "$(which fdfind)" ~/.local/bin/fd; }
+    ln -sf "$(which nvim)" ~/.local/bin/vim
     setup_ssh
 
     # make top level symlinks to all files in dotfiles from home directory
