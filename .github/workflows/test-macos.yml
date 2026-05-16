@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Brewfile
-        run: brew bundle --file=Brewfile --no-lock
+        run: brew bundle --file=Brewfile
       - name: Run macOS defaults
         run: bash setup/macos-defaults.sh
       - name: Verify tools
