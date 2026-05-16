@@ -40,3 +40,4 @@ services:
       - HOME=${HOME}
       - TERM=${TERM}
       - DISPLAY=${DISPLAY:-}
+      - DOCKER_HOST=unix://${HOME}/.docker/run/docker.sock
