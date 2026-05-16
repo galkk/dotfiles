@@ -24,7 +24,7 @@ Each change is being built by [github action](.github/workflows/push-docker-imag
 | Run prebuilt  | `docker run --rm -it galkkk/dotfiles:minimal`  |
 | Build and run | `docker compose run --rm --build min`          |
 | Full image    | `docker compose run --rm --build full`         |
-| Toolbox       | `docker compose run --rm toolbox`              |
+| Toolbox       | `docker compose run --rm --build toolbox`      |
 
 # macOS
 
