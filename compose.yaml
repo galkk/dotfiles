@@ -22,6 +22,10 @@ services:
       - /:/host/
       - /var/run/docker.sock:/var/run/docker.sock
   toolbox:
+    build:
+      target: full
+      additional_contexts:
+        setupscripts: ./setup
     image: galkkk/dotfiles:full
     stdin_open: true
     tty: true
