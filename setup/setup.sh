@@ -5,16 +5,11 @@ set -e
 SUDO=
 
 setup_sudo() {
-    local CAN_ROOT=
     if [ "$(id -u)" = 0 ]; then
-        CAN_ROOT=1
         SUDO=""
-    elif type sudo >/dev/null; then
-        CAN_ROOT=1
+    elif type sudo &>/dev/null; then
         SUDO="sudo"
-    fi
-
-    if [ "$CAN_ROOT" != "1" ]; then
+    else
         echo "Need to be able to run commands as sudo."
         exit 1
     fi
@@ -26,7 +21,7 @@ setup_ssh() {
     touch ~/.ssh/config
 
     if ! grep -Eq '^[[:space:]]*ControlMaster[[:space:]]+' ~/.ssh/config; then
-        cat >> ~/.ssh/config <<'EOF'
+        cat >>~/.ssh/config <<'EOF'
 
 # Dotfiles SSH multiplexing
 Host *
@@ -38,7 +33,7 @@ EOF
 
     # Fix stale SSH_AUTH_SOCK after tmux detach/reattach
     if [ ! -f ~/.ssh/rc ]; then
-        cat > ~/.ssh/rc <<'EOF'
+        cat >~/.ssh/rc <<'EOF'
 if test "$SSH_AUTH_SOCK"; then
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
 fi
@@ -48,18 +43,20 @@ EOF
 }
 
 setup_links() {
+    local dotfiles_dir=${DOTFILES_DIR:-~/projects/dotfiles}
+
     touch ~/.work.zshrc ~/.work.gitconfig
     mkdir -p ~/.config ~/.local/bin
     setup_ssh
 
-    if [ -d ~/projects/dotfiles ]; then
-        ln -svfn $(find ~/projects/dotfiles/ -mindepth 1 -prune -type f ! -name '.dockerignore') ~
-        ln -svfn $(find ~/projects/dotfiles/.config -mindepth 1 -prune) ~/.config/
+    [ -d "$dotfiles_dir" ] || return
 
-        mkdir -p ~/.claude ~/.codex
-        ln -svf ~/projects/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
-        ln -svf ~/projects/dotfiles/.codex/AGENTS.md ~/.codex/AGENTS.md
-    fi
+    ln -svfn $(find "$dotfiles_dir"/ -mindepth 1 -prune -type f ! -name '.dockerignore') ~
+    ln -svfn $(find "$dotfiles_dir"/.config -mindepth 1 -prune) ~/.config/
+
+    mkdir -p ~/.claude ~/.codex
+    ln -svf "$dotfiles_dir"/.claude/CLAUDE.md ~/.claude/CLAUDE.md
+    ln -svf "$dotfiles_dir"/.codex/AGENTS.md ~/.codex/AGENTS.md
 }
 
 setup_base() {
@@ -77,17 +74,19 @@ setup_base() {
     npm install -g @anthropic-ai/claude-code @openai/codex
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
-    which bat >/dev/null 2>&1 || ln -sf /usr/bin/batcat ~/.local/bin/bat
-    which fd >/dev/null 2>&1 || \
-        { which fdfind >/dev/null 2>&1 && ln -sf "$(which fdfind)" ~/.local/bin/fd; }
+    if [ -f /etc/debian_version ]; then
+        ln -sf /usr/bin/batcat ~/.local/bin/bat
+        ln -sf /usr/bin/fdfind ~/.local/bin/fd
+    fi
 
     setup_links
 
     # This runs all installation steps, needed for zsh and plugins
-    echo exit | script -qec "$(which zsh)" /dev/null
+    zsh=$(which zsh)
+    echo exit | script -qec "$zsh" /dev/null
 
     # change shell to zsh using usermod
-    [ -z "${USER}" ] || $SUDO usermod -s "$(which zsh)" "${USER}"
+    [ -z "${USER}" ] || $SUDO usermod -s "$zsh" "${USER}"
 }
 
 setup_dev() {
@@ -98,24 +97,23 @@ setup_dev() {
         openjdk-21-jdk clang lldb gcc g++ gdb rr
 
     # Let podman to get images from docker hub.
-    echo "
-    [registries.search]
-    registries = ['docker.io']" | $SUDO tee -a /etc/containers/registries.conf
+    $SUDO mkdir -p /etc/containers/registries.conf.d
+    echo "[registries.search]
+registries = ['docker.io']" | $SUDO tee /etc/containers/registries.conf.d/10-dockerhub.conf
 
     # Docker CLI only (daemon runs on host, mounted via socket)
     $SUDO install -m 0755 -d /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
-        | $SUDO gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg |
+        $SUDO gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
     echo "deb [arch=$(dpkg --print-architecture) \
         signed-by=/etc/apt/keyrings/docker.gpg] \
         https://download.docker.com/linux/ubuntu \
-        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
-        | $SUDO tee /etc/apt/sources.list.d/docker.list
+        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
+        $SUDO tee /etc/apt/sources.list.d/docker.list
     $SUDO apt-get -qq update
     $SUDO apt-get -qq install --no-install-recommends docker-ce-cli docker-compose-plugin
 
 }
-
 
 setup_gui() {
     echo "Setting up gui installation"
@@ -134,31 +132,21 @@ setup_gui() {
     fnt update
 
     # Change to `fnt install` after https://github.com/alexmyczko/fnt/issues/30 is fixed
-    FONTS=( anonymouspro \
-            cousine \
-            firacode \
-            ibmplexmono \
-            jetbrains-mono \
-            barlowcondensed \
-            sairaextracondensed \
-            sofiasansextracondensed \
-            stintultracondensed \
-            azeretmono \
-            victormono \
-            robotomono \
-        )
+    FONTS=(anonymouspro cousine firacode ibmplexmono jetbrains-mono
+        barlowcondensed sairaextracondensed sofiasansextracondensed
+        stintultracondensed azeretmono victormono robotomono)
 
     for font in "${FONTS[@]}"; do
         fnt install "$font"
     done
 
     FONTDIR="$(mktemp -d)"
-    cd "$FONTDIR" || exit
+    cd "$FONTDIR"
     wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
-    curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' \
-        | jq -r ".assets[] | .browser_download_url" \
-        | grep SuperTTC-Iosevka | grep -v SS \
-        | xargs -n 1 curl -L -O --fail --show-error
+    curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' |
+        jq -r ".assets[] | .browser_download_url" |
+        grep SuperTTC-Iosevka | grep -v SS |
+        xargs -n 1 curl -L -O --fail --show-error
     unzip -j '*.zip'
     mv ./*.ttf ./*.ttc ~/.fonts
     rm -rf "$FONTDIR"

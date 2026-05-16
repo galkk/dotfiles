@@ -3,10 +3,10 @@ name: Test macOS setup
 on:
   push:
     branches:
-      - 'master'
+      - "master"
     paths:
-      - 'Brewfile'
-      - 'setup/macos-defaults.sh'
+      - "Brewfile"
+      - "setup/macos-defaults.sh"
 
 jobs:
   test:
