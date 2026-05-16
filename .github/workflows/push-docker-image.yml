@@ -39,3 +39,5 @@ jobs:
           push: true
           target: ${{ matrix.target }}
           tags: galkkk/dotfiles:${{ matrix.target }}
+          cache-from: type=gha,scope=${{ matrix.target }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.target }}

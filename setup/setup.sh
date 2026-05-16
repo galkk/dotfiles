@@ -45,11 +45,17 @@ setup_base() {
         ln -svfn $(find ~/projects/dotfiles/ -mindepth 1 -prune -type f ! -name '.dockerignore') ~
         ln -svfn $(find ~/projects/dotfiles/.config -mindepth 1 -prune) ~/.config/
 
-        # AI coding assistants — single canonical config
-        [ -d ~/.claude ] || mkdir -p ~/.claude
-        [ -d ~/.codex ]  || mkdir -p ~/.codex
+    fi
+
+    # AI coding assistants — single canonical config
+    [ -d ~/.claude ] || mkdir -p ~/.claude
+    [ -d ~/.codex ]  || mkdir -p ~/.codex
+    if [ -d ~/projects/dotfiles/ai ]; then
         ln -svf ~/projects/dotfiles/ai/CLAUDE.md ~/.claude/CLAUDE.md
         ln -svf ~/projects/dotfiles/ai/AGENTS.md ~/.codex/AGENTS.md
+    elif [ -d ~/ai ]; then
+        ln -svf ~/ai/CLAUDE.md ~/.claude/CLAUDE.md
+        ln -svf ~/ai/AGENTS.md ~/.codex/AGENTS.md
     fi
 
     # This runs all installation steps, needed for zsh and plugins
@@ -64,16 +70,26 @@ setup_dev() {
     $SUDO apt-get -qq install --no-install-recommends \
         build-essential cmake python3-dev golang \
         strace podman distrobox pipx \
-        openjdk-21-jdk clang lldb gcc g++ gdb rr uv
+        openjdk-21-jdk clang lldb gcc g++ gdb rr \
+        nodejs npm
+
+    # uv (not in apt)
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 
     # Let podman to get images from docker hub.
     echo "
     [registries.search]
     registries = ['docker.io']" | $SUDO tee -a /etc/containers/registries.conf
 
-    # Docker.
-    # Must be last as they have weird thing and require 20s sleep for non-interactive scripts
-    $SUDO curl -fsSL https://get.docker.com | sh
+    # Docker CLI only (daemon runs on host, mounted via socket)
+    $SUDO install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | $SUDO gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | $SUDO tee /etc/apt/sources.list.d/docker.list
+    $SUDO apt-get -qq update
+    $SUDO apt-get -qq install --no-install-recommends docker-ce-cli docker-compose-plugin
+
+    # AI coding assistants
+    npm install -g @anthropic-ai/claude-code @openai/codex
 }
 
 
@@ -111,11 +127,13 @@ setup_gui() {
         fnt install "$font"
     done
 
-    cd "$(mktemp -d)" || exit
+    FONTDIR="$(mktemp -d)"
+    cd "$FONTDIR" || exit
     wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
     curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep SuperTTC-Iosevka | grep -v SS | xargs -n 1 curl -L -O --fail --show-error
     unzip -j '*.zip'
     mv ./*.ttf ./*.ttc ~/.fonts
+    rm -rf "$FONTDIR"
 
     fc-cache -f -v
 }

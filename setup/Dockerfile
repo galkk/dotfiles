@@ -2,6 +2,7 @@
 
 FROM ubuntu:rolling AS minimal
 
+RUN rm -f /etc/apt/apt.conf.d/docker-clean
 COPY . /root/
 
 RUN --mount=from=setupscripts,dst=/setupscripts/ \
