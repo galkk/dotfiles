@@ -1,6 +1,6 @@
 .git
 .github
-.claude
+.claude/settings.local.json
 .dockerignore
 Dockerfile
 compose.yaml

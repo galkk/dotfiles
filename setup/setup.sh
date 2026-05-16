@@ -57,7 +57,11 @@ setup_base() {
     $SUDO apt-get -qq update
     $SUDO apt-get -qq install --no-install-recommends zsh git vim fzf curl bat \
         unzip htop mc mosh tmux neovim ripgrep fd-find wget jq yq sd openssh-server \
-        ca-certificates eza
+        ca-certificates eza nodejs npm
+
+    # AI coding assistants and Python tooling
+    npm install -g @anthropic-ai/claude-code @openai/codex
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 
     [ -f ~/.work.zshrc ]    || touch ~/.work.zshrc
     [ -f ~/.work.gitconfig ] || touch ~/.work.gitconfig
@@ -74,17 +78,10 @@ setup_base() {
         ln -svfn $(find ~/projects/dotfiles/ -mindepth 1 -prune -type f ! -name '.dockerignore') ~
         ln -svfn $(find ~/projects/dotfiles/.config -mindepth 1 -prune) ~/.config/
 
-    fi
-
-    # AI coding assistants — single canonical config
-    [ -d ~/.claude ] || mkdir -p ~/.claude
-    [ -d ~/.codex ]  || mkdir -p ~/.codex
-    if [ -d ~/projects/dotfiles/ai ]; then
-        ln -svf ~/projects/dotfiles/ai/CLAUDE.md ~/.claude/CLAUDE.md
-        ln -svf ~/projects/dotfiles/ai/AGENTS.md ~/.codex/AGENTS.md
-    elif [ -d ~/ai ]; then
-        ln -svf ~/ai/CLAUDE.md ~/.claude/CLAUDE.md
-        ln -svf ~/ai/AGENTS.md ~/.codex/AGENTS.md
+        # AI coding assistants
+        mkdir -p ~/.claude ~/.codex
+        ln -svf ~/projects/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
+        ln -svf ~/projects/dotfiles/.codex/AGENTS.md ~/.codex/AGENTS.md
     fi
 
     # This runs all installation steps, needed for zsh and plugins
@@ -99,11 +96,7 @@ setup_dev() {
     $SUDO apt-get -qq install --no-install-recommends \
         build-essential cmake python3-dev golang \
         strace podman distrobox pipx \
-        openjdk-21-jdk clang lldb gcc g++ gdb rr \
-        nodejs npm
-
-    # uv (not in apt)
-    curl -LsSf https://astral.sh/uv/install.sh | sh
+        openjdk-21-jdk clang lldb gcc g++ gdb rr
 
     # Let podman to get images from docker hub.
     echo "
@@ -117,8 +110,6 @@ setup_dev() {
     $SUDO apt-get -qq update
     $SUDO apt-get -qq install --no-install-recommends docker-ce-cli docker-compose-plugin
 
-    # AI coding assistants
-    npm install -g @anthropic-ai/claude-code @openai/codex
 }
 
 
