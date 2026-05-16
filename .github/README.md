@@ -4,8 +4,12 @@ Dotfiles are 1:1 reflection of destination paths.
 
 # Initial setup
 
-Setup git/ssh and clone repository
-`git clone git@github.com:galkk/dotfiles.git ~/projects/dotfiles`, then run shell scripts one by one (the ones that are needed).
+Setup GitHub CLI authentication, clone repository, then run shell scripts one by one (the ones that are needed).
+
+```sh
+gh auth login --hostname github.com --git-protocol ssh
+git clone git@github.com:galkk/dotfiles.git ~/projects/dotfiles
+```
 
 Configs could be used for both fresh linux installations and docker/distrobox style images.
 

@@ -38,6 +38,7 @@ znap source zsh-users/zsh-autosuggestions
 
 alias icat="kitty +kitten icat --align left"
 alias ls="eza --group-directories-first"
+alias lt="eza --tree --level=2 --icons=auto --group-directories-first"
 alias yp='noglob yt-dlp -v -S "+codec:h264" -o "%(uploader)s - %(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 alias yf='noglob yt-dlp -v -S "+codec:h264" --output-na-placeholder "" -f "bv[ext=mp4]*+ba/bv*+ba/b" --sponsorblock-remove default -o "%(uploader)s - %(title)s.%(ext)s"'
 
@@ -79,6 +80,20 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'  # Alt-C: fuzzy cd
 export FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always {}' --preview-window down:7:wrap"
+
+rgf() {
+    local rg_prefix='rg --column --line-number --no-heading --color=always --smart-case'
+
+    : | fzf --ansi --disabled --query "$*" \
+        --bind "start:reload:$rg_prefix {q} || true" \
+        --bind "change:reload:$rg_prefix {q} || true" \
+        --delimiter : \
+        --preview 'bat --color=always --style=plain --highlight-line {2} -- {1}' \
+        --preview-window 'right:60%:+{2}/2' \
+        --bind 'enter:become(vim +{2} -- {1})' \
+        --bind 'alt-enter:become(echo {1}:{2})' \
+        --bind "ctrl-o:become($rg_prefix {q})"
+}
 # }}
 
 # history {{
