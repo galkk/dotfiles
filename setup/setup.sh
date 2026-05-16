@@ -48,6 +48,23 @@ EOF
     fi
 }
 
+setup_links() {
+    [ -f ~/.work.zshrc ]    || touch ~/.work.zshrc
+    [ -f ~/.work.gitconfig ] || touch ~/.work.gitconfig
+    [ -d ~/.config ]        || mkdir -p ~/.config
+    [ -d ~/.local/bin ]     || mkdir -p ~/.local/bin
+    setup_ssh
+
+    if [ -d ~/projects/dotfiles ]; then
+        ln -svfn $(find ~/projects/dotfiles/ -mindepth 1 -prune -type f ! -name '.dockerignore') ~
+        ln -svfn $(find ~/projects/dotfiles/.config -mindepth 1 -prune) ~/.config/
+
+        mkdir -p ~/.claude ~/.codex
+        ln -svf ~/projects/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
+        ln -svf ~/projects/dotfiles/.codex/AGENTS.md ~/.codex/AGENTS.md
+    fi
+}
+
 setup_base() {
     echo "Setting up base installation"
 
@@ -63,26 +80,10 @@ setup_base() {
     npm install -g @anthropic-ai/claude-code @openai/codex
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
-    [ -f ~/.work.zshrc ]    || touch ~/.work.zshrc
-    [ -f ~/.work.gitconfig ] || touch ~/.work.gitconfig
-    [ -d ~/.config ]        || mkdir -p ~/.config
-    [ -d ~/.local/bin ]     || mkdir -p ~/.local/bin
     which bat >/dev/null 2>&1 || ln -sf /usr/bin/batcat ~/.local/bin/bat
     which fd >/dev/null 2>&1 || { which fdfind >/dev/null 2>&1 && ln -sf "$(which fdfind)" ~/.local/bin/fd; }
-    setup_ssh
 
-    # make top level symlinks to all files in dotfiles from home directory
-    # only if ~/project/dotfiles exists (not the case for docker container).
-    # all existing files are going to be backed up.
-    if [ -d ~/projects/dotfiles ]; then
-        ln -svfn $(find ~/projects/dotfiles/ -mindepth 1 -prune -type f ! -name '.dockerignore') ~
-        ln -svfn $(find ~/projects/dotfiles/.config -mindepth 1 -prune) ~/.config/
-
-        # AI coding assistants
-        mkdir -p ~/.claude ~/.codex
-        ln -svf ~/projects/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
-        ln -svf ~/projects/dotfiles/.codex/AGENTS.md ~/.codex/AGENTS.md
-    fi
+    setup_links
 
     # This runs all installation steps, needed for zsh and plugins
     echo exit | script -qec "$(which zsh)" /dev/null
@@ -185,6 +186,8 @@ setup_personal() {
     # to run brightnessctl without sudo
     # usermod -aG video $USER
 }
+
+[ "${1-}" = "links" ] && setup_links && exit
 
 setup_sudo
 
