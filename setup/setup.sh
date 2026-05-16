@@ -81,7 +81,8 @@ setup_base() {
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
     which bat >/dev/null 2>&1 || ln -sf /usr/bin/batcat ~/.local/bin/bat
-    which fd >/dev/null 2>&1 || { which fdfind >/dev/null 2>&1 && ln -sf "$(which fdfind)" ~/.local/bin/fd; }
+    which fd >/dev/null 2>&1 || \
+        { which fdfind >/dev/null 2>&1 && ln -sf "$(which fdfind)" ~/.local/bin/fd; }
 
     setup_links
 
@@ -106,8 +107,13 @@ setup_dev() {
 
     # Docker CLI only (daemon runs on host, mounted via socket)
     $SUDO install -m 0755 -d /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | $SUDO gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | $SUDO tee /etc/apt/sources.list.d/docker.list
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+        | $SUDO gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    echo "deb [arch=$(dpkg --print-architecture) \
+        signed-by=/etc/apt/keyrings/docker.gpg] \
+        https://download.docker.com/linux/ubuntu \
+        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
+        | $SUDO tee /etc/apt/sources.list.d/docker.list
     $SUDO apt-get -qq update
     $SUDO apt-get -qq install --no-install-recommends docker-ce-cli docker-compose-plugin
 
@@ -125,7 +131,8 @@ setup_gui() {
     mkdir -p ~/.local/bin
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
     ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
-    $SUDO update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator ~/.local/bin/kitty 50
+    $SUDO update-alternatives --install \
+        /usr/bin/x-terminal-emulator x-terminal-emulator ~/.local/bin/kitty 50
 
     fnt update
 
@@ -151,7 +158,10 @@ setup_gui() {
     FONTDIR="$(mktemp -d)"
     cd "$FONTDIR" || exit
     wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
-    curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep SuperTTC-Iosevka | grep -v SS | xargs -n 1 curl -L -O --fail --show-error
+    curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' \
+        | jq -r ".assets[] | .browser_download_url" \
+        | grep SuperTTC-Iosevka | grep -v SS \
+        | xargs -n 1 curl -L -O --fail --show-error
     unzip -j '*.zip'
     mv ./*.ttf ./*.ttc ~/.fonts
     rm -rf "$FONTDIR"
