@@ -11,10 +11,22 @@
 [alias]
     wd = diff --color-words --word-diff-regex='\\w+'
     cleanup-merged = "!f(){ cur=$(git symbolic-ref --quiet --short HEAD) || exit 0; git for-each-ref --format='%(refname:short)' refs/heads --merged HEAD | awk -v cur=\"$cur\" '$0!=cur && $0!=\"main\" && $0!=\"master\"' | xargs -n1 -P ${1:-8} -I{} sh -c 'git branch -d -v \"$1\" || true' _ {}; true; }; f"
-    md = diff --color-moved=dimmed-zebra --color-moved-ws=allow-indentation-change
+    md = diff --color-moved=default --color-moved-ws=allow-indentation-change
+    dft = -c diff.external=difft diff             # AST-aware structural diff
+    dl = -c diff.external=difft log -p --ext-diff  # difftastic log
+    ds = -c diff.external=difft show --ext-diff    # difftastic show
+    dv = "!nvim -c 'DiffviewOpen'"                 # neovim diff viewer with fold/file tree
+    dvm = "!nvim -c 'DiffviewOpen main...HEAD'"
 [core]
     editor = vim
     whitespace = -trailing-space
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true              # n/N to jump between diff sections
+    line-numbers = true
+    hyperlinks = true            # clickable file paths in iTerm2
 [help]
     autocorrect = 10
 [rerere]
@@ -27,9 +39,17 @@
     instructionFormat = [%ai] %s
     rebaseMerges = true
     autoSquash = true
+[merge]
+    conflictStyle = zdiff3       # show common ancestor + auto-resolve unambiguous parts
+[commit]
+    verbose = true               # show diff in commit message editor
+[branch]
+    sort = -committerdate        # most recently used branches first
 [diff]
+    external = difft
     find-renames = true
     diff-algorithm = patience
+    colorMoved = default
     mnemonicPrefix = true
     renames = true
     tool = vscode

@@ -1,11 +1,16 @@
 configuration {
-  modi: "combi";
-  combi-modi: "drun,ssh";
+  modi: "combi,drun,run,window,ssh,filebrowser";
+  combi-modi: "drun,ssh,window";
   font: "Iosevka Etoile 22";
   show-icons: true;
   window-format: "{t:65} {w} {n}";
   combi-hide-mode-prefix: true;
   window-thumbnail: true;
+  matching: "fuzzy";            /* substring matching instead of exact */
+  sorting-method: "fzf";        /* rank by match quality */
+  normalize-match: true;        /* match accented characters (e.g., é = e) */
+  kb-row-up: "Up,Control+k";
+  kb-row-down: "Down,Control+j";
 }
 
 @theme "android_notification"

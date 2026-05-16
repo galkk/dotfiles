@@ -12,7 +12,7 @@ docker buildx build --build-context setupscripts=setup --build-context dotfiles=
 Setup git/ssh and clone repository
 `git clone git@github.com:galkk/dotfiles.git ~/projects/dotfiles`, then run shell scripts one by one (the ones that are needed).
 
-Configs could be used for both fresh linux installations and docker toolbox style imagesf (although not everything there will work, for example podman).
+Configs could be used for both fresh linux installations and docker toolbox style images (although not everything there will work, for example podman).
 
 # Docker/Podman
 
@@ -23,10 +23,12 @@ Configuration:
 - [Dockerfile](setup/Dockerfile)
 - [Docker compose](setup/docker-compose.yml)
 
-| Action                              | Minimal                                                                                                                    |
+| Action                              | Command                                                                                                                    |
 | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Run from repository, docker         | `docker run --rm -it galkkk/dotfiles:minimal`                                                                              |
-| Run from repository, docker compose | `docker compose run --rm dotfiles:minimal`                                                                                 |
-| Build                               | `docker buildx build --build-context setupscripts=setup --target minimal --tag dotfiles:minimal --file setup/Dockerfile  --progress=plain --no-cache .` |
+| Run from repository                 | `docker run --rm -it galkkk/dotfiles:minimal`                                                                              |
+| Run from repository, docker compose | `docker compose run --rm dotfiles-minimal`                                                                                 |
+| Build minimal                       | `docker buildx build --build-context setupscripts=setup --target minimal --tag dotfiles:minimal --file setup/Dockerfile --progress=plain .` |
+| Build full                          | `docker buildx build --build-context setupscripts=setup --target full --tag dotfiles:full --file setup/Dockerfile --progress=plain .` |
+| Build gui                           | `docker buildx build --build-context setupscripts=setup --target gui --tag dotfiles:gui --file setup/Dockerfile --progress=plain .` |
 | Run locally                         | `docker run -it docker.io/library/dotfiles:minimal`                                                                        |
 | Push to repository                  | <code>docker tag dotfiles:minimal galkkk/dotfiles:minimal <br>docker image push galkkk/dotfiles:minimal </code>            |

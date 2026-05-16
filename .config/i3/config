@@ -48,6 +48,7 @@ bindsym Print        exec       flameshot       gui
 tiling_drag modifier
 
 # startup apps {
+exec_always --no-startup-id autotiling
 exec --no-startup-id copyq
 exec --no-startup-id flameshot
 exec --no-startup-id nm-applet

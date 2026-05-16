@@ -3,6 +3,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi #}}
 
+# zsh-autocomplete settings (must be BEFORE loading the plugin) {{
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
+
+zstyle ':autocomplete:*' list-lines 16
+zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
+zstyle ':completion:*' file-sort modification
+# }}
+
+# Docker CLI completions
+[[ -d "$HOME/.docker/completions" ]] && fpath=($HOME/.docker/completions $fpath)
+
 # plugins {{
 PLUG_REPO=~/.znap
 [[ -r $PLUG_REPO/znap/znap.zsh ]] ||
@@ -10,23 +23,41 @@ PLUG_REPO=~/.znap
 source $PLUG_REPO/znap/znap.zsh
 
 znap source romkatv/powerlevel10k
-znap source zsh-users/zsh-autosuggestions
-znap source zsh-users/zsh-syntax-highlighting
+znap source zsh-users/zsh-completions
 znap source marlonrichert/zsh-autocomplete
-znap source agkozak/zsh-z #}}
+znap source zsh-users/zsh-syntax-highlighting
+znap source wfxr/forgit
+znap source agkozak/zsh-z
+znap eval fzf 'fzf --zsh'
+znap eval kubectl 'kubectl completion zsh'
+znap eval uv 'uv generate-shell-completion zsh'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+znap source zsh-users/zsh-autosuggestions
+#}}
 
 alias icat="kitty +kitten icat --align left"
-alias ls="ls --color"
+alias ls="eza --group-directories-first"
 alias yp='noglob yt-dlp -v -S "+codec:h264" -o "%(uploader)s - %(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 alias yf='noglob yt-dlp -v -S "+codec:h264" --output-na-placeholder "" -f "bv[ext=mp4]*+ba/bv*+ba/b" --sponsorblock-remove default -o "%(uploader)s - %(title)s.%(ext)s"'
 
 PATH=~/.local/bin:$PATH
-export LESS="-iMFXRas" # main thing - colorize less and print if fits one screen, to exit hg diff immediately for short files.
-export BAT_STYLE=plain
+export LESS="-iMFRasW -x4 -j3 --mouse --incsearch"
+export BAT_STYLE=plain # no line numbers or decorations
 export BAT_PAGING=never
 export EDITOR=vim
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+ZSHZ_CASE=smart # case-insensitive unless query has uppercase
+ZSHZ_TILDE=1    # display ~ instead of /Users/username
 KITTY_INSTALLATION_DIR=$HOME/.local/kitty.app/lib/kitty/
+
+# options {{
+setopt extended_glob          # advanced globbing (#, ~, ^)
+setopt interactive_comments   # allow # comments in interactive shell
+setopt no_clobber             # prevent > from overwriting (use >| to force)
+setopt no_beep
+#}}
 
 # binds {{
 bindkey '^[[3~' delete-char           # enables DEL key proper behaviour
@@ -40,33 +71,24 @@ zle -N edit-command-line
 bindkey '^Xe' edit-command-line       #}}
 
 # fzf settings {{
-FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | bat --color=always --language=bash' --preview-window down:7:wrap"
-
-if [ -d /usr/share/doc/fzf/examples ]; then
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
-    source /usr/share/doc/fzf/examples/completion.zsh
-fi # }}
-
-# autosuggest {{
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
-ZSH_AUTOSUGGEST_STRATEGY=(history completion) #}}
+# use fd instead of find — faster, respects .gitignore
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'  # Alt-C: fuzzy cd
+export FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --preview 'echo {} | bat --color=always --language=bash' --preview-window down:7:wrap"
+# }}
 
 # history {{
 setopt share_history          # share history between terminals
 setopt hist_ignore_dups       # do not enter command if it is same as previous command
+setopt hist_reduce_blanks     # trim blanks before recording
+setopt hist_verify            # show expansion before executing (!! safety)
 setopt histignorespace
 setopt hist_find_no_dups
 
 HISTSIZE=50000                # How many lines of history to keep in memory
 HISTFILE=~/.zsh_history       # Where to save history to disk
 SAVEHIST=5000000              # Number of history entries to save to disk }}
-
-# Docker CLI completions
-if [ -d "$HOME/.docker/completions" ]; then
-  fpath=($HOME/.docker/completions $fpath)
-  autoload -Uz compinit
-  compinit
-fi
 
 [[ ! -f ~/.work.zshrc ]] || source ~/.work.zshrc            # load work setting, that I don't want to put to source control
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh                # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -80,20 +102,9 @@ if [ -d "$KITTY_INSTALLATION_DIR" ]; then
 fi
 # }}
 
-# zsh-autocomplete settings {{
-
-zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
-zstyle ':autocomplete:*history*:*' insert-unambiguous yes
-zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
-
-zstyle ':autocomplete:*' widget-style menu-select
-zstyle ':autocomplete:*' list-lines 16
-zstyle ':autocomplete:*' fzf-completion yes
-
-zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
-
+# zsh-autocomplete binds (must be AFTER loading the plugin) {{
 bindkey              '^I'         menu-complete
 bindkey "$terminfo[kcbt]" reverse-menu-complete
-##}}
+#}}
 
 # vim:foldmethod=marker:foldmarker={{,}}:foldlevel=0:foldtext=substitute(getline(v\:foldstart),'\\#\\\ \\\|{{','','g')

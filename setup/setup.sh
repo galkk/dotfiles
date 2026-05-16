@@ -30,7 +30,7 @@ setup_base() {
     $SUDO apt-get -qq update
     $SUDO apt-get -qq install --no-install-recommends zsh git vim fzf curl bat \
         unzip htop mc mosh tmux neovim ripgrep wget jq openssh-server \
-        ca-certificates
+        ca-certificates eza
 
     [ -f ~/.work.zshrc ]    || touch ~/.work.zshrc
     [ -f ~/.work.gitconfig ] || touch ~/.work.gitconfig
@@ -63,7 +63,7 @@ setup_dev() {
     echo "Setting up dev installation"
     $SUDO apt-get -qq install --no-install-recommends \
         build-essential cmake python3-dev golang \
-        strace podman podman-toolbox pipx \
+        strace podman distrobox pipx \
         openjdk-21-jdk clang lldb gcc g++ gdb rr uv
 
     # Let podman to get images from docker hub.
@@ -82,7 +82,7 @@ setup_gui() {
     $SUDO apt-get -qq --no-install-recommends install \
         i3 rofi flameshot remmina xinit brightnessctl peek \
         copyq sway wdisplays krita kazam nemo ffmpegthumbnailer \
-        ffmpegthumbnailer ffmpeg imagemagick xclip fnt
+        ffmpeg imagemagick xclip fnt autotiling
 
     # Install latest kitty
     mkdir -p ~/.local/bin
