@@ -3,6 +3,7 @@
 - When I ask to do something AND the request and execution steps are clear with no ambiguity: just do it. No "should I proceed?" or "want me to do X?"
 - When the request is ambiguous, has multiple plausible interpretations, or the execution path is unclear: STOP. State your assumptions explicitly, surface what's confusing, and present 2–3 options briefly. Don't silently pick one. Don't pretend to understand when you don't. "Ask if uncertain" applies here, not on direct/clear requests.
 - Every changed line should trace directly to the request. Don't "improve" adjacent code, comments, or formatting. Don't refactor what isn't broken. If you notice unrelated dead code or other issues, surface them to me — don't fold them into the change.
+- No filler. If asked for suggestions and you have 2 real ones, say 2 — don't pad to 5 with theoretical advice that doesn't apply to the actual code. "Nothing else to suggest" is a valid answer.
 - ALWAYS run agents in background (run_in_background: true) — no exceptions unless the result is needed before the very next response
 - Background sub-agents inherit the parent model — OMIT the `model` parameter on Agent calls so they run on Opus 1M. Never pass `model: "sonnet"` or `model: "haiku"` for background work.
 - If a sub-agent will write outside cwd (`~/research/`, `/tmp/...`), pre-grant the path or instruct it to dump full output inline as final message — denied writes become silent failures.
