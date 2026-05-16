@@ -26,6 +26,10 @@ defaults write com.apple.finder AppleShowAllExtensions -bool true
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0
 
+# Tighter menu bar icon spacing
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 2
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 2
+
 # Screenshots: no shadow
 defaults write com.apple.screencapture disable-shadow -bool true
 
