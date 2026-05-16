@@ -18,7 +18,6 @@ Configuration: [Dockerfile](setup/Dockerfile), [Docker compose](setup/docker-com
 | Action        | Command                                                           |
 | ------------- | ----------------------------------------------------------------- |
 | Run prebuilt  | `docker run --rm -it galkkk/dotfiles:minimal`                     |
-| Build         | `docker compose -f setup/docker-compose.yml build dotfiles-minimal` |
 | Build and run | `docker compose -f setup/docker-compose.yml up dotfiles-minimal`  |
 | Toolbox       | `docker compose -f setup/docker-compose.yml run --rm toolbox`     |
 
