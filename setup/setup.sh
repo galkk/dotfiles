@@ -21,6 +21,33 @@ setup_sudo() {
     echo $"sudo: $SUDO, can_root: $CAN_ROOT"
 }
 
+setup_ssh() {
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+    touch ~/.ssh/config
+
+    if ! grep -Eq '^[[:space:]]*ControlMaster[[:space:]]+' ~/.ssh/config; then
+        cat >> ~/.ssh/config <<'EOF'
+
+# Dotfiles SSH multiplexing
+Host *
+    ControlMaster auto
+    ControlPath ~/.ssh/cm-%C
+    ControlPersist 10m
+EOF
+    fi
+
+    # Fix stale SSH_AUTH_SOCK after tmux detach/reattach
+    if [ ! -f ~/.ssh/rc ]; then
+        cat > ~/.ssh/rc <<'EOF'
+if test "$SSH_AUTH_SOCK"; then
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+EOF
+        chmod 755 ~/.ssh/rc
+    fi
+}
+
 setup_base() {
     echo "Setting up base installation"
 
@@ -29,7 +56,7 @@ setup_base() {
 
     $SUDO apt-get -qq update
     $SUDO apt-get -qq install --no-install-recommends zsh git vim fzf curl bat \
-        unzip htop mc mosh tmux neovim ripgrep wget jq openssh-server \
+        unzip htop mc mosh tmux neovim ripgrep fd-find wget jq yq sd openssh-server \
         ca-certificates eza
 
     [ -f ~/.work.zshrc ]    || touch ~/.work.zshrc
@@ -37,6 +64,8 @@ setup_base() {
     [ -d ~/.config ]        || mkdir -p ~/.config
     [ -d ~/.local/bin ]     || mkdir -p ~/.local/bin
     which bat >/dev/null 2>&1 || ln -sf /usr/bin/batcat ~/.local/bin/bat
+    which fd >/dev/null 2>&1 || { which fdfind >/dev/null 2>&1 && ln -sf "$(which fdfind)" ~/.local/bin/fd; }
+    setup_ssh
 
     # make top level symlinks to all files in dotfiles from home directory
     # only if ~/project/dotfiles exists (not the case for docker container).

@@ -46,7 +46,6 @@
     conflictStyle = zdiff3       # show common ancestor + auto-resolve unambiguous parts
 [mergetool]
     keepBackup = false
-    keepTemporaries = false
     writeToTemp = true
     prompt = false
 [rebase]
@@ -85,6 +84,8 @@
     writeCommitGraph = true      # speeds up log/blame/merge-base
 
 # --- misc ---
+[url "git@github.com:"]
+    insteadOf = "https://github.com/"
 [help]
     autocorrect = 10
 [filter "lfs"]
