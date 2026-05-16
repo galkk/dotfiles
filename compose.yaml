@@ -1,11 +1,9 @@
 services:
   dotfiles-minimal:
     build:
-      context: ..
-      dockerfile: setup/Dockerfile
       target: minimal
       additional_contexts:
-        setupscripts: ../setup
+        setupscripts: ./setup
     image: galkkk/dotfiles:minimal
     stdin_open: true
     tty: true
@@ -14,11 +12,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
   dotfiles-full:
     build:
-      context: ..
-      dockerfile: setup/Dockerfile
       target: full
       additional_contexts:
-        setupscripts: ../setup
+        setupscripts: ./setup
     image: galkkk/dotfiles:full
     stdin_open: true
     tty: true

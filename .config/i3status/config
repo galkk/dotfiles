@@ -20,9 +20,6 @@ order += "tztime local"
 volume master {
         format = "<span foreground='#484848'> </span><span foreground='#A0A0A0'>%volume</span>"
         format_muted = "󰖁 : %volume"
-        device = "default"
-        mixer = "Master"
-        mixer_idx = 0
 }
 
 cpu_usage {
@@ -62,11 +59,9 @@ battery 0 {
         status_bat = "󰂀"
         status_unk = "󰂑"
         status_full = "󰁹"
-        path = "/sys/class/power_supply/BAT%d/uevent"
         threshold_type = "time"
         low_threshold = 15
         # last_full_capacity=true
-        hide_seconds=true
         integer_battery_capacity=true
 }
 

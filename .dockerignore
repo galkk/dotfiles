@@ -1,4 +1,9 @@
 .git
 .github
+.claude
 .dockerignore
+Dockerfile
+compose.yaml
+Brewfile
 setup
+research

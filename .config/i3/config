@@ -6,8 +6,6 @@ set $mod Mod4
 
 font pango:Victor Mono, DejaVu Sans Mono 10
 
-focus_follows_mouse yes
-
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
@@ -32,7 +30,7 @@ bindsym $mod+a focus parent
 # move to next workspace
 bindsym $mod+Shift+n move container to workspace next
 
-bindsym $mod+d       exec       --no-startup-id rofi -show
+bindsym --release $mod+d       exec       --no-startup-id rofi -show
 bindsym $mod+e       layout     toggle          split
 bindsym $mod+f       fullscreen toggle
 bindsym $mod+l       exec       i3-input -F 'rename workspace to "%s"' -P 'New name: '
@@ -40,12 +38,9 @@ bindsym $mod+Return  exec       i3-sensible-terminal
 bindsym $mod+s       layout     stacking
 bindsym $mod+Shift+e exec       "i3-nagbar -t warning -m 'You  pressed the exit shortcut. Do you really want to exit? This will end your X session.' -B 'Yes, exit' 'i3-msg exit'"
 bindsym $mod+Shift+l exec       i3lock
-bindsym $mod+Tab     exec       --no-startup-id rofi -modi   combi#window -show window  -theme larger-docu
+bindsym --release $mod+Tab     exec       --no-startup-id rofi -modi   combi#window -show window  -theme larger-docu
 bindsym $mod+w       layout     tabbed
 bindsym Print        exec       flameshot       gui
-
-# move window to particular place by holding win
-tiling_drag modifier
 
 # startup apps {
 exec_always --no-startup-id autotiling
@@ -182,10 +177,8 @@ bar {
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
     status_command i3status
-    position bottom
     tray_output primary
     font pango: Symbols Nerd Font, Saira Extra Condensed, Arial Narrow 16
-    binding_mode_indicator yes
     colors {
         background #050505
         statusline #F5F5F5

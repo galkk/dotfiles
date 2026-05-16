@@ -1,6 +1,5 @@
 " general {{
 set background=dark
-set nocompatible                                  " disable vi compatibility, idk what this does
 set noswapfile                                    " no temp file
 set undofile                                      " persistent undo across sessions
 if !has('nvim')
@@ -9,20 +8,16 @@ if !has('nvim')
   endif
   set undodir=~/.vim/undodir
 endif
-set backspace=indent,eol,start                    " allow backspace over everything
 set number                                        " show line numbers
 set showmatch                                     " show matching parenthesis
-set showcmd                                       " show commands which i'm typing
 set cursorline                                    " highlight cursor
 set title                                         " set terminal title
 set history=1000
-set undolevels=1000
 if !has('nvim')
   set lazyredraw                                  " buffer screen updates (causes issues in nvim 0.10+)
 endif
 set clipboard+=unnamedplus                         " copy to system clipboard
 set updatetime=250
-set signcolumn=auto                               " show sign column only when there are signs
 set scrolloff=8                                   " keep context around cursor
 set splitbelow                                    " sane split defaults
 set splitright
@@ -33,7 +28,6 @@ set formatoptions+=j                              " remove comment leader when j
 set ttimeout
 set ttimeoutlen=50                                " faster escape sequences
 set nrformats-=octal                              " ctrl-a/x won't treat 007 as octal
-set modeline
 set modelineexpr
 "}}
 
@@ -57,14 +51,12 @@ set copyindent                                    " indents are copied
 set smarttab                                      " }}
 
 " fold syntax by default {{
-set foldenable
 set foldmethod=syntax
 set foldlevel=5
 set fillchars=fold:\ 
 " }}
 
 " autocompletion for vim commands {{
-set wildmenu
 set wildoptions=pum
 set wildignorecase                                "}}
 
@@ -91,10 +83,9 @@ endif "}}
 
 " no beeps {{
 set visualbell
-set noerrorbells "}}
+"}}
 
 " line wrapping {{
-set wrap                                          " wrap long lines
 set breakindent                                   " indent at same level as rapped line }}
 
 " smooth scrolling (vim 9.1+) {{

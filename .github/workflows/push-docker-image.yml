@@ -32,7 +32,6 @@ jobs:
         name: Build and push ${{ matrix.target }} image
         uses: docker/build-push-action@v6
         with:
-          file: setup/Dockerfile
           context: .
           build-contexts: |
             setupscripts=./setup

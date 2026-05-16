@@ -13,12 +13,17 @@ Configs could be used for both fresh linux installations and docker/distrobox st
 
 Each change is being built by [github action](.github/workflows/push-docker-image.yml) and sent to [docker hub repository](https://hub.docker.com/repository/docker/galkkk/dotfiles).
 
-Configuration: [Dockerfile](setup/Dockerfile), [Docker compose](setup/docker-compose.yml)
-
-| Action        | Command                                                                  |
-| ------------- | ------------------------------------------------------------------------ |
-| Run prebuilt  | `docker run --rm -it galkkk/dotfiles:minimal`                            |
-| Build and run | `docker compose -f setup/docker-compose.yml run --rm --build dotfiles-minimal` |
-| Toolbox       | `docker compose -f setup/docker-compose.yml run --rm toolbox`            |
+| Action        | Command                                              |
+| ------------- | ---------------------------------------------------- |
+| Run prebuilt  | `docker run --rm -it galkkk/dotfiles:minimal`        |
+| Build and run | `docker compose run --rm --build dotfiles-minimal`   |
+| Toolbox       | `docker compose run --rm toolbox`                    |
 
 Replace `dotfiles-minimal` with `dotfiles-full` for the full image.
+
+# macOS
+
+```
+brew bundle --file=Brewfile
+setup/macos-defaults.sh
+```
