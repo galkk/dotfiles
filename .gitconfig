@@ -84,8 +84,6 @@
     writeCommitGraph = true      # speeds up log/blame/merge-base
 
 # --- misc ---
-[url "git@github.com:"]
-    insteadOf = "https://github.com/"
 [help]
     autocorrect = 10
 [filter "lfs"]
