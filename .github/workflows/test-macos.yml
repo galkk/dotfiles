@@ -1,0 +1,31 @@
+name: Test macOS setup
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'Brewfile'
+      - 'setup/macos-defaults.sh'
+
+jobs:
+  test:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Brewfile
+        run: brew bundle --file=Brewfile --no-lock
+      - name: Run macOS defaults
+        run: bash setup/macos-defaults.sh
+      - name: Verify tools
+        run: |
+          bat --version
+          eza --version
+          rg --version
+          fd --version
+          fzf --version
+          delta --version
+          difft --version
+          jq --version
+          yq --version
+          nvim --version | head -1
