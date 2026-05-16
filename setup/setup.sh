@@ -57,7 +57,7 @@ setup_base() {
     $SUDO apt-get -qq update
     $SUDO apt-get -qq install --no-install-recommends zsh git vim fzf curl bat \
         unzip htop mc mosh tmux neovim ripgrep fd-find wget jq yq sd openssh-server \
-        ca-certificates eza nodejs npm
+        ca-certificates eza nodejs npm pyenv pipx
 
     # AI coding assistants and Python tooling
     npm install -g @anthropic-ai/claude-code @openai/codex
