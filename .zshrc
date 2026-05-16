@@ -37,14 +37,16 @@ znap source zsh-users/zsh-autosuggestions
 #}}
 
 alias icat="kitty +kitten icat --align left"
-alias ls="eza --group-directories-first"
+alias ls="eza --icons=auto --group-directories-first"
+alias ll="eza -l --icons=auto --git --group-directories-first --time-style=long-iso"
+alias la="eza -la --icons=auto --git --group-directories-first --time-style=long-iso"
 alias lt="eza --tree --level=2 --icons=auto --group-directories-first"
 alias yp='noglob yt-dlp -v -S "+codec:h264" -o "%(uploader)s - %(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 alias yf='noglob yt-dlp -v -S "+codec:h264" --output-na-placeholder "" -f "bv[ext=mp4]*+ba/bv*+ba/b" --sponsorblock-remove default -o "%(uploader)s - %(title)s.%(ext)s"'
 
 PATH=~/.local/bin:$PATH
 export LESS="-iMFRasW -x4 -j3 --mouse --incsearch"
-export BAT_STYLE=plain # no line numbers or decorations
+export BAT_STYLE=changes # git diff markers only
 export BAT_PAGING=never
 export EDITOR=vim
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
@@ -78,8 +80,10 @@ bindkey '^Xe' edit-command-line       #}}
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'  # Alt-C: fuzzy cd
-export FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse"
-export FZF_CTRL_T_OPTS="--preview 'bat --color=always {}' --preview-window down:7:wrap"
+export FZF_DEFAULT_OPTS="--height 30 --ansi --layout=reverse --style=full --highlight-line --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}' --preview-window 'down:50%:wrap'"
+export FZF_CTRL_R_OPTS="--scheme=history --highlight-line"
+export FZF_ALT_C_OPTS="--preview 'eza --color=always {}'"
 
 rgf() {
     local rg_prefix='rg --column --line-number --no-heading --color=always --smart-case'

@@ -1,5 +1,7 @@
 --smart-case
 --hidden
 --glob=!.git/
+--glob=!.DS_Store
 --max-columns=200
 --max-columns-preview
+--hyperlink-format=default
