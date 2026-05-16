@@ -9,29 +9,17 @@ Setup git/ssh and clone repository
 
 Configs could be used for both fresh linux installations and docker/distrobox style images.
 
-Quick build and run:
-
-```
-docker build --build-context setupscripts=setup --target minimal --tag minimal --file setup/Dockerfile . && docker run --rm -it minimal
-```
-
 # Docker
 
 Each change is being built by [github action](.github/workflows/push-docker-image.yml) and sent to [docker hub repository](https://hub.docker.com/repository/docker/galkkk/dotfiles).
 
-Configuration:
+Configuration: [Dockerfile](setup/Dockerfile), [Docker compose](setup/docker-compose.yml)
 
-- [Dockerfile](setup/Dockerfile)
-- [Docker compose](setup/docker-compose.yml)
+| Action        | Command                                                           |
+| ------------- | ----------------------------------------------------------------- |
+| Run prebuilt  | `docker run --rm -it galkkk/dotfiles:minimal`                     |
+| Build         | `docker compose -f setup/docker-compose.yml build dotfiles-minimal` |
+| Build and run | `docker compose -f setup/docker-compose.yml up dotfiles-minimal`  |
+| Toolbox       | `docker compose -f setup/docker-compose.yml run --rm toolbox`     |
 
-| Action                              | Command                                                                                                                    |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Run from repository                 | `docker run --rm -it galkkk/dotfiles:minimal`                                                                              |
-| Build via compose                   | `docker compose -f setup/docker-compose.yml build dotfiles-minimal`                                                        |
-| Run via compose                     | `docker compose -f setup/docker-compose.yml run --rm dotfiles-minimal`                                                     |
-| Toolbox (host home mounted)         | `docker compose -f setup/docker-compose.yml run --rm toolbox`                                                              |
-| Build minimal                       | `docker build --build-context setupscripts=setup --target minimal --tag dotfiles:minimal --file setup/Dockerfile --progress=plain .` |
-| Build full                          | `docker build --build-context setupscripts=setup --target full --tag dotfiles:full --file setup/Dockerfile --progress=plain .` |
-| Build gui                           | `docker build --build-context setupscripts=setup --target gui --tag dotfiles:gui --file setup/Dockerfile --progress=plain .` |
-| Run locally                         | `docker run -it docker.io/library/dotfiles:minimal`                                                                        |
-| Push to repository                  | <code>docker tag dotfiles:minimal galkkk/dotfiles:minimal <br>docker image push galkkk/dotfiles:minimal </code>            |
+Replace `dotfiles-minimal` with `dotfiles-full` for the full image.
