@@ -18,7 +18,6 @@ setup_sudo() {
         echo "Need to be able to run commands as sudo."
         exit 1
     fi
-    echo $"sudo: $SUDO, can_root: $CAN_ROOT"
 }
 
 setup_ssh() {
@@ -49,10 +48,8 @@ EOF
 }
 
 setup_links() {
-    [ -f ~/.work.zshrc ]    || touch ~/.work.zshrc
-    [ -f ~/.work.gitconfig ] || touch ~/.work.gitconfig
-    [ -d ~/.config ]        || mkdir -p ~/.config
-    [ -d ~/.local/bin ]     || mkdir -p ~/.local/bin
+    touch ~/.work.zshrc ~/.work.gitconfig
+    mkdir -p ~/.config ~/.local/bin
     setup_ssh
 
     if [ -d ~/projects/dotfiles ]; then
