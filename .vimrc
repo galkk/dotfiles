@@ -105,13 +105,13 @@ Plug 'morhetz/gruvbox'
 Plug 'powerman/vim-plugin-AnsiEsc', { 'on': 'AnsiEsc'}
 Plug 'tpope/vim-sleuth'                           " run `verbose Sleuth` to force vim to detect indent manually
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 if has('nvim')
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'sindrets/diffview.nvim'
   Plug 'navarasu/onedark.nvim'
 else
+  Plug 'tpope/vim-commentary'          " nvim 0.10+ has built-in gc/gcc
   Plug 'airblade/vim-gitgutter'
 endif
 

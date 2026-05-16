@@ -31,7 +31,7 @@
 
 # --- diff ---
 [diff]
-    find-renames = true
+    renames = true
     algorithm = histogram        # cleaner diffs than patience, handles repeated lines
     colorMoved = default
     mnemonicPrefix = true
@@ -54,6 +54,7 @@
     autoSquash = true
     updateRefs = true            # auto-move stacked branch pointers on rebase
     autoStash = true             # stash/pop dirty worktree around rebase
+    missingCommitsCheck = warn   # warn if commits dropped during interactive rebase
 [rerere]
     enabled = true
     autoupdate = true
@@ -78,14 +79,22 @@
     ff = only
 [push]
     autoSetupRemote = true
+    followTags = true            # auto-push annotated tags
 [fetch]
     prune = true
+    pruneTags = true             # clean stale remote tags
     recurseSubmodules = on-demand
     writeCommitGraph = true      # speeds up log/blame/merge-base
 
+# --- integrity ---
+[transfer]
+    fsckObjects = true
+[column]
+    ui = auto                    # branch/tag lists in columns
+
 # --- misc ---
 [help]
-    autocorrect = 10
+    autocorrect = prompt          # ask before executing corrected command
 [filter "lfs"]
     required = true
     clean = git-lfs clean -- %f

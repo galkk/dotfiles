@@ -26,6 +26,7 @@ znap source romkatv/powerlevel10k
 znap source zsh-users/zsh-completions
 znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-syntax-highlighting
+export FORGIT_CHECKOUT_BRANCH_BRANCH_GIT_OPTS='--sort=-committerdate'
 znap source wfxr/forgit
 znap source agkozak/zsh-z
 znap eval fzf 'fzf --zsh'
@@ -38,8 +39,8 @@ znap source zsh-users/zsh-autosuggestions
 
 alias icat="kitty +kitten icat --align left"
 alias ls="eza --icons=auto --group-directories-first"
-alias ll="eza -l --icons=auto --git --group-directories-first --time-style=long-iso"
-alias la="eza -la --icons=auto --git --group-directories-first --time-style=long-iso"
+alias ll="eza -l --icons=auto --git --group-directories-first --time-style=long-iso --smart-group"
+alias la="eza -la --icons=auto --git --group-directories-first --time-style=long-iso --smart-group"
 alias lt="eza --tree --level=2 --icons=auto --group-directories-first"
 alias yp='noglob yt-dlp -v -S "+codec:h264" -o "%(uploader)s - %(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"'
 alias yf='noglob yt-dlp -v -S "+codec:h264" --output-na-placeholder "" -f "bv[ext=mp4]*+ba/bv*+ba/b" --sponsorblock-remove default -o "%(uploader)s - %(title)s.%(ext)s"'
@@ -88,6 +89,7 @@ export FZF_DEFAULT_OPTS="
   --style=full
   --highlight-line
   --bind 'ctrl-/:change-preview-window(down|hidden|)'
+  --bind 'ctrl-x:exclude'
 "
 export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always --line-range :500 {}'
