@@ -1,26 +1,27 @@
-# syntax=docker/dockerfile:1.4
+# syntax=docker/dockerfile:1
 
 FROM ubuntu:rolling AS minimal
 
 COPY . /root/
 
-# Using bind mount to not copy installation scripts to the container
-RUN --mount=from=setupscripts,dst=/setupscripts/ /setupscripts/setup.sh
+RUN --mount=from=setupscripts,dst=/setupscripts/ \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    /setupscripts/setup.sh
 
 WORKDIR /root/
 CMD ["/bin/zsh"]
 
-# Stage 2 - full image
-FROM minimal as full
+FROM minimal AS full
 
-RUN --mount=from=setupscripts,dst=/setupscripts/ /setupscripts/setup.sh dev
+RUN --mount=from=setupscripts,dst=/setupscripts/ \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    /setupscripts/setup.sh dev
 
-CMD ["/bin/zsh"]
+FROM full AS gui
 
-
-# Stage 2 - full image
-FROM full as gui
-
-RUN --mount=from=setupscripts,dst=/setupscripts/ /setupscripts/setup.sh gui && /setupscripts/setup.sh personal
-
-CMD ["/bin/zsh"]
+RUN --mount=from=setupscripts,dst=/setupscripts/ \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    /setupscripts/setup.sh gui && /setupscripts/setup.sh personal

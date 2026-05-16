@@ -1,3 +1,4 @@
+" general {{
 set background=dark
 set nocompatible                                  " disable vi compatibility, idk what this does
 set noswapfile                                    " no temp file
@@ -32,6 +33,9 @@ set formatoptions+=j                              " remove comment leader when j
 set ttimeout
 set ttimeoutlen=50                                " faster escape sequences
 set nrformats-=octal                              " ctrl-a/x won't treat 007 as octal
+set modeline
+set modelineexpr
+"}}
 
 filetype plugin indent on                         " file type detection on (allows syntax highlighting etc)
 syntax enable                                     " enable syntax highligting
@@ -97,9 +101,6 @@ set breakindent                                   " indent at same level as rapp
 if has('patch-9.0.0640')
   set smoothscroll
 endif " }}
-
-set modeline
-set modelineexpr
 
 " vim plugin management {{
 if empty(glob('~/.vim/autoload/plug.vim'))
