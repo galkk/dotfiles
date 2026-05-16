@@ -15,10 +15,10 @@ Each change is being built by [github action](.github/workflows/push-docker-imag
 
 Configuration: [Dockerfile](setup/Dockerfile), [Docker compose](setup/docker-compose.yml)
 
-| Action        | Command                                                           |
-| ------------- | ----------------------------------------------------------------- |
-| Run prebuilt  | `docker run --rm -it galkkk/dotfiles:minimal`                     |
-| Build and run | `docker compose -f setup/docker-compose.yml up dotfiles-minimal`  |
-| Toolbox       | `docker compose -f setup/docker-compose.yml run --rm toolbox`     |
+| Action        | Command                                                                  |
+| ------------- | ------------------------------------------------------------------------ |
+| Run prebuilt  | `docker run --rm -it galkkk/dotfiles:minimal`                            |
+| Build and run | `docker compose -f setup/docker-compose.yml run --rm --build dotfiles-minimal` |
+| Toolbox       | `docker compose -f setup/docker-compose.yml run --rm toolbox`            |
 
 Replace `dotfiles-minimal` with `dotfiles-full` for the full image.
