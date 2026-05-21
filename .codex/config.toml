@@ -1,0 +1,24 @@
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
+personality = "pragmatic"
+approvals_reviewer = "guardian_subagent"
+features.undo = true
+notify = ["notify-send", "Codex"]
+
+[projects."/home/andy"]
+trust_level = "trusted"
+
+[projects."/home/andy/Documents/notes"]
+trust_level = "trusted"
+
+[projects."/home/andy/projects/dotfiles"]
+trust_level = "trusted"
+
+[tui]
+theme = "gruvbox-dark"
+alternate_screen = "always"
+status_line = ["context-remaining", "current-dir", "git-branch", "pull-request-number", "branch-changes", "model-with-reasoning", "project-name", "approval-mode", "permissions", "raw-output", "used-tokens"]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
