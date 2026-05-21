@@ -67,13 +67,20 @@ setup_packages() {
     echo "path-include=/usr/share/doc/fzf/examples/*" | $SUDO tee -a /etc/dpkg/dpkg.cfg.d/excludes
 
     $SUDO apt-get -qq update
-    $SUDO apt-get -qq install --no-install-recommends zsh git vim fzf curl bat \
-        unzip htop mc mosh tmux neovim ripgrep fd-find wget jq yq sd openssh-server \
+    $SUDO apt-get -qq install --no-install-recommends zsh git git-delta gh gnupg vim fzf curl bat \
+        unzip htop mc mosh tmux neovim ripgrep fd-find wget jq yq sd tree openssh-server \
         ca-certificates eza nodejs npm pyenv pipx
 
     # AI coding assistants and Python tooling
     npm install -g @anthropic-ai/claude-code @openai/codex
     curl -LsSf https://astral.sh/uv/install.sh | sh
+    case "$(dpkg --print-architecture)" in
+        amd64) difft_arch=x86_64 ;;
+        arm64) difft_arch=aarch64 ;;
+        *) echo "Unsupported difftastic architecture"; exit 1 ;;
+    esac
+    curl -LsSf "https://github.com/Wilfred/difftastic/releases/latest/download/difft-${difft_arch}-unknown-linux-gnu.tar.gz" |
+        $SUDO tar -xz -C /usr/local/bin difft
 
     mkdir -p ~/.local/bin
     if [ -f /etc/debian_version ]; then
