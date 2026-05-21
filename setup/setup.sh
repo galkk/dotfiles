@@ -56,8 +56,11 @@ setup_links() {
 
     mkdir -p ~/.claude ~/.codex
     ln -svf "$dotfiles_dir"/.claude/CLAUDE.md ~/.claude/CLAUDE.md
+    ln -svf "$dotfiles_dir"/.claude/user-settings.json ~/.claude/settings.json
     ln -svf "$dotfiles_dir"/.codex/AGENTS.md ~/.codex/AGENTS.md
     ln -svf "$dotfiles_dir"/.codex/config.toml ~/.codex/config.toml
+    ln -svf "$dotfiles_dir"/.codex/user-hooks.json ~/.codex/hooks.json
+    ln -svf "$dotfiles_dir"/setup/ensure-agent-research-dir.sh ~/.local/bin/ensure-agent-research-dir
 }
 
 setup_packages() {

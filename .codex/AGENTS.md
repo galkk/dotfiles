@@ -8,17 +8,25 @@
 - Never assert tool capabilities/limitations from training data alone. Features ship constantly — always verify via web search before saying "X doesn't support Y."
 - ALWAYS run agents in background (run_in_background: true) — no exceptions unless the result is needed before the very next response
 - Background sub-agents inherit the parent model — OMIT the `model` parameter on Agent calls so they run on Opus 1M. Never pass `model: "sonnet"` or `model: "haiku"` for background work.
-- If a sub-agent will write outside cwd (`~/research/`, `/tmp/...`), pre-grant the path or instruct it to dump full output inline as final message — denied writes become silent failures.
+- Sub-agents are for research, discovery, and independent data gathering. Operational work, synthesis, edits, commits, pushes, and final decisions stay in the main thread unless explicitly requested.
 - Use agents liberally — parallelize independent work, prefer multiple focused agents over sequential
 - Sub-agents cannot run in max mode. Treat agents as gatherers: return raw, structured findings and context. Never synthesize, summarize, or pick themes, unless explicitly asked — that work belongs in the main session.
 - Act as a proactive TL: suggest next steps, let me choose. Push back briefly (1–2 sentences) before executing if you think an instruction is wrong.
 - Verify feedback / review comments before applying. Don't perform agreement on incorrect feedback.
-- Show diffs after changes. For prose / docs / single-token edits, prefer `git wd` (the user's alias for `git diff --color-words --word-diff-regex='\w+'`) — it shows only the changed words inline and is far shorter than line-based diff. Use plain `git diff` for structural code changes where line context matters. Reorder-heavy diffs benefit from `git diff --color-moved=zebra`.
+- Show diffs before commit or when I ask. For prose / docs / single-token edits, prefer `git wd` (the user's alias for `git diff --color-words --word-diff-regex='\w+'`) — it shows only the changed words inline and is far shorter than line-based diff. Use plain `git diff` for structural code changes where line context matters. Reorder-heavy diffs benefit from `git diff --color-moved=zebra`. For noisy or generated diffs, summarize the changed files and show only relevant hunks.
 - Keep output terse, no trailing summaries
+- For noisy commands such as Docker builds, package installs, test suites, and dependency downloads: cap returned output aggressively. Report success/failure and include only the final error region on failure. Do not stream full successful logs.
+- When a command sequence, parser, query, or exploration is likely to be repeated, save it as a reusable script or documented command and reuse it instead of regenerating ad hoc shell each time.
+- Prefer durable artifacts over repeated tool calls: use tools in modes that write logs, traces, reports, or machine-readable output to their normal locations, and inspect those artifacts on follow-up passes instead of rerunning the same tools.
+- Invoke tools with enough verbosity, flags, and output paths to make later debugging possible without rerunning. Capture the exact command/query, relevant flags, working directory, and output/log location in notes or the final result.
+- Before rerunning an expensive/noisy command such as Bazel, Docker builds, package installs, broad test suites, or log queries, first check the tool’s existing output locations and any recent saved research notes to see whether they already answer the question.
+- If rerunning is necessary because inputs changed, logs are missing, output is stale, or verification requires fresh results, state that reason briefly and ensure the new run leaves reusable logs or output for future inspection.
+- Prefer targeted reads: use `rg -n` first, then read narrow line ranges. Avoid full-file dumps unless structure across the whole file matters.
+- Keep progress updates sparse for fast local work. For long-running commands, update only when state changes materially or every ~30s.
 - Stack-rank any list of findings, suggestions, or options by importance automatically — most critical first. Don't let categorical grouping (Tier 1/2/3, by-section) hide the ranking.
 - Drafts: lead with the rule, no preambles, no "this is important because…" framing. Bad/good code examples don't need narration.
-- Never consolidate or summarize agent output — present raw results. If consolidation would genuinely help (e.g., 500+ line output), ask first.
-- Always save agent output as is to file: `{datetime}-{agent-type}-{brief-request}.md` in project research dir, or `~/research/{project_name}/` if none exists
+- Do not paste large sub-agent output into chat unless I explicitly ask.
+- Always save sub-agent raw or structured findings to `~/research/{project_name}/{datetime}-{agent-type}-{brief-request}.md` and return only a concise summary plus the file path.
 - "Revert" means restore from master/main, not git revert or delete
 - Create git worktrees as siblings of the repo directory using the current repo basename as the prefix, e.g. `../dotfiles-chezmoi`; do not create worktrees under `.worktrees/`.
 - Zsh doesn't expand `*` in paths the same as bash — use `find` or explicit paths for glob patterns in shell commands

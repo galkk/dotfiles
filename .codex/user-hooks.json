@@ -1,0 +1,34 @@
+{
+  "SessionStart": [
+    {
+      "matcher": "startup",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"$HOME/.local/bin/ensure-agent-research-dir\"",
+          "timeout": 5
+        }
+      ]
+    },
+    {
+      "matcher": "resume",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"$HOME/.local/bin/ensure-agent-research-dir\"",
+          "timeout": 5
+        }
+      ]
+    },
+    {
+      "matcher": "compact",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"$HOME/.local/bin/ensure-agent-research-dir\"",
+          "timeout": 5
+        }
+      ]
+    }
+  ]
+}
