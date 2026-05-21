@@ -4,6 +4,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi #}}
 
 # zsh-autocomplete settings (must be BEFORE loading the plugin) {{
+zstyle ':autocomplete:*' delay 0.0
+
+# Do not let slow completers hang the prompt too long.
+zstyle ':autocomplete:*' timeout 0.75
+
 zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
 zstyle ':autocomplete:*history*:*' insert-unambiguous yes
 zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
@@ -11,6 +16,11 @@ zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
 zstyle ':autocomplete:*' list-lines 16
 zstyle ':completion:*:*' matcher-list 'm:{[:lower:]-}={[:upper:]_}' '+r:|[.]=**'
 zstyle ':completion:*' file-sort modification
+
+zstyle ':autocomplete:history-incremental-search-backward:*' list-lines 8
+zstyle ':autocomplete:history-search-backward:*' list-lines 64
+
+zstyle ':autocomplete:*' add-semicolon no
 # }}
 
 # Docker CLI completions
@@ -23,7 +33,8 @@ PLUG_REPO=~/.znap
 source $PLUG_REPO/znap/znap.zsh
 
 znap source romkatv/powerlevel10k
-znap source zsh-users/zsh-completions
+znap clone zsh-users/zsh-completions
+fpath=( ~[zsh-users/zsh-completions]/src $fpath )
 znap source marlonrichert/zsh-autocomplete
 export FORGIT_CHECKOUT_BRANCH_BRANCH_GIT_OPTS='--sort=-committerdate'
 znap source wfxr/forgit
@@ -32,7 +43,7 @@ znap eval fzf 'fzf --zsh'
 znap eval kubectl 'kubectl completion zsh'
 znap eval uv 'uv generate-shell-completion zsh'
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_STRATEGY=(history)
 znap source zsh-users/zsh-autosuggestions
 #}}
 
@@ -140,6 +151,16 @@ fi
 bindkey              '^I'         menu-complete
 bindkey "$terminfo[kcbt]" reverse-menu-complete
 #}}
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+# Flags/options: dimmer than normal args.
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=244'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=244'
+
+ZSH_HIGHLIGHT_MAXLENGTH=4096
 
 znap source zsh-users/zsh-syntax-highlighting
 
