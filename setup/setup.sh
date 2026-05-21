@@ -57,6 +57,7 @@ setup_links() {
     mkdir -p ~/.claude ~/.codex
     ln -svf "$dotfiles_dir"/.claude/CLAUDE.md ~/.claude/CLAUDE.md
     ln -svf "$dotfiles_dir"/.codex/AGENTS.md ~/.codex/AGENTS.md
+    ln -svf "$dotfiles_dir"/.codex/config.toml ~/.codex/config.toml
 }
 
 setup_packages() {

@@ -20,6 +20,7 @@
 - Never consolidate or summarize agent output — present raw results. If consolidation would genuinely help (e.g., 500+ line output), ask first.
 - Always save agent output as is to file: `{datetime}-{agent-type}-{brief-request}.md` in project research dir, or `~/research/{project_name}/` if none exists
 - "Revert" means restore from master/main, not git revert or delete
+- Create git worktrees as siblings of the repo directory using the current repo basename as the prefix, e.g. `../dotfiles-chezmoi`; do not create worktrees under `.worktrees/`.
 - Zsh doesn't expand `*` in paths the same as bash — use `find` or explicit paths for glob patterns in shell commands
 - Prefer `rg` (ripgrep) over `grep`/`find`, `sd` over `sed`, `yq` for YAML, `jq` for JSON in bash commands — they're installed and ergonomic
 - For complex bash commands: use `\` line continuations for readability, prefer long flags (`--count` not `-c`) unless the short form is universally known

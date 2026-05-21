@@ -23,9 +23,8 @@ PLUG_REPO=~/.znap
 source $PLUG_REPO/znap/znap.zsh
 
 znap source romkatv/powerlevel10k
-znap source zsh-users/zsh-completions
+znap install zsh-users/zsh-completions
 znap source marlonrichert/zsh-autocomplete
-znap source zsh-users/zsh-syntax-highlighting
 export FORGIT_CHECKOUT_BRANCH_BRANCH_GIT_OPTS='--sort=-committerdate'
 znap source wfxr/forgit
 znap source agkozak/zsh-z
@@ -72,7 +71,7 @@ bindkey '^[[1;5D' backward-word       # [Ctrl-LeftArrow] - move backward one wor
 bindkey  "^[[H"   beginning-of-line   # [Home] - goes at the begining of the line
 bindkey  "^[[F"   end-of-line         # [End] - goes at the end of the line
 
-autoload -z edit-command-line            # Enable editing of command line by pressing Ctrl+x, E
+autoload -Uz edit-command-line           # Enable editing of command line by pressing Ctrl+x, E
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line       #}}
 
@@ -129,7 +128,7 @@ SAVEHIST=5000000              # Number of history entries to save to disk }}
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh                # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 
 # kitty shell integration {{
-if [ -d "$KITTY_INSTALLATION_DIR" ]; then
+if [[ -n "$KITTY_WINDOW_ID" && -d "$KITTY_INSTALLATION_DIR" ]]; then
     export KITTY_SHELL_INTEGRATION="no-sudo enabled"
     autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
     kitty-integration
@@ -141,5 +140,7 @@ fi
 bindkey              '^I'         menu-complete
 bindkey "$terminfo[kcbt]" reverse-menu-complete
 #}}
+
+znap source zsh-users/zsh-syntax-highlighting
 
 # vim:foldmethod=marker:foldmarker={{,}}:foldlevel=0:foldtext=substitute(getline(v\:foldstart),'\\#\\\ \\\|{{','','g')

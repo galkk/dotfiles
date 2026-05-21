@@ -9,8 +9,6 @@ configuration {
   matching: "fuzzy";            /* substring matching instead of exact */
   sorting-method: "fzf";        /* rank by match quality */
   normalize-match: true;        /* match accented characters (e.g., é = e) */
-  kb-row-up: "Up,Control+k";
-  kb-row-down: "Down,Control+j";
 }
 
 @theme "android_notification"
@@ -30,4 +28,3 @@ element-icon {
 inputbar {
   children: [textbox-prompt-colon, entry, icon-current-entry, case-indicator];
 }
-
