@@ -39,6 +39,43 @@ znap source marlonrichert/zsh-autocomplete
 export FORGIT_CHECKOUT_BRANCH_BRANCH_GIT_OPTS='--sort=-committerdate'
 znap source wfxr/forgit
 znap source agkozak/zsh-z
+
+# fzf settings {{
+# use fd instead of find — faster, respects .gitignore
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix \
+  --hidden --follow --exclude .git'  # Alt-C: fuzzy cd
+export FZF_DEFAULT_OPTS="
+  --height 30
+  --ansi
+  --layout=reverse
+  --style=full
+  --highlight-line
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'
+  --bind 'ctrl-x:exclude'
+"
+export FZF_CTRL_T_OPTS="
+  --preview 'bat -n --color=always --line-range :500 {}'
+  --preview-window 'down:50%:wrap'
+"
+export FZF_CTRL_R_OPTS="--scheme=history --highlight-line"
+export FZF_ALT_C_OPTS="--preview 'eza --color=always {}'"
+
+rgf() {
+    local rg_prefix='rg --column --line-number --no-heading --color=always --smart-case'
+
+    : | fzf --ansi --disabled --query "$*" \
+        --bind "start:reload:$rg_prefix {q} || true" \
+        --bind "change:reload:$rg_prefix {q} || true" \
+        --delimiter : \
+        --preview 'bat --color=always --style=plain --highlight-line {2} -- {1}' \
+        --preview-window 'right:60%:+{2}/2' \
+        --bind 'enter:become(vim +{2} -- {1})' \
+        --bind 'alt-enter:become(echo {1}:{2})' \
+        --bind "ctrl-o:become($rg_prefix {q})"
+}
+# }}
 znap eval fzf 'fzf --zsh'
 znap eval kubectl 'kubectl completion zsh'
 znap eval uv 'uv generate-shell-completion zsh'
@@ -86,42 +123,7 @@ autoload -Uz edit-command-line           # Enable editing of command line by pre
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line       #}}
 
-# fzf settings {{
-# use fd instead of find — faster, respects .gitignore
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix \
-  --hidden --follow --exclude .git'  # Alt-C: fuzzy cd
-export FZF_DEFAULT_OPTS="
-  --height 30
-  --ansi
-  --layout=reverse
-  --style=full
-  --highlight-line
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'
-  --bind 'ctrl-x:exclude'
-"
-export FZF_CTRL_T_OPTS="
-  --preview 'bat -n --color=always --line-range :500 {}'
-  --preview-window 'down:50%:wrap'
-"
-export FZF_CTRL_R_OPTS="--scheme=history --highlight-line"
-export FZF_ALT_C_OPTS="--preview 'eza --color=always {}'"
 
-rgf() {
-    local rg_prefix='rg --column --line-number --no-heading --color=always --smart-case'
-
-    : | fzf --ansi --disabled --query "$*" \
-        --bind "start:reload:$rg_prefix {q} || true" \
-        --bind "change:reload:$rg_prefix {q} || true" \
-        --delimiter : \
-        --preview 'bat --color=always --style=plain --highlight-line {2} -- {1}' \
-        --preview-window 'right:60%:+{2}/2' \
-        --bind 'enter:become(vim +{2} -- {1})' \
-        --bind 'alt-enter:become(echo {1}:{2})' \
-        --bind "ctrl-o:become($rg_prefix {q})"
-}
-# }}
 
 # history {{
 setopt share_history          # share history between terminals
