@@ -20,6 +20,8 @@
     editor = vim
     whitespace = -trailing-space
     pager = delta
+    untrackedCache = true
+    fsmonitor = true
 [interactive]
     diffFilter = delta --color-only
 [delta]
@@ -31,7 +33,6 @@
 
 # --- diff ---
 [diff]
-    renames = true
     algorithm = histogram        # cleaner diffs than patience, handles repeated lines
     colorMoved = default
     mnemonicPrefix = true
@@ -85,6 +86,14 @@
     pruneTags = true             # clean stale remote tags
     recurseSubmodules = on-demand
     writeCommitGraph = true      # speeds up log/blame/merge-base
+    unpackLimit = 1
+
+[index]
+    version = 4
+    skipHash = true
+
+[pack]
+    usePathWalk = true
 
 # --- integrity ---
 [transfer]
@@ -102,3 +111,19 @@
     process = git-lfs filter-process
 [include]
     path = ~/.work.gitconfig
+[maintenance]
+	repo = /Users/andrii.galkin/projects/1brc
+	repo = /Users/andrii.galkin/projects/affirm-ansible
+	repo = /Users/andrii.galkin/projects/affirm-builders
+	repo = /Users/andrii.galkin/projects/afrm-rulez
+	repo = /Users/andrii.galkin/projects/all-the-things
+	repo = /Users/andrii.galkin/projects/app-k8s-components
+	repo = /Users/andrii.galkin/projects/architecture
+	repo = /Users/andrii.galkin/projects/cosmops
+	repo = /Users/andrii.galkin/projects/db-utils
+	repo = /Users/andrii.galkin/projects/dbops
+	repo = /Users/andrii.galkin/projects/dotfiles
+	repo = /Users/andrii.galkin/projects/lib-build-tools-jvm
+	repo = /Users/andrii.galkin/projects/salt
+	repo = /Users/andrii.galkin/projects/table-carveout-spec
+	repo = /Users/andrii.galkin/projects/terraffirm

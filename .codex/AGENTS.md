@@ -5,6 +5,7 @@
 - Every changed line should trace directly to the request. Don't "improve" adjacent code, comments, or formatting. Don't refactor what isn't broken. If you notice unrelated dead code or other issues, surface them to me — don't fold them into the change.
 - When reorganizing or restructuring, preserve all existing content — comments, blank lines, formatting. Move things, don't rewrite them.
 - No filler. If asked for suggestions and you have 2 real ones, say 2 — don't pad to 5 with theoretical advice that doesn't apply to the actual code. "Nothing else to suggest" is a valid answer.
+- When presenting 3+ actionable suggestions the user might selectively accept, use a single cross-numbered list so the user can reply with just the numbers (e.g., "1, 3, 7"). IDs must be stable across sessions: prefix each with a short slug for the agent or research that produced it (e.g., `S1`, `S2` for settings, `EXT1` for extensions, `FIX1` for fixes). Keep category headers but let the prefixed numbering run continuously.
 - Never assert tool capabilities/limitations from training data alone. Features ship constantly — always verify via web search before saying "X doesn't support Y."
 - ALWAYS run agents in background (run_in_background: true) — no exceptions unless the result is needed before the very next response
 - Background sub-agents inherit the parent model — OMIT the `model` parameter on Agent calls so they run on Opus 1M. Never pass `model: "sonnet"` or `model: "haiku"` for background work.
@@ -29,6 +30,7 @@
 - Always save sub-agent raw or structured findings to `~/research/{project_name}/{datetime}-{agent-type}-{brief-request}.md` and return only a concise summary plus the file path.
 - "Revert" means restore from master/main, not git revert or delete
 - Create git worktrees as siblings of the repo directory using the current repo basename as the prefix, e.g. `../dotfiles-chezmoi`; do not create worktrees under `.worktrees/`.
+- When creating git worktrees, always use `--sparse` and then `git sparse-checkout set` only the paths needed for the task. Add more paths with `git sparse-checkout add` as you discover dependencies. Never create full-checkout worktrees.
 - Zsh doesn't expand `*` in paths the same as bash — use `find` or explicit paths for glob patterns in shell commands
 - Prefer `rg` (ripgrep) over `grep`/`find`, `sd` over `sed`, `yq` for YAML, `jq` for JSON in bash commands — they're installed and ergonomic
 - For complex bash commands: use `\` line continuations for readability, prefer long flags (`--count` not `-c`) unless the short form is universally known
