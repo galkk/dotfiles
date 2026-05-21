@@ -23,7 +23,7 @@ PLUG_REPO=~/.znap
 source $PLUG_REPO/znap/znap.zsh
 
 znap source romkatv/powerlevel10k
-znap install zsh-users/zsh-completions
+znap source zsh-users/zsh-completions
 znap source marlonrichert/zsh-autocomplete
 export FORGIT_CHECKOUT_BRANCH_BRANCH_GIT_OPTS='--sort=-committerdate'
 znap source wfxr/forgit
