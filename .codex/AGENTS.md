@@ -18,7 +18,7 @@
 - Prefer targeted reads: use `rg -n` first, then read narrow line ranges. Avoid full-file dumps unless structure across the whole file matters.
 - Zsh errors on unmatched `*` path globs by default — use `find` or explicit paths for glob patterns in shell commands
 - Prefer `rg` (ripgrep) over `grep`/`find`, `sd` for replacements, `yq` for YAML, `jq` for JSON in bash commands — they're installed and ergonomic
-- For complex bash commands: use `\` line continuations for readability, prefer long flags (`--count` not `-c`) unless the short form is universally known
+- For complex bash commands: use `\` line continuations, keep continued lines around 60 characters, prefer long flags (`--count` not `-c`) unless the short form is universally known
 - xargs/parallel: cap at 8 jobs (`-P 8`); ask before exceeding.
 - Keep progress updates sparse for fast local work. For long-running commands, update only when state changes materially or every ~30s.
 - Stack-rank any list of findings, suggestions, or options by importance automatically — most critical first. Don't let categorical grouping (Tier 1/2/3, by-section) hide the ranking.
