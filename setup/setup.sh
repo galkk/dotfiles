@@ -81,7 +81,11 @@ setup_packages() {
     echo "Installing base packages"
 
     # Do not skip fzf key bindings
-    echo "path-include=/usr/share/doc/fzf/examples/*" | $SUDO tee -a /etc/dpkg/dpkg.cfg.d/excludes
+    local dpkg_excludes=/etc/dpkg/dpkg.cfg.d/excludes
+    local fzf_examples_include="path-include=/usr/share/doc/fzf/examples/*"
+    if [ ! -f "$dpkg_excludes" ] || ! grep -qxF "$fzf_examples_include" "$dpkg_excludes"; then
+        echo "$fzf_examples_include" | $SUDO tee -a "$dpkg_excludes"
+    fi
 
     $SUDO apt-get -qq update
     $SUDO apt-get -qq install --no-install-recommends zsh git git-delta gh gnupg vim fzf curl bat \
@@ -218,7 +222,7 @@ setup_personal() {
 }
 
 [ "${1-}" = "links" ] && setup_links && exit
-[ "${1-}" = "config" ] && setup_config && exit
+[ "${1-}" = "config" ] && setup_sudo && setup_config && exit
 
 setup_sudo
 

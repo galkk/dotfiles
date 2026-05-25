@@ -4,6 +4,7 @@ personality = "pragmatic"
 approvals_reviewer = "guardian_subagent"
 features.undo = true
 notify = ["notify-send", "Codex"]
+service_tier = "fast"
 
 [projects."/home/andy"]
 trust_level = "trusted"
@@ -12,6 +13,18 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/home/andy/projects/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/andrii.galkin/projects"]
+trust_level = "trusted"
+
+[projects."/Users/andrii.galkin/projects/architecture"]
+trust_level = "trusted"
+
+[projects."/Users/andrii.galkin/projects/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/andrii.galkin"]
 trust_level = "trusted"
 
 [tui]
