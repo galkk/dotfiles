@@ -11,7 +11,7 @@ description: GitHub pull request workflow preferences for diffs, commits, pushes
 # PR Style
 - PR descriptions should explain WHY, not list individual file changes — the diff IS the change
 - Only describe substantial algorithm/logic changes, not mechanics
-- Include Jira ticket in PR title (e.g., "[PROJ-1234] Title here")
+- Include Jira ticket in PR title when branch, issue, repo convention, or user context provides one (e.g., "[PROJ-1234] Title here").
 - Always merge with squash + rebase; never merge commits.
 - Don't push after every local commit during PR iteration. Show diffs / `git status` and wait for an explicit "push" cue.
 - PR review comments stay on the diff. Surface broader concerns (perf, security, correctness outside the diff) to me, not as drive-by comments.

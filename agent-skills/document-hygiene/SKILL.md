@@ -7,7 +7,7 @@ description: Documentation, prose, and technical writing hygiene for drafts, doc
 
 - Drafts: lead with the rule, no preambles, no "this is important because…" framing. Bad/good code examples don't need narration.
 - When editing or asked to "look into X" in a doc, audit the fragment against three axes: (1) does it belong in this section?, (2) does it restate something already in the doc? (highest-priority check — grep before declaring clean), (3) does it fit the template's purpose for this section?
-- Bump "Last updated" in stamped docs (tech specs, ADRs) on every content edit.
+- Bump "Last updated" in stamped docs (tech specs, ADRs) on every content edit when the field already exists.
 - Session/state files (e.g., SESSION.md, STATE.md): append-only chronological log; never edit or rewrite past entries.
 - Wrap SQL, PromQL, and other long code at 80 cols max (S3 paths / single-token literals excepted).
 - Always use language-tagged fenced code blocks for syntax highlighting.

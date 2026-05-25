@@ -54,13 +54,15 @@ setup_links() {
     ln -svfn $(find "$dotfiles_dir"/ -mindepth 1 -prune -type f ! -name '.dockerignore') ~
     ln -svfn $(find "$dotfiles_dir"/.config -mindepth 1 -prune) ~/.config/
 
-    mkdir -p ~/.claude ~/.codex ~/.claude/agents ~/.claude/skills ~/.codex/agents ~/.codex/skills
+    mkdir -p ~/.claude ~/.codex ~/.agents ~/.claude/agents ~/.claude/skills ~/.codex/agents ~/.codex/skills ~/.agents/skills
+    [ -L ~/.claude/skills/command-execution-hygiene ] && rm ~/.claude/skills/command-execution-hygiene
+    [ -L ~/.codex/skills/command-execution-hygiene ] && rm ~/.codex/skills/command-execution-hygiene
+    [ -L ~/.agents/skills/command-execution-hygiene ] && rm ~/.agents/skills/command-execution-hygiene
     ln -svf "$dotfiles_dir"/.claude/CLAUDE.md ~/.claude/CLAUDE.md
     ln -svf "$dotfiles_dir"/.claude/user-settings.json ~/.claude/settings.json
     ln -svfn "$dotfiles_dir"/.claude/agents/research-gatherer.md ~/.claude/agents/research-gatherer.md
     ln -svfn "$dotfiles_dir"/agent-skills/github-pr-workflow ~/.claude/skills/github-pr-workflow
     ln -svfn "$dotfiles_dir"/agent-skills/git-local-workflow ~/.claude/skills/git-local-workflow
-    ln -svfn "$dotfiles_dir"/agent-skills/command-execution-hygiene ~/.claude/skills/command-execution-hygiene
     ln -svfn "$dotfiles_dir"/agent-skills/document-hygiene ~/.claude/skills/document-hygiene
     ln -svf "$dotfiles_dir"/.codex/AGENTS.md ~/.codex/AGENTS.md
     ln -svf "$dotfiles_dir"/.codex/config.toml ~/.codex/config.toml
@@ -68,8 +70,10 @@ setup_links() {
     ln -svfn "$dotfiles_dir"/.codex/agents/research-gatherer.toml ~/.codex/agents/research-gatherer.toml
     ln -svfn "$dotfiles_dir"/agent-skills/github-pr-workflow ~/.codex/skills/github-pr-workflow
     ln -svfn "$dotfiles_dir"/agent-skills/git-local-workflow ~/.codex/skills/git-local-workflow
-    ln -svfn "$dotfiles_dir"/agent-skills/command-execution-hygiene ~/.codex/skills/command-execution-hygiene
     ln -svfn "$dotfiles_dir"/agent-skills/document-hygiene ~/.codex/skills/document-hygiene
+    ln -svfn "$dotfiles_dir"/agent-skills/github-pr-workflow ~/.agents/skills/github-pr-workflow
+    ln -svfn "$dotfiles_dir"/agent-skills/git-local-workflow ~/.agents/skills/git-local-workflow
+    ln -svfn "$dotfiles_dir"/agent-skills/document-hygiene ~/.agents/skills/document-hygiene
     ln -svf "$dotfiles_dir"/setup/ensure-agent-research-dir.sh ~/.local/bin/ensure-agent-research-dir
 }
 
