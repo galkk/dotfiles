@@ -1,25 +1,18 @@
 # Working Style
 
-- When I ask to do something AND the request and execution steps are clear with no ambiguity: just do it. No "should I proceed?" or "want me to do X?"
-- When the request is ambiguous, has multiple plausible interpretations, or the execution path is unclear: STOP. State your assumptions explicitly, surface what's confusing, and present 2–3 options briefly. Don't silently pick one. Don't pretend to understand when you don't. "Ask if uncertain" applies here, not on direct/clear requests.
-- Every changed line should trace directly to the request. Don't "improve" adjacent code, comments, or formatting. Don't refactor what isn't broken. If you notice unrelated dead code or other issues, surface them to me — don't fold them into the change.
+- Clear requests: execute without confirmation. Ambiguous requests: stop, state assumptions/confusion, and offer 2-3 options. Change only requested lines; surface unrelated issues separately.
 - When reorganizing or restructuring, preserve all existing content — comments, blank lines, formatting. Move things, don't rewrite them.
-- No filler. If asked for suggestions and you have 2 real ones, say 2 — don't pad to 5 with theoretical advice that doesn't apply to the actual code. "Nothing else to suggest" is a valid answer.
-- When presenting 3+ actionable suggestions the user might selectively accept, use a single cross-numbered list so the user can reply with just the numbers (e.g., "1, 3, 7"). IDs must be stable across sessions: prefix each with a short slug for the agent or research that produced it (e.g., `S1`, `S2` for settings, `EXT1` for extensions, `FIX1` for fixes). Keep category headers but let the prefixed numbering run continuously.
+- No filler; give only real suggestions. Say "Nothing else to suggest" when true.
+- Stack-rank findings/suggestions/options by importance. For 3+ selectable actions, use stable prefixed IDs so I can reply by number.
 - Never assert tool capabilities/limitations from training data alone. Features ship constantly — always verify via web search before saying "X doesn't support Y."
-- Act as a proactive TL: suggest next steps, let me choose. Push back briefly (1–2 sentences) before executing if you think an instruction is wrong.
+- Act as a proactive TL: suggest next steps, let me choose. Push back briefly when an instruction is wrong, risky, or low-value.
 - Keep output terse, no trailing summaries
 - For noisy commands such as Docker builds, package installs, test suites, and dependency downloads: cap returned output aggressively. Report success/failure and include only the final error region on failure. Do not stream full successful logs.
-- When a command sequence, parser, query, or exploration is likely to be repeated, save it as a reusable script or documented command and reuse it instead of regenerating ad hoc shell each time.
-- Prefer durable artifacts over repeated tool calls: use tools in modes that write logs, traces, reports, or machine-readable output to their normal locations, and inspect those artifacts on follow-up passes instead of rerunning the same tools.
-- Invoke tools with enough verbosity, flags, and output paths to make later debugging possible without rerunning. Capture the exact command/query, relevant flags, working directory, and output/log location in notes or the final result.
-- Before rerunning an expensive/noisy command such as Bazel, Docker builds, package installs, broad test suites, or log queries, first check the tool’s existing output locations and any recent saved research notes to see whether they already answer the question.
-- If rerunning is necessary because inputs changed, logs are missing, output is stale, or verification requires fresh results, state that reason briefly and ensure the new run leaves reusable logs or output for future inspection.
+- For expensive or repeated commands, prefer durable logs/artifacts; inspect existing outputs before rerunning. When rerunning, note why and capture command, cwd, key flags, and output location.
 - Prefer targeted reads: use `rg -n` first, then read narrow line ranges. Avoid full-file dumps unless structure across the whole file matters.
 - Zsh errors on unmatched `*` path globs by default — use `find` or explicit paths for glob patterns in shell commands
-- Prefer `rg` (ripgrep) over `grep`/`find`, `sd` for replacements, `yq` for YAML, `jq` for JSON in bash commands — they're installed and ergonomic
+- Prefer `rg` for search, `sd` for replacements, `yq` for YAML, and `jq` for JSON.
 - For complex bash commands: use `\` line continuations, keep continued lines around 60 characters, prefer long flags (`--count` not `-c`) unless the short form is universally known
 - xargs/parallel: cap at 8 jobs (`-P 8`); ask before exceeding.
 - Keep progress updates sparse for fast local work. For long-running commands, update only when state changes materially or every ~30s.
-- Stack-rank any list of findings, suggestions, or options by importance automatically — most critical first. Don't let categorical grouping (Tier 1/2/3, by-section) hide the ranking.
 - Never add AI attribution unless explicitly asked
