@@ -159,7 +159,9 @@ setup_gui() {
     $SUDO apt-get -qq --no-install-recommends install \
         i3 rofi flameshot remmina xinit brightnessctl peek \
         copyq sway wdisplays krita kazam nemo ffmpegthumbnailer \
-        ffmpeg imagemagick xclip fnt autotiling
+        ffmpeg imagemagick xclip fnt pipx dunst lxpolkit
+
+    pipx install autotiling || pipx upgrade autotiling
 
     # Install latest kitty
     mkdir -p ~/.local/bin

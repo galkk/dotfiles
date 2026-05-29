@@ -13,6 +13,7 @@
 - Zsh errors on unmatched `*` path globs by default — use `find` or explicit paths for glob patterns in shell commands
 - Prefer `rg` for search, `sd` for replacements, `yq` for YAML, and `jq` for JSON.
 - For complex bash commands: use `\` line continuations, keep continued lines around 60 characters, prefer long flags (`--count` not `-c`) unless the short form is universally known
+- When a conditional accumulates multiple guards, helper variables, or special-case checks, pause before adding more. Try inverting the predicate or reframing the success/skip condition, then use the simpler equivalent when behavior is unchanged, e.g. “skip if fresh exists” instead of “run if missing or stale.”
 - xargs/parallel: cap at 8 jobs (`-P 8`); ask before exceeding.
 - Keep progress updates sparse for fast local work. For long-running commands, update only when state changes materially or every ~30s.
 - Never add AI attribution unless explicitly asked

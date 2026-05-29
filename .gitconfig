@@ -114,3 +114,12 @@
     path = ~/.gitconfig-macos
 [includeIf "gitdir:/home/andy/projects/"]
     path = ~/.gitconfig-linux
+[maintenance]
+	repo = /home/andy/.znap/znap
+	repo = /home/andy/.znap/agkozak/zsh-z
+	repo = /home/andy/.znap/marlonrichert/zsh-autocomplete
+	repo = /home/andy/.znap/romkatv/powerlevel10k
+	repo = /home/andy/.znap/wfxr/forgit
+	repo = /home/andy/.znap/zsh-users/zsh-autosuggestions
+	repo = /home/andy/.znap/zsh-users/zsh-completions
+	repo = /home/andy/.znap/zsh-users/zsh-syntax-highlighting

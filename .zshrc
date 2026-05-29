@@ -23,9 +23,6 @@ zstyle ':autocomplete:history-search-backward:*' list-lines 64
 zstyle ':autocomplete:*' add-semicolon no
 # }}
 
-# Docker CLI completions
-[[ -d "$HOME/.docker/completions" ]] && fpath=($HOME/.docker/completions $fpath)
-
 # plugins {{
 PLUG_REPO=~/.znap
 [[ -r $PLUG_REPO/znap/znap.zsh ]] ||
@@ -77,11 +74,14 @@ rgf() {
 }
 # }}
 znap eval fzf 'fzf --zsh'
-znap eval kubectl 'kubectl completion zsh'
-znap eval uv 'uv generate-shell-completion zsh'
+(( $+commands[docker] )) && znap fpath _docker 'docker completion zsh'
+(( $+commands[kubectl] )) && znap fpath _kubectl 'kubectl completion zsh'
+(( $+commands[uv] )) && znap fpath _uv 'uv generate-shell-completion zsh'
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 ZSH_AUTOSUGGEST_STRATEGY=(history)
 znap source zsh-users/zsh-autosuggestions
+# Use compdump modification time as the last znap update check time.
+[[ -n $_comp_dumpfile(Nm-14) ]] || { znap pull && znap clean; } &!
 #}}
 
 alias icat="kitty +kitten icat --align left"

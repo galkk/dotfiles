@@ -44,6 +44,8 @@ bindsym Print        exec       flameshot       gui
 
 # startup apps {
 exec_always --no-startup-id autotiling
+exec --no-startup-id dunst
+exec --no-startup-id lxpolkit
 exec --no-startup-id copyq
 exec --no-startup-id flameshot
 exec --no-startup-id nm-applet
