@@ -1,7 +1,7 @@
 model = "gpt-5.5"
 model_reasoning_effort = "medium"
 personality = "pragmatic"
-approvals_reviewer = "guardian_subagent"
+approvals_reviewer = "auto_review"
 features.undo = true
 notify = ["notify-send", "Codex"]
 service_tier = "default"
@@ -32,9 +32,6 @@ theme = "gruvbox-dark"
 alternate_screen = "always"
 status_line = ["context-remaining", "current-dir", "git-branch", "pull-request-number", "branch-changes", "model-with-reasoning", "project-name", "raw-output", "used-tokens", "five-hour-limit"]
 status_line_use_colors = true
-
-[tui.model_availability_nux]
-"gpt-5.5" = 4
 
 [plugins."google-calendar@openai-curated"]
 enabled = true
