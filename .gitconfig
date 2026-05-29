@@ -21,7 +21,6 @@
     whitespace = -trailing-space
     pager = delta
     untrackedCache = true
-    fsmonitor = true
 [interactive]
     diffFilter = delta --color-only
 [delta]
@@ -111,19 +110,7 @@
     process = git-lfs filter-process
 [include]
     path = ~/.work.gitconfig
-[maintenance]
-	repo = /Users/andrii.galkin/projects/1brc
-	repo = /Users/andrii.galkin/projects/affirm-ansible
-	repo = /Users/andrii.galkin/projects/affirm-builders
-	repo = /Users/andrii.galkin/projects/afrm-rulez
-	repo = /Users/andrii.galkin/projects/all-the-things
-	repo = /Users/andrii.galkin/projects/app-k8s-components
-	repo = /Users/andrii.galkin/projects/architecture
-	repo = /Users/andrii.galkin/projects/cosmops
-	repo = /Users/andrii.galkin/projects/db-utils
-	repo = /Users/andrii.galkin/projects/dbops
-	repo = /Users/andrii.galkin/projects/dotfiles
-	repo = /Users/andrii.galkin/projects/lib-build-tools-jvm
-	repo = /Users/andrii.galkin/projects/salt
-	repo = /Users/andrii.galkin/projects/table-carveout-spec
-	repo = /Users/andrii.galkin/projects/terraffirm
+[includeIf "gitdir:/Users/andrii.galkin/projects/"]
+    path = ~/.gitconfig-macos
+[includeIf "gitdir:/home/andy/projects/"]
+    path = ~/.gitconfig-linux

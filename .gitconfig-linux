@@ -1,0 +1,5 @@
+[core]
+    fsmonitor = false
+
+[maintenance]
+	repo = /home/andy/projects/dotfiles
