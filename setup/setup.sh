@@ -54,7 +54,7 @@ setup_links() {
     ln -svfn $(find "$dotfiles_dir"/ -mindepth 1 -prune -type f ! -name '.dockerignore') ~
     ln -svfn $(find "$dotfiles_dir"/.config -mindepth 1 -prune) ~/.config/
 
-    mkdir -p ~/.claude ~/.codex ~/.agents ~/.claude/agents ~/.claude/skills ~/.codex/agents ~/.codex/skills ~/.agents/skills
+    mkdir -p ~/.claude ~/.codex ~/.agents ~/.claude/agents ~/.claude/skills ~/.codex/agents ~/.codex/rules ~/.codex/skills ~/.agents/skills
     [ -L ~/.claude/skills/command-execution-hygiene ] && rm ~/.claude/skills/command-execution-hygiene
     [ -L ~/.codex/skills/command-execution-hygiene ] && rm ~/.codex/skills/command-execution-hygiene
     [ -L ~/.agents/skills/command-execution-hygiene ] && rm ~/.agents/skills/command-execution-hygiene
@@ -66,6 +66,7 @@ setup_links() {
     ln -svfn "$dotfiles_dir"/agent-skills/document-hygiene ~/.claude/skills/document-hygiene
     ln -svf "$dotfiles_dir"/.codex/AGENTS.md ~/.codex/AGENTS.md
     ln -svf "$dotfiles_dir"/.codex/personal.config.toml ~/.codex/personal.config.toml
+    ln -svf "$dotfiles_dir"/.codex/rules/default.rules ~/.codex/rules/default.rules
     ln -svf "$dotfiles_dir"/.codex/user-hooks.json ~/.codex/hooks.json
     ln -svfn "$dotfiles_dir"/.codex/agents/research-gatherer.toml ~/.codex/agents/research-gatherer.toml
     ln -svfn "$dotfiles_dir"/agent-skills/github-pr-workflow ~/.codex/skills/github-pr-workflow
