@@ -65,7 +65,7 @@ setup_links() {
     ln -svfn "$dotfiles_dir"/agent-skills/git-local-workflow ~/.claude/skills/git-local-workflow
     ln -svfn "$dotfiles_dir"/agent-skills/document-hygiene ~/.claude/skills/document-hygiene
     ln -svf "$dotfiles_dir"/.codex/AGENTS.md ~/.codex/AGENTS.md
-    ln -svf "$dotfiles_dir"/.codex/config.toml ~/.codex/config.toml
+    ln -svf "$dotfiles_dir"/.codex/personal.config.toml ~/.codex/personal.config.toml
     ln -svf "$dotfiles_dir"/.codex/user-hooks.json ~/.codex/hooks.json
     ln -svfn "$dotfiles_dir"/.codex/agents/research-gatherer.toml ~/.codex/agents/research-gatherer.toml
     ln -svfn "$dotfiles_dir"/agent-skills/github-pr-workflow ~/.codex/skills/github-pr-workflow
