@@ -1,6 +1,6 @@
 ---
 name: github-pr-workflow
-description: GitHub pull request workflow preferences for diffs, commits, pushes, PR descriptions, PR titles, review comments, and merge policy. Use when working on GitHub PRs, preparing or reviewing pull request changes, addressing PR comments, committing, pushing, or merging.
+description: GitHub pull request workflow preferences for PR comments, review threads, CI-facing PR iteration, diffs, commits, pushes, PR descriptions, PR titles, review comments, merge policy, and GitHub review responses.
 ---
 
 # GitHub PR Workflow

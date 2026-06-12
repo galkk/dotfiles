@@ -1,0 +1,4 @@
+interface:
+  display_name: "Current Docs Verification"
+  short_description: "Verify current official docs"
+  default_prompt: "Use $current-docs-verification to verify the current official docs for this claim."

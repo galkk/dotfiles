@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub PR Workflow"
+  short_description: "GitHub PR review workflow"
+  default_prompt: "Use $github-pr-workflow to handle this PR workflow cleanly."

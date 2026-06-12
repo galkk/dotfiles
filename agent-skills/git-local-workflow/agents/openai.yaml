@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Local Workflow"
+  short_description: "Local git workflow preferences"
+  default_prompt: "Use $git-local-workflow to inspect this git state and choose the safest local workflow."

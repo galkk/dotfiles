@@ -1,6 +1,6 @@
 ---
 name: git-local-workflow
-description: Local git workflow preferences for revert semantics, worktrees, sparse checkout, repository-relative commands, command ordering, and permission-friendly git/gh invocation. Use when reverting, creating worktrees, inspecting diffs, committing, or running local git and gh commands.
+description: Local git workflow preferences for status/diff inspection, stash/autostash, rebase, pull, revert/restore semantics, worktrees, sparse checkout, commits, repository-relative commands, and permission-friendly git/gh invocation.
 ---
 
 # Git Local Workflow

@@ -1,19 +1,9 @@
-# Working Style
+# Personal Defaults
 
-- Clear requests: execute without confirmation. Ambiguous requests: stop, state assumptions/confusion, and offer 2-3 options. Change only lines required for the requested behavior; do not make nearby cleanups, robustness rewrites, style changes, or refactors unless explicitly asked. Surface unrelated issues separately.
-- When reorganizing or restructuring, preserve all existing content — comments, blank lines, formatting. Move things, don't rewrite them.
-- No filler; give only real suggestions. Say "Nothing else to suggest" when true.
-- Stack-rank findings/suggestions/options by importance. For 3+ selectable actions, use stable prefixed IDs so I can reply by number.
-- Never assert tool capabilities/limitations from training data alone. Features ship constantly — always verify via web search before saying "X doesn't support Y."
-- Act as a proactive TL: suggest next steps, let me choose. Do not implement optional improvements just because they are adjacent to the requested change. Push back briefly when an instruction is wrong, risky, or low-value.
-- Keep output terse, no trailing summaries
-- For noisy commands such as Docker builds, package installs, test suites, and dependency downloads: cap returned output aggressively. Report success/failure and include only the final error region on failure. Do not stream full successful logs.
-- For expensive or repeated commands, prefer durable logs/artifacts; inspect existing outputs before rerunning. When rerunning, note why and capture command, cwd, key flags, and output location.
-- Prefer targeted reads: use `rg -n` first, then read narrow line ranges. Avoid full-file dumps unless structure across the whole file matters.
-- Zsh errors on unmatched `*` path globs by default — use `find` or explicit paths for glob patterns in shell commands
-- Prefer `rg` for search, `sd` for replacements, `yq` for YAML, and `jq` for JSON.
-- For complex bash commands: use `\` line continuations, keep continued lines around 60 characters, prefer long flags (`--count` not `-c`) unless the short form is universally known
-- When a conditional accumulates multiple guards, helper variables, or special-case checks, pause before adding more. Try inverting the predicate or reframing the success/skip condition, then use the simpler equivalent when behavior is unchanged, e.g. “skip if fresh exists” instead of “run if missing or stale.”
-- xargs/parallel: cap at 8 jobs (`-P 8`); ask before exceeding.
-- Keep progress updates sparse for fast local work. For long-running commands, update only when state changes materially or every ~30s.
-- Never add AI attribution unless explicitly asked
+- Follow repository and project instructions first. Use these defaults only where they do not conflict, unless the project instruction is unsafe.
+- Clear, low-risk requests: execute without confirmation. Ambiguous, destructive, high-risk, or scope-expanding requests: stop, state the issue, and offer 2-3 concrete options.
+- Keep edits narrowly scoped to the requested behavior. When reorganizing or restructuring, preserve existing content, comments, blank lines, and formatting.
+- Keep output terse and concrete. Surface unrelated issues separately. Say "Nothing else to suggest" when true.
+- Stack-rank findings, suggestions, and options by importance. For 3+ items, use stable prefixed IDs such as `F1`, `S1`, or `O1`.
+- Verify current official docs before asserting that a modern tool, product, API, or library supports or does not support something.
+- Never add AI attribution unless explicitly asked.

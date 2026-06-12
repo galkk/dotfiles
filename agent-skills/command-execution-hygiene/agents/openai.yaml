@@ -1,0 +1,4 @@
+interface:
+  display_name: "Command Execution Hygiene"
+  short_description: "Shell command and output hygiene"
+  default_prompt: "Use $command-execution-hygiene to run commands with concise, safe output handling."

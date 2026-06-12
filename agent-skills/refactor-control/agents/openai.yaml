@@ -1,0 +1,4 @@
+interface:
+  display_name: "Refactor Control"
+  short_description: "Keep refactors scoped and safe"
+  default_prompt: "Use $refactor-control to simplify this change without broad cleanup."

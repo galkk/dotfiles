@@ -1,0 +1,4 @@
+interface:
+  display_name: "Document Hygiene"
+  short_description: "Docs and prose hygiene rules"
+  default_prompt: "Use $document-hygiene to edit this documentation with the right hygiene rules."

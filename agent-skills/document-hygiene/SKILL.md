@@ -1,6 +1,6 @@
 ---
 name: document-hygiene
-description: Documentation, prose, and technical writing hygiene for drafts, docs, stamped specs and ADRs, append-only session/state files, code block wrapping, test reproducers, and external-source references. Use when drafting prose or editing documentation, specs, ADRs, session/state files, SQL, PromQL, or test reproducer docs.
+description: Documentation, prose, and technical writing hygiene for specs, ADRs, docs edits, prose reviews, changelogs, stamped docs, append-only session/state files, SQL/PromQL wrapping, test reproducers, and external-source citations.
 ---
 
 # Document Hygiene
