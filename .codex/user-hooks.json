@@ -40,5 +40,16 @@
         }
       ]
     }
+  ],
+  "Stop": [
+    {
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash \"$HOME/.local/bin/agent-learning-stop-hook\"",
+          "timeout": 5
+        }
+      ]
+    }
   ]
 }

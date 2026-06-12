@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Tester"
+  short_description: "Validate and pressure-test skills"
+  default_prompt: "Use $skill-tester to validate this skill's metadata, trigger behavior, and support files."

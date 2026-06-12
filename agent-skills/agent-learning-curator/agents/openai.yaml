@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Learning Curator"
+  short_description: "Capture reusable agent learnings"
+  default_prompt: "Use $agent-learning-curator to capture durable lessons from this session and promote only verified guidance."

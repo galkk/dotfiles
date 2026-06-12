@@ -1,0 +1,4 @@
+interface:
+  display_name: "Controlled Memory"
+  short_description: "Use Codex memory safely"
+  default_prompt: "Use $controlled-memory to review or update memory policy without storing unsafe context."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Config Doctor"
+  short_description: "Audit agent config drift"
+  default_prompt: "Use $agent-config-doctor to audit local Claude and Codex configuration for drift or unsafe gaps."

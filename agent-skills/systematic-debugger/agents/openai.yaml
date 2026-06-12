@@ -1,0 +1,4 @@
+interface:
+  display_name: "Systematic Debugger"
+  short_description: "Reproduce and isolate failures"
+  default_prompt: "Use $systematic-debugger to reproduce, isolate, fix, and verify this failure."

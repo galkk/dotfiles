@@ -3,8 +3,15 @@ model_reasoning_effort = "xhigh"
 personality = "pragmatic"
 approvals_reviewer = "auto_review"
 features.undo = true
+features.memories = true
 features.js_repl = false
 service_tier = "fast"
+
+[memories]
+generate_memories = true
+use_memories = true
+disable_on_external_context = true
+min_rate_limit_remaining_percent = 20
 
 [tui]
 theme = "gruvbox-dark"

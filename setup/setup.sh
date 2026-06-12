@@ -58,31 +58,27 @@ setup_links() {
     [ -L ~/.codex/skills/command-execution-hygiene ] && rm ~/.codex/skills/command-execution-hygiene
     [ -L ~/.agents/skills/command-execution-hygiene ] && rm ~/.agents/skills/command-execution-hygiene
     ln -svf "$dotfiles_dir"/.claude/CLAUDE.md ~/.claude/CLAUDE.md
-    ln -svfn "$dotfiles_dir"/.claude/agents/research-gatherer.md ~/.claude/agents/research-gatherer.md
     ln -svf "$dotfiles_dir"/.codex/AGENTS.md ~/.codex/AGENTS.md
     ln -svf "$dotfiles_dir"/.codex/personal.config.toml ~/.codex/personal.config.toml
     ln -svf "$dotfiles_dir"/.codex/rules/default.rules ~/.codex/rules/default.rules
     ln -svf "$dotfiles_dir"/.codex/user-hooks.json ~/.codex/hooks.json
-    ln -svfn "$dotfiles_dir"/.codex/agents/research-gatherer.toml ~/.codex/agents/research-gatherer.toml
-    ln -svfn "$dotfiles_dir"/agent-skills/command-execution-hygiene ~/.claude/skills/command-execution-hygiene
-    ln -svfn "$dotfiles_dir"/agent-skills/current-docs-verification ~/.claude/skills/current-docs-verification
-    ln -svfn "$dotfiles_dir"/agent-skills/refactor-control ~/.claude/skills/refactor-control
-    ln -svfn "$dotfiles_dir"/agent-skills/github-pr-workflow ~/.claude/skills/github-pr-workflow
-    ln -svfn "$dotfiles_dir"/agent-skills/git-local-workflow ~/.claude/skills/git-local-workflow
-    ln -svfn "$dotfiles_dir"/agent-skills/document-hygiene ~/.claude/skills/document-hygiene
-    ln -svfn "$dotfiles_dir"/agent-skills/command-execution-hygiene ~/.codex/skills/command-execution-hygiene
-    ln -svfn "$dotfiles_dir"/agent-skills/current-docs-verification ~/.codex/skills/current-docs-verification
-    ln -svfn "$dotfiles_dir"/agent-skills/refactor-control ~/.codex/skills/refactor-control
-    ln -svfn "$dotfiles_dir"/agent-skills/github-pr-workflow ~/.codex/skills/github-pr-workflow
-    ln -svfn "$dotfiles_dir"/agent-skills/git-local-workflow ~/.codex/skills/git-local-workflow
-    ln -svfn "$dotfiles_dir"/agent-skills/document-hygiene ~/.codex/skills/document-hygiene
-    ln -svfn "$dotfiles_dir"/agent-skills/command-execution-hygiene ~/.agents/skills/command-execution-hygiene
-    ln -svfn "$dotfiles_dir"/agent-skills/current-docs-verification ~/.agents/skills/current-docs-verification
-    ln -svfn "$dotfiles_dir"/agent-skills/refactor-control ~/.agents/skills/refactor-control
-    ln -svfn "$dotfiles_dir"/agent-skills/github-pr-workflow ~/.agents/skills/github-pr-workflow
-    ln -svfn "$dotfiles_dir"/agent-skills/git-local-workflow ~/.agents/skills/git-local-workflow
-    ln -svfn "$dotfiles_dir"/agent-skills/document-hygiene ~/.agents/skills/document-hygiene
+    for agent_file in "$dotfiles_dir"/.claude/agents/*.md; do
+        [ -f "$agent_file" ] || continue
+        ln -svfn "$agent_file" ~/.claude/agents/"$(basename "$agent_file")"
+    done
+    for agent_file in "$dotfiles_dir"/.codex/agents/*.toml; do
+        [ -f "$agent_file" ] || continue
+        ln -svfn "$agent_file" ~/.codex/agents/"$(basename "$agent_file")"
+    done
+    for skill_dir in "$dotfiles_dir"/agent-skills/*; do
+        [ -d "$skill_dir" ] || continue
+        skill_name="$(basename "$skill_dir")"
+        ln -svfn "$skill_dir" ~/.claude/skills/"$skill_name"
+        ln -svfn "$skill_dir" ~/.codex/skills/"$skill_name"
+        ln -svfn "$skill_dir" ~/.agents/skills/"$skill_name"
+    done
     ln -svf "$dotfiles_dir"/setup/ensure-agent-research-dir.sh ~/.local/bin/ensure-agent-research-dir
+    ln -svf "$dotfiles_dir"/setup/agent-learning-stop-hook.sh ~/.local/bin/agent-learning-stop-hook
 }
 
 setup_packages() {

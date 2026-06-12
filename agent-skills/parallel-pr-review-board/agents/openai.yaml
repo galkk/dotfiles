@@ -1,0 +1,4 @@
+interface:
+  display_name: "Parallel PR Review Board"
+  short_description: "Run focused parallel PR review"
+  default_prompt: "Use $parallel-pr-review-board to spawn focused reviewers and consolidate PR findings."
