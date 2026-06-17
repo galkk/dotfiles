@@ -36,6 +36,14 @@ require("lazy").setup({
       end,
     },
     {
+      "nvimdev/lspsaga.nvim",
+      event = "LspAttach",
+      dependencies = { "nvim-treesitter/nvim-treesitter" },
+      config = function()
+        require("lspsaga").setup({})
+      end,
+    },
+    {
       "nvim-treesitter/nvim-treesitter",
       branch = "master",
       build = ":TSUpdate",

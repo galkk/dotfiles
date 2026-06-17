@@ -5,7 +5,7 @@ approvals_reviewer = "auto_review"
 features.undo = true
 features.memories = true
 features.js_repl = false
-service_tier = "fast"
+service_tier = "default"
 
 [memories]
 generate_memories = true
@@ -21,3 +21,6 @@ status_line_use_colors = true
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+
+[notice]
+hide_rate_limit_model_nudge = true
