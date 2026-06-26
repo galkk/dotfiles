@@ -53,7 +53,7 @@
     rebaseMerges = true
     autoSquash = true
     updateRefs = true            # auto-move stacked branch pointers on rebase
-    autoStash = true             # stash/pop dirty worktree around rebase
+    autoStash = false            # require clean worktree before rebase
     missingCommitsCheck = warn   # warn if commits dropped during interactive rebase
 [rerere]
     enabled = true

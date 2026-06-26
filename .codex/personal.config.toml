@@ -6,6 +6,7 @@ features.undo = true
 features.memories = true
 features.js_repl = false
 service_tier = "default"
+plan_mode_reasoning_effort = "xhigh"
 
 [memories]
 generate_memories = true
@@ -16,7 +17,7 @@ min_rate_limit_remaining_percent = 20
 [tui]
 theme = "gruvbox-dark"
 alternate_screen = "always"
-status_line = ["context-remaining", "current-dir", "git-branch", "pull-request-number", "branch-changes", "model-with-reasoning", "project-name", "raw-output", "used-tokens", "five-hour-limit"]
+status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branch", "pull-request-number", "branch-changes", "run-state", "context-remaining", "context-used", "five-hour-limit", "weekly-limit", "context-window-size", "used-tokens", "total-input-tokens", "total-output-tokens", "fast-mode", "raw-output", "thread-title", "task-progress"]
 status_line_use_colors = true
 
 [tui.model_availability_nux]
@@ -24,3 +25,29 @@ status_line_use_colors = true
 
 [notice]
 hide_rate_limit_model_nudge = true
+
+[projects."/Users/andrii.galkin"]
+trust_level = "trusted"
+
+[projects."/Users/andrii.galkin/projects/dbops"]
+trust_level = "trusted"
+
+[projects."/Users/andrii.galkin/projects/architecture"]
+trust_level = "trusted"
+
+[hooks.state]
+
+[hooks.state."/Users/andrii.galkin/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:3308aaf682a9093d45f9995dad4989dd8c3a022f4f926af32254261b7714b152"
+
+[hooks.state."/Users/andrii.galkin/.codex/hooks.json:session_start:1:0"]
+trusted_hash = "sha256:cd69c0f4234bd8516ea4abb56ff2e708f9d2cf5b4e8cb974914f0ba6a0b2ef5c"
+
+[hooks.state."/Users/andrii.galkin/.codex/hooks.json:session_start:2:0"]
+trusted_hash = "sha256:deb55c10952e0fd4c8d8683779126a4aa9400d97b6ece6bd36a2fd55b875a8e8"
+
+[hooks.state."/Users/andrii.galkin/.codex/hooks.json:session_start:3:0"]
+trusted_hash = "sha256:ab8f9bd95716aa7aeca0283e1593ded852ec52934d07b9c7eec4ebaefe48c8da"
+
+[hooks.state."/Users/andrii.galkin/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:c6c07ed06e4a1f99bb069e4cf4bf3d58f21c99165bea4bc0fcd68250a44b3fac"
